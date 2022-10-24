@@ -8,6 +8,8 @@ function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [enableFormButt, setEnableFormButt] = useState(true);
+  const [title, setTitle] = useState('');
+  const [showIcon, setShowIcon] = useState(true);
 
   const handleEmailChange = useCallback(({ target }) => {
     setEmail(target.value);
@@ -35,8 +37,20 @@ function Provider({ children }) {
       password,
       handlePasswordChange,
       enableFormButt,
+      title,
+      setTitle,
+      showIcon,
+      setShowIcon,
     }),
-    [email, handleEmailChange, password, handlePasswordChange, enableFormButt],
+    [email,
+      handleEmailChange,
+      password,
+      handlePasswordChange,
+      enableFormButt,
+      title,
+      setTitle,
+      showIcon,
+      setShowIcon],
   );
 
   return <Context.Provider value={ appContext }>{children}</Context.Provider>;

@@ -11,7 +11,7 @@ function Login() {
   const history = useHistory();
   const handleFormClick = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
-    history.push('/recipes');
+    history.push('/meals');
   };
   return (
     <div>

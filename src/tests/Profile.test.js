@@ -3,15 +3,16 @@ import React from 'react';
 import Profile from '../Pages/Profile';
 import renderWithRouter from './utils/renderWith';
 
-discribe('Teste pagina Profile', () => {
-  test('Testa botões na pagina', () => {
-    renderWithRouter(<Profile />);
-    const btnRecFeitas = screen.getByRole('button', { name: /receitas feitas/i });
-    const btnRecFav = screen
-      .getByRole('button', { name: /receitas favoritas/i });
-    const btnSair = screen.getByRole('button', { name: /sair/i });
-    expect(btnRecFeitas).toBeInTheDocument();
-    expect(btnRecFav).toBeInTheDocument();
-    expect(btnSair).toBeInTheDocument();
-  });
+test('Testa botões na pagina', () => {
+  renderWithRouter(<Profile />);
+
+  const tituloProfile = screen.getByText(/Favorite Recipes/i);
+  const btnRecFeitas = screen.getByRole('button', { name: /Done Recipes/i });
+  const btnRecFav = screen.getByRole('button', { name: /Favorite Recipes/i });
+  const btnSair = screen.getByRole('button', { name: /Logout/i });
+
+  expect(tituloProfile).toBeInTheDocument();
+  expect(btnRecFeitas).toBeInTheDocument();
+  expect(btnRecFav).toBeInTheDocument();
+  expect(btnSair).toBeInTheDocument();
 });

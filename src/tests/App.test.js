@@ -6,6 +6,6 @@ import renderWithRouter from './utils/renderWith';
 test('Farewell, front-end', () => {
   // Este arquivo pode ser modificado ou deletado sem problemas
   renderWithRouter(<App />);
-  const linkElement = screen.getByText(/TRYBE/i);
+  const linkElement = screen.getByText(/Email/i);
   expect(linkElement).toBeInTheDocument();
 });

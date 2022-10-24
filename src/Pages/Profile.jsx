@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Context from '../context/Context';
 // import Context from '../context/Context';
 
 function Profile() {
+  const { setTitle, setShowIcon } = useContext(Context);
+  useEffect(() => {
+    setTitle('Profile');
+    setShowIcon(false);
+  }, [setTitle, setShowIcon]);
   const history = useHistory();
   const redirectToDoneRecipes = () => {
     history.push('/done-recipes');
@@ -21,7 +28,8 @@ function Profile() {
   const emailInStorage = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <div>
+    <>
+      <Header />
       <span data-testid="profile-email">{emailInStorage.email}</span>
       <button
         data-testid="profile-done-btn"
@@ -44,7 +52,8 @@ function Profile() {
       >
         Logout
       </button>
-    </div>
+      <Footer />
+    </>
   );
 }
 
