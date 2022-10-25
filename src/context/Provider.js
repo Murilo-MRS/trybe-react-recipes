@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { fetchDrinks, fetchFoods } from '../services/Api';
 import Context from './Context';
 
 const PASSWORD_MIN_SIZE = 6;
@@ -10,6 +11,8 @@ function Provider({ children }) {
   const [enableFormButt, setEnableFormButt] = useState(true);
   const [title, setTitle] = useState('');
   const [showIcon, setShowIcon] = useState(true);
+  const [foods, setFoods] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   const handleEmailChange = useCallback(({ target }) => {
     setEmail(target.value);
@@ -18,6 +21,16 @@ function Provider({ children }) {
   const handlePasswordChange = useCallback(({ target }) => {
     setPassword(target.value);
   }, [setPassword]);
+
+  useEffect(() => {
+    const requestApiDrinks = async () => {
+      const drinksArr = await fetchDrinks();
+      const foodsArr = await fetchFoods();
+      setDrinks(drinksArr);
+      setFoods(foodsArr);
+    };
+    requestApiDrinks();
+  }, []);
 
   // const logout = useCallback(() => {
   //   localStorage.getItem('user');
@@ -41,8 +54,13 @@ function Provider({ children }) {
       setTitle,
       showIcon,
       setShowIcon,
+      foods,
+      setFoods,
+      drinks,
+      setDrinks,
     }),
-    [email,
+    [
+      email,
       handleEmailChange,
       password,
       handlePasswordChange,
@@ -50,7 +68,11 @@ function Provider({ children }) {
       title,
       setTitle,
       showIcon,
-      setShowIcon],
+      setShowIcon,
+      foods,
+      drinks,
+      setDrinks,
+    ],
   );
 
   return <Context.Provider value={ appContext }>{children}</Context.Provider>;

@@ -10,6 +10,31 @@ export const fetchDrinks = async () => {
   return drinks;
 };
 
+export const fetchFoodsByIngredient = async (Ingredient) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${Ingredient}`);
+  const { meals } = await response.json();
+  return meals;
+};
+
+export const fetchFoodsByName = async (Name) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${Name}`);
+  const { meals } = await response.json();
+  return meals;
+};
+
+// so aceita fetch informando uma letra somente, se nao retorna ERRO~
+export const fetchFoodsByFirstLetter = async (firstLetter) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`);
+  const { meals } = await response.json();
+  return meals;
+};
+
+export const fetchDrinksByIngredient = async (Ingredient) => {
+  const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${Ingredient}`);
+  const { drinks } = await response.json();
+  return drinks;
+};
+
 export const fetchDrinksDetails = async (id) => {
   const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
   const { drinks } = await response.json();
@@ -21,6 +46,7 @@ export const fetchDrinksByName = async (name) => {
   const { drinks } = await response.json();
   return drinks;
 };
+
 // so aceita fetch informando uma letra somente, se nao retorna ERRO~
 export const fetchDrinksByFirstLetter = async (letra) => {
   const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letra}`);

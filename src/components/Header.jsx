@@ -4,6 +4,7 @@ import Context from '../context/Context';
 import arrowLeft from '../images/btnVoltar.svg';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header() {
   const { title, showIcon } = useContext(Context);
@@ -51,12 +52,7 @@ function Header() {
         </button>
       )}
       {showSearchInput && (
-        <input
-          type="text"
-          id="search"
-          placeholder="Buscar receitas"
-          data-testid="search-input"
-        />
+        <SearchBar />
       )}
     </header>
   );
