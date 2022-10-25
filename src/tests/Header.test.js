@@ -12,7 +12,6 @@ const btnTestId = 'login-submit-btn';
 
 it('Testa funcionamento do botao', () => {
   const { history } = renderWithRouter(<App />);
-
   const buttonLogin = screen.getByTestId(btnTestId);
   const inputEmail = screen.getByTestId(emailTestId);
   const inputPassword = screen.getByTestId(passwordTestId);
