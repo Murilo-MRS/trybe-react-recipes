@@ -1,10 +1,11 @@
 import React from 'react';
 import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
+import '../styles/Footer.css';
 
 export default function Footer() {
   return (
-    <div data-testid="footer">
+    <div data-testid="footer" className="footer-container">
       <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="" />
       <img data-testid="meals-bottom-btn" src={ mealIcon } alt="" />
     </div>
