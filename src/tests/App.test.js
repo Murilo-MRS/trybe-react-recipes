@@ -14,6 +14,7 @@ test('Teste se App esta renderizando a rota correta', () => {
   const inputPassword = screen.getByTestId(passwordTestId);
   expect(inputEmail).toBeInTheDocument();
   expect(inputPassword).toBeInTheDocument();
+
   expect(buttonLogin).toBeInTheDocument();
   expect(history.location.pathname).toBe('/');
 });
