@@ -42,4 +42,10 @@ it('Testando Navegacao do Header', () => {
   userEvent.click(btnProfile);
 
   expect(history.location.pathname).toBe('/profile');
+
+  const btnVoltar = screen.getByRole('button', {
+    name: /btn de voltar/i,
+  });
+  expect(btnVoltar).toBeInTheDocument();
+  userEvent.click(btnVoltar);
 });

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
+import arrowLeft from '../images/btnVoltar.svg';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
@@ -16,6 +17,16 @@ function Header() {
       <div>
         <h1 data-testid="page-title">{title}</h1>
       </div>
+      <button
+        data-testid="btn-back"
+        onClick={ () => { window.history.back(); } }
+        type="button"
+      >
+        <img
+          alt="btn de voltar"
+          src={ arrowLeft }
+        />
+      </button>
       <button
         type="button"
         data-testid="profile-top-btn"
