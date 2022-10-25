@@ -10,7 +10,7 @@ const passwordTestId = 'password-input';
 const emailTestId = 'email-input';
 const btnTestId = 'login-submit-btn';
 
-it('Testando Navegacao do Header', () => {
+it('Testando navegacao do Footer', () => {
   const { history } = renderWithRouter(<App />);
   const buttonLogin = screen.getByTestId(btnTestId);
   const inputEmail = screen.getByTestId(emailTestId);
@@ -25,21 +25,16 @@ it('Testando Navegacao do Header', () => {
 
   expect(history.location.pathname).toBe('/meals');
 
-  const btnProfile = screen.getByTestId('profile-top-btn');
-  const btnSearch = screen.getByTestId('search-top-btn');
-  expect(btnProfile).toBeInTheDocument();
-  expect(btnSearch).toBeInTheDocument();
+  const btndrinks = screen.getByTestId('drinks-bottom-btn');
+  const btnMeals = screen.getByTestId('meals-bottom-btn');
+  expect(btndrinks).toBeInTheDocument();
+  expect(btnMeals).toBeInTheDocument();
 
-  userEvent.click(btnSearch);
+  userEvent.click(btnMeals);
 
-  const inputHandle = screen.getByTestId('search-input');
+  expect(history.location.pathname).toBe('/meals');
 
-  expect(inputHandle).toBeInTheDocument();
-  userEvent.click(btnSearch);
+  userEvent.click(btndrinks);
 
-  expect(inputHandle).not.toBeInTheDocument();
-
-  userEvent.click(btnProfile);
-
-  expect(history.location.pathname).toBe('/profile');
+  expect(history.location.pathname).toBe('/drinks');
 });
