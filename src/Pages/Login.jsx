@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
+import '../styles/login.css';
 
 function Login() {
   const { email,
@@ -39,6 +40,7 @@ function Login() {
         />
       </label>
       <button
+        className="login"
         type="button"
         data-testid="login-submit-btn"
         disabled={ enableFormButt }

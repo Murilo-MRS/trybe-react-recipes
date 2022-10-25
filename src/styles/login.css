@@ -1,0 +1,9 @@
+.login {
+  background-color: rgb(6, 127, 240);
+  color: white;
+}
+
+.login:disabled {
+  background-color: #ce5d41;
+  color: white;
+}
