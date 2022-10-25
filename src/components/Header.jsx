@@ -8,23 +8,25 @@ function Header() {
   const { title, showIcon } = useContext(Context);
   const [showSearchInput, setShowSearchInput] = useState(false);
   const history = useHistory();
-  const profilePush = () => {
-    history.push('/profile');
-  };
+  const profilePush = () => history.push('/profile');
+
+  const handleSearchBtn = () => setShowSearchInput(!showSearchInput);
   return (
-    <div>
+    <header>
       <div>
         <h1 data-testid="page-title">{title}</h1>
       </div>
       <button
-        src={ profileIcon }
         type="button"
-        onClick={ profilePush }
         data-testid="profile-top-btn"
+        name="profile-top-btn"
+        id="profile-top-btn"
+        src={ profileIcon }
+        onClick={ profilePush }
       >
         <img
           src={ profileIcon }
-          alt="Icone de redirecionamento para o perfil"
+          alt="Ir para perfil"
         />
       </button>
       {showIcon && (
@@ -32,7 +34,7 @@ function Header() {
           src={ searchIcon }
           data-testid="search-top-btn"
           type="button"
-          onClick={ () => setShowSearchInput(!showSearchInput) }
+          onClick={ handleSearchBtn }
         >
           <img src={ searchIcon } alt="Icone de pesquisa" />
         </button>
@@ -42,9 +44,10 @@ function Header() {
           type="text"
           id="search"
           placeholder="Buscar receitas"
+          data-testid="search-input"
         />
       )}
-    </div>
+    </header>
   );
 }
 

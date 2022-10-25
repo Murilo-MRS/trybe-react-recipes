@@ -54,7 +54,7 @@ it('Testa funcionamento do botao', () => {
   userEvent.click(buttonLogin);
 
   expect(JSON.parse(localStorage.getItem('user'))).toEqual({ email });
-  expect(history.location.pathname).toBe('/recipes');
+  expect(history.location.pathname).toBe('/meals');
 });
 
 /* it("Should call localStorage getItem on render", () => {

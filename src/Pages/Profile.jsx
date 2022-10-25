@@ -27,10 +27,19 @@ function Profile() {
   // const { email } = useContext(Context);
   const emailInStorage = JSON.parse(localStorage.getItem('user'));
 
+  function getEmail() {
+    return (
+      <span type="text" data-testid="profile-email">
+        {emailInStorage.email}
+      </span>
+    );
+  }
+
   return (
     <>
       <Header />
-      <span data-testid="profile-email">{emailInStorage.email}</span>
+      <p>{emailInStorage && getEmail()}</p>
+
       <button
         data-testid="profile-done-btn"
         type="button"
