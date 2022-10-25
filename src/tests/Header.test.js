@@ -47,5 +47,6 @@ it('Testando Navegacao do Header', () => {
     name: /btn de voltar/i,
   });
   expect(btnVoltar).toBeInTheDocument();
+
   userEvent.click(btnVoltar);
 });
