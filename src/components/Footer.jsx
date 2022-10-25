@@ -6,13 +6,22 @@ import '../styles/Footer.css';
 
 export default function Footer() {
   const history = useHistory();
+
+  const redirectToDrinks = () => {
+    history.push('/drinks');
+  };
+
+  const redirectToMeals = () => {
+    history.push('/meals');
+  };
+
   return (
     <div data-testid="footer" className="footer-container">
       <button
         type="button"
         src={ drinkIcon }
         data-testid="drinks-bottom-btn"
-        onClick={ () => history.push('/drinks') }
+        onClick={ () => redirectToDrinks() }
       >
         <img
           src={ drinkIcon }
@@ -23,7 +32,7 @@ export default function Footer() {
         type="button"
         src={ mealIcon }
         data-testid="meals-bottom-btn"
-        onClick={ () => history.push('/meals') }
+        onClick={ () => redirectToMeals() }
       >
         <img
           src={ mealIcon }

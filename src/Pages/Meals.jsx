@@ -25,7 +25,7 @@ function Meals() {
             key={ index }
             className="card-name"
           >
-            <Link to={ `/comidas/${food.idMeal}` }>
+            <Link to={ `/meals/${food.idMeal}` }>
               <img
                 data-testid={ `${index}-card-img` }
                 src={ food.strMealThumb }

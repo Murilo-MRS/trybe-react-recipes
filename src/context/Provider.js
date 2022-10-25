@@ -11,6 +11,8 @@ function Provider({ children }) {
   const [enableFormButt, setEnableFormButt] = useState(true);
   const [title, setTitle] = useState('');
   const [showIcon, setShowIcon] = useState(true);
+  const [foodsAPI, setFoodsAPI] = useState([]);
+  const [drinksAPI, setDrinksAPI] = useState([]);
   const [foods, setFoods] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
@@ -26,15 +28,13 @@ function Provider({ children }) {
     const requestApiDrinks = async () => {
       const drinksArr = await fetchDrinks();
       const foodsArr = await fetchFoods();
+      setDrinksAPI(drinksArr);
+      setFoodsAPI(foodsArr);
       setDrinks(drinksArr);
       setFoods(foodsArr);
     };
     requestApiDrinks();
   }, []);
-
-  // const logout = useCallback(() => {
-  //   localStorage.getItem('user');
-  // }, []);
 
   useEffect(() => {
     const regex = /\S+@\S+\.\S+/;
@@ -58,6 +58,8 @@ function Provider({ children }) {
       setFoods,
       drinks,
       setDrinks,
+      foodsAPI,
+      drinksAPI,
     }),
     [
       email,
@@ -72,6 +74,8 @@ function Provider({ children }) {
       foods,
       drinks,
       setDrinks,
+      foodsAPI,
+      drinksAPI,
     ],
   );
 
