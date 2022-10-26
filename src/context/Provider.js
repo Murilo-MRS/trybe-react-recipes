@@ -16,6 +16,11 @@ function Provider({ children }) {
   const [foods, setFoods] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
+  const clearInputs = useCallback(() => {
+    setEmail('');
+    setPassword('');
+  }, [setEmail]);
+
   const handleEmailChange = useCallback(({ target }) => {
     setEmail(target.value);
   }, [setEmail]);
@@ -60,6 +65,7 @@ function Provider({ children }) {
       setDrinks,
       foodsAPI,
       drinksAPI,
+      clearInputs,
     }),
     [
       email,
@@ -76,6 +82,7 @@ function Provider({ children }) {
       setDrinks,
       foodsAPI,
       drinksAPI,
+      clearInputs,
     ],
   );
 

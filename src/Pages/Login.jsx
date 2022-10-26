@@ -4,12 +4,15 @@ import Context from '../context/Context';
 import '../styles/login.css';
 
 function Login() {
-  const { email,
+  const {
+    email,
     handleEmailChange,
     password,
     handlePasswordChange,
-    enableFormButt } = useContext(Context);
+    enableFormButt,
+  } = useContext(Context);
   const history = useHistory();
+
   const handleFormClick = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
     history.push('/meals');

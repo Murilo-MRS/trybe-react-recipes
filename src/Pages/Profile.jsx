@@ -6,7 +6,7 @@ import Context from '../context/Context';
 // import Context from '../context/Context';
 
 function Profile() {
-  const { setTitle, setShowIcon } = useContext(Context);
+  const { setTitle, setShowIcon, clearInputs } = useContext(Context);
   useEffect(() => {
     setTitle('Profile');
     setShowIcon(false);
@@ -21,6 +21,7 @@ function Profile() {
   };
 
   const logout = () => {
+    clearInputs();
     localStorage.clear();
     history.push('/');
   };
