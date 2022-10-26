@@ -24,7 +24,7 @@ function Drink() {
             key={ index }
             className="card-name"
           >
-            <Link to={ `/comidas/${drink.idDrink}` }>
+            <Link to={ `/drinks/${drink.idDrink}` }>
               <img
                 data-testid={ `${index}-card-img` }
                 src={ drink.strDrinkThumb }

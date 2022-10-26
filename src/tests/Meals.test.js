@@ -11,10 +11,6 @@ const emailTestId = 'email-input';
 const btnTestId = 'login-submit-btn';
 
 it('Testando Meals', async () => {
-/*   jest.spyOn(global, 'fetch');
-  global.fetch.mockResolvedValue({
-    json: jest.fn().mockResolvedValue(comidasMock),
-  }); */
   const { history } = renderWithRouter(<App />);
   const buttonLogin = screen.getByTestId(btnTestId);
   const inputEmail = screen.getByTestId(emailTestId);
@@ -29,8 +25,10 @@ it('Testando Meals', async () => {
 
   expect(history.location.pathname).toBe('/meals');
 
-  // const burek = screen.getByText(/burek/i);
+  const arrMeals = await screen.findAllByTestId(/-recipe-card/i, {}, { timeout: 5000 });
+  expect(arrMeals).toHaveLength(12);
 
+  // const arrMeals = await screen.findAllByTestId(/-recipes-card/i, {}, { timeout: 5000 });
   /*   const array = [];
   const criarArray = () => {
     for (let i = 0; i < 12; i += 1) {

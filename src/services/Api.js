@@ -49,6 +49,16 @@ export const fetchFoodsByFirstLetter = async (firstLetter) => {
   }
 };
 
+export const fetchFoodsDetails = async (id) => {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const { meals } = await response.json();
+    return meals[0];
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const fetchDrinksByIngredient = async (Ingredient) => {
   try {
     const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${Ingredient}`);
