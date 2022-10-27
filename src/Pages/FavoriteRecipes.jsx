@@ -83,7 +83,7 @@ function FavoriteRecipes() {
             index,
           ) => (
             <div data-testid={ `${index}-recipe-card` } key={ index }>
-              <Link to={ `/${type}s/${id}` }>
+              <Link to={ `/${type}/${id}` }>
                 <img
                   data-testid={ `${index}-horizontal-image` }
                   src={ image }

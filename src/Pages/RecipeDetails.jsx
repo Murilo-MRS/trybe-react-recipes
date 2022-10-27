@@ -67,8 +67,8 @@ function RecipeDetails() {
 
   useEffect(() => {
     const doneRecipes = getStorage('doneRecipes');
-    // const initiatedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
-    const initiatedRecipes = getStorage('inProgressRecipes');
+    const initiatedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    // const initiatedRecipes = getStorage('inProgressRecipes');
     if (doneRecipes.some((recipe) => recipe.id === id)) setNotDoneRecipe(false);
     if (Object.keys(initiatedRecipes[pathname] || {})
       .some((recipeId) => +recipeId === +id)) setContinueRecipe(true);
