@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
@@ -94,8 +94,8 @@ describe('Testar a barra de navegação', () => {
     // userEvent.click(btnSearch);
   });
 
-  it('testar pesquisa por ingredientes em meals', async () => {
-    renderWithRouter(<App />, { initialEntries: ['/meals'] });
+  it('3 - testar pesquisa por ingredientes em meals', async () => {
+    const { history } = renderWithRouter(<App />, { initialEntries: ['/meals'] });
 
     const searchIcon = screen.getByTestId(btnSearchTop);
 
@@ -109,9 +109,22 @@ describe('Testar a barra de navegação', () => {
 
     userEvent.type(inputShearch, 'chicken');
     userEvent.click(ingredient);
+
     userEvent.click(btnSearch);
 
     expect(ingredient).toBeChecked();
+
+    const name = screen.getByTestId(nameRadio);
+    const sushi = 'sushi';
+    userEvent.clear(inputShearch);
+    userEvent.type(inputShearch, sushi);
+    expect(inputShearch).toHaveValue(sushi);
+    userEvent.click(name);
+    userEvent.click(btnSearch);
+    await waitFor(() => {
+      const { location: { pathname } } = history;
+      expect(pathname).toBe('/meals/53065');
+    });
   });
 
   it('testar pesquisa por ingredientes em meals', async () => {
@@ -153,7 +166,7 @@ describe('Testar a barra de navegação', () => {
     userEvent.click(btnSearch);
   });
 
-  it('testar alert em drinks', async () => {
+  it('testar alert em meals', async () => {
     renderWithRouter(<App />, { initialEntries: ['/meals'] });
     const searchIcon = screen.getByTestId(btnSearchTop);
 
@@ -168,5 +181,69 @@ describe('Testar a barra de navegação', () => {
     userEvent.click(firstName);
 
     userEvent.click(btnSearch);
+  });
+
+  it('testar first letter em meals', async () => {
+    const { history } = renderWithRouter(<App />, { initialEntries: ['/meals'] });
+    const searchIcon = screen.getByTestId(btnSearchTop);
+
+    userEvent.click(searchIcon);
+
+    const inputShearch = screen.getByTestId(searchInput);
+    const firstName = screen.getByTestId(firstLetterRadio);
+    const btnSearch = screen.getByTestId(btnSearchBar);
+
+    userEvent.type(inputShearch, 'y');
+    expect(inputShearch).toHaveValue('y');
+    userEvent.click(firstName);
+
+    userEvent.click(btnSearch);
+    await waitFor(() => {
+      const { location: { pathname } } = history;
+      expect(pathname).toBe('/meals/52871');
+    });
+  });
+
+  it('testar first letter em drinks', async () => {
+    const { history } = renderWithRouter(<App />, { initialEntries: ['/drinks'] });
+    const searchIcon = screen.getByTestId(btnSearchTop);
+
+    userEvent.click(searchIcon);
+
+    const inputShearch = screen.getByTestId(searchInput);
+    const firstName = screen.getByTestId(firstLetterRadio);
+    const btnSearch = screen.getByTestId(btnSearchBar);
+
+    userEvent.type(inputShearch, '4');
+    expect(inputShearch).toHaveValue('4');
+    userEvent.click(firstName);
+
+    userEvent.click(btnSearch);
+    await waitFor(() => {
+      const { location: { pathname } } = history;
+      expect(pathname).toBe('/drinks/13581');
+    });
+  });
+
+  it('testar nome em drinks', async () => {
+    const { history } = renderWithRouter(<App />, { initialEntries: ['/drinks'] });
+    const searchIcon = screen.getByTestId(btnSearchTop);
+
+    userEvent.click(searchIcon);
+
+    const inputShearch = screen.getByTestId(searchInput);
+    const btnSearch = screen.getByTestId(btnSearchBar);
+
+    const name = screen.getByTestId(nameRadio);
+
+    userEvent.type(inputShearch, '410 Gone');
+    expect(inputShearch).toHaveValue('410 Gone');
+    userEvent.click(name);
+
+    userEvent.click(btnSearch);
+    await waitFor(() => {
+      const { location: { pathname } } = history;
+      expect(pathname).toBe('/drinks/13581');
+    });
   });
 });

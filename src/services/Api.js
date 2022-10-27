@@ -4,7 +4,7 @@ export const fetchFoods = async () => {
     const { meals } = await response.json();
     return meals;
   } catch (error) {
-    throw new Error(error.meals);
+    throw new Error(error);
   }
 };
 
@@ -14,7 +14,7 @@ export const fetchDrinks = async () => {
     const { drinks } = await response.json();
     return drinks;
   } catch (error) {
-    throw new Error(error.meals);
+    throw new Error(error);
   }
 };
 
