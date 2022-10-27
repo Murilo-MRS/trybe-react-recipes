@@ -11,7 +11,9 @@ function Provider({ children }) {
   const [enableFormButt, setEnableFormButt] = useState(true);
   const [title, setTitle] = useState('');
   const [showIcon, setShowIcon] = useState(true);
+  // nao reutilizar
   const [foodsAPI, setFoodsAPI] = useState([]);
+  // nao reutilizar
   const [drinksAPI, setDrinksAPI] = useState([]);
   const [foods, setFoods] = useState([]);
   const [drinks, setDrinks] = useState([]);

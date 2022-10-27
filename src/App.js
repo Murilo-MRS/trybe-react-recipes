@@ -21,10 +21,6 @@ function App() {
         <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
         <Route exact path="/meals/:id" component={ RecipeDetails } />
         <Route exact path="/drinks/:id" component={ RecipeDetails } />
-        {/* <Route exact path="/meals/:id-da-receita/in-progress" component={ MealsDetails } />
-        <Route exact path="/drinks/:id-da-receita/in-progress" component={ Login } />
-        <Route exact path="/done-recipes" component={ Login } />
-        <Route exact path="/favorite-recipes" component={ Login } /> */}
       </Switch>
     </Provider>
   );
