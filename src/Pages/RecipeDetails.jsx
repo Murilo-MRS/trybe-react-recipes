@@ -26,7 +26,26 @@ const s = 19;
 const t = 20;
 
 const ONE_TO_TWENTY = [
-  a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t,
+  a,
+  b,
+  c,
+  d,
+  e,
+  f,
+  g,
+  h,
+  i,
+  j,
+  k,
+  l,
+  m,
+  n,
+  o,
+  p,
+  q,
+  r,
+  s,
+  t,
 ];
 
 function RecipeDetails() {
@@ -35,75 +54,68 @@ function RecipeDetails() {
     location: { pathname },
   } = useHistory();
   const [detail, setDetails] = useState({});
+  const [video, setVideo] = useState({});
+  const [img, setImg] = useState({});
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
-  const video = detail?.strYoutube?.replace('watch?v=', 'embed/');
 
   useEffect(() => {
     (async () => {
       if (drink) {
+        setImg(detail?.strDrinkThumb);
+        setVideo(detail?.strVideo?.replace('watch?v=', 'embed/'));
         const drinkDetails = await fetchDrinksDetails(id);
         setDetails(drinkDetails);
       }
       if (food) {
+        setImg(detail?.strMealThumb);
+        setVideo(detail?.strYoutube?.replace('watch?v=', 'embed/'));
         const foodDetails = await fetchFoodsDetails(id);
         setDetails(foodDetails);
       }
     })();
-  }, [id, drink, food]);
+  }, [
+    id,
+    drink,
+    food,
+    detail?.strYoutube,
+    detail?.strVideo,
+    detail?.strDrinkThumb,
+    detail?.strMealThumb,
+  ]);
   return (
     <>
       <Header />
-      {food ? (
-        <div>
-          <img
-            data-testid="recipe-photo"
-            src={ detail?.strMealThumb }
-            alt="meal img"
-          />
-          <h1 data-testid="recipe-title">{detail?.strMeal}</h1>
-          <h2 data-testid="recipe-category">{detail?.strCategory}</h2>
-          <ul>
-            {ONE_TO_TWENTY.map((number, index) => {
-              if (detail[`strIngredient${number}`]?.length > 0) {
-                return (
-                  <li
-                    key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
-                  >
-                    {detail[`strIngredient${number}`]}
-                    {' '}
-                    {detail[`strMeasure${number}`]}
-                  </li>
-                );
-              }
-              return false;
-            })}
-          </ul>
-          <p data-testid="instructions">{detail?.strInstructions}</p>
-          <iframe
-            title="Food Video"
-            width="420"
-            height="315"
-            data-testid="video"
-            src={ video }
-          />
-        </div>
-      ) : (
-        <div>
-          <img
-            data-testid="recipe-photo"
-            src={ detail?.strDrinkThumb }
-            alt="drink img"
-          />
-          <h1 data-testid="recipe-title">{detail?.strDrink}</h1>
-          <h2 data-testid="recipe-category">{detail?.strCategory}</h2>
-          {/* <ul data-testid="${index}-ingredient-name-and-measure">
-               <li></li>
-             </ul>
-            <p data-testid="instructions"></p> */}
-        </div>
-      )}
+      <div>
+        <img data-testid="recipe-photo" src={ img } alt="meal img" />
+        <h1 data-testid="recipe-title">{detail?.strMeal}</h1>
+        <h2 data-testid="recipe-category">{detail?.strCategory}</h2>
+        <ul>
+          {ONE_TO_TWENTY.map((number, index) => {
+            if (detail[`strIngredient${number}`]?.length > 0) {
+              return (
+                <li
+                  key={ index }
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                >
+                  {detail[`strIngredient${number}`]}
+                  {' '}
+                  {detail[`strMeasure${number}`]}
+                </li>
+              );
+            }
+            return false;
+          })}
+        </ul>
+        <p data-testid="instructions">{detail?.strInstructions}</p>
+        <iframe
+          title="Food Video"
+          width="420"
+          height="315"
+          data-testid="video"
+          src={ video }
+        />
+      </div>
       <Footer />
     </>
   );

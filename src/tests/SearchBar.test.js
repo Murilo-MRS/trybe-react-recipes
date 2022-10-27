@@ -81,8 +81,8 @@ describe('Testar a barra de navegação', () => {
 
     userEvent.clear(inputShearch);
 
-    userEvent.type(inputShearch, 'a');
-    expect(inputShearch).toHaveValue('a');
+    userEvent.type(inputShearch, 'u');
+    expect(inputShearch).toHaveValue('u');
     const firstLetter = screen.getByTestId(firstLetterRadio);
     userEvent.click(firstLetter);
     userEvent.click(btnSearch);

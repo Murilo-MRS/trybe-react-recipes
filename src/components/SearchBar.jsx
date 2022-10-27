@@ -39,12 +39,14 @@ function SearchBar() {
       alertRedirect(searchData, 'meals', 'idMeal');
       setFoods(searchData);
     }
-    if (radioValue === fLetter && searchInput.length >= 2) {
-      global.alert('Your search must have only 1 (one) character');
-    } else {
-      const searchData = await fetchFoodsByFirstLetter(searchInput);
-      alertRedirect(searchData, 'meals', 'idMeal');
-      setFoods(searchData);
+    if (radioValue === fLetter) {
+      if (searchInput.length >= 2) {
+        global.alert('Your search must have only 1 (one) character');
+      } else {
+        const searchData = await fetchFoodsByFirstLetter(searchInput);
+        alertRedirect(searchData, 'meals', 'idMeal');
+        setFoods(searchData);
+      }
     }
   };
 
@@ -59,12 +61,14 @@ function SearchBar() {
       alertRedirect(searchData, 'drinks', 'idDrink');
       setDrinks(searchData);
     }
-    if (radioValue === fLetter && searchInput.length >= 2) {
-      global.alert('Your search must have only 1 (one) character');
-    } else {
-      const searchData = await fetchDrinksByFirstLetter(searchInput);
-      alertRedirect(searchData, 'drinks', 'idDrink');
-      setDrinks(searchData);
+    if (radioValue === fLetter) {
+      if (searchInput.length >= 2) {
+        global.alert('Your search must have only 1 (one) character');
+      } else {
+        const searchData = await fetchDrinksByFirstLetter(searchInput);
+        alertRedirect(searchData, 'drinks', 'idDrink');
+        setDrinks(searchData);
+      }
     }
   };
 
