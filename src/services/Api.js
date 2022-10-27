@@ -91,13 +91,13 @@ export const fetchDrinksByName = async (name) => {
 
 // so aceita fetch informando uma letra somente, se nao retorna ERRO~
 export const fetchDrinksByFirstLetter = async (letra) => {
-  try {
-    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letra}`);
-    const { drinks } = await response.json();
-    return drinks;
-  } catch (error) {
+/*   try { */
+  const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letra}`);
+  const { drinks } = await response.json();
+  return drinks;
+/*   } catch (error) {
     throw new Error(error);
-  }
+  } */
 };
 // Req 21
 export const filterFoodsByCategory = async (Beef) => {
