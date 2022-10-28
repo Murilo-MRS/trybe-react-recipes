@@ -1,4 +1,4 @@
-.card{
+.card {
   align-items: center;
   background-clip: border-box;
   background-color: white;
@@ -22,7 +22,7 @@
   text-transform: uppercase;
 }
 
-body{
+body {
   align-items: center;
   background: #f0f0f0;
   display: flex;
@@ -47,12 +47,12 @@ body{
   color: white;
 }
 
-h2{
+h2 {
   font-size: 21px;
   font-weight: 600;
 }
 
-input{
+input {
   background: 0 0;
   background-color: #e7e7e7;
   border: 1px solid #e7e7e7;
@@ -62,7 +62,7 @@ input{
   width: 100%;
 }
 
-.login-card{
+.login-card {
   align-items: center;
   display: flex;
   flex-direction: column;
