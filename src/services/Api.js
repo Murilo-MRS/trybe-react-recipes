@@ -129,3 +129,23 @@ export const filterDrinksByCategory = async (Cocktail) => {
     throw new Error(error);
   }
 };
+
+export const fetchDrinksCategoryList = async () => {
+  try {
+    const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+    const { drinks } = await response.json();
+    return drinks;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const fetchMealsCategoryList = async () => {
+  try {
+    const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+    const { meals } = await response.json();
+    return meals;
+  } catch (error) {
+    throw new Error(error);
+  }
+};

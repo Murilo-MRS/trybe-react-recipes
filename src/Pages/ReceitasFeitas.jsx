@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Context from '../context/Context';
+import shareIcon from '../images/shareIcon.svg';
 
 function ReceitasFeitas() {
-/*   function favoritesRecipe() {
-    const storage = getStorage('ReceitasFeitas');
+  /*     function recipesDone() {
+    const storage = getStorage('doneRecipes');
     return storage || [];
   } */
 
@@ -14,9 +15,7 @@ function ReceitasFeitas() {
 
   function mealInfo(index, category, area) {
     return (
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
+      <p data-testid={ `${index}-horizontal-top-text` }>
         {`${area} - ${category}`}
       </p>
     );
@@ -24,11 +23,7 @@ function ReceitasFeitas() {
 
   function drinkInfo(index, alcoholicOrNot) {
     return (
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {`${alcoholicOrNot}`}
-      </p>
+      <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>
     );
   }
 
@@ -48,15 +43,18 @@ function ReceitasFeitas() {
     // mock localstorage
     setReceitasFeitas([
       {
-        id: '53013',
+        id: '52785',
         type: 'meals',
-        area: 'American',
-        category: 'Beef',
+        area: 'Indian',
+        category: 'Vegetarian',
         alcoholicOrNot: '',
-        name: 'Big Mac',
+        name: 'Dal fry',
         image:
-          'https://www.themealdb.com/images/media/meals/urzj1d1587670726.jpg',
-      }]);
+          'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
+        doneDate: '27/10/2022',
+        tags: ['Curry', 'Vegetarian'],
+      },
+    ]);
   }, []);
 
   useEffect(() => {
@@ -74,12 +72,36 @@ function ReceitasFeitas() {
     <div>
       <Header />
       <h1>Receitas Feitas</h1>
+      <div>
+        <button
+          data-testid="filter-by-all-btn"
+          type="button"
+          onClick={ () => {} }
+        >
+          All
+        </button>
+        <button
+          data-testid="filter-by-meal-btn"
+          type="button"
+          onClick={ () => {} }
+        >
+          Food
+        </button>
+        <button
+          data-testid="filter-by-drink-btn"
+          type="button"
+          onClick={ () => {} }
+        >
+          Drink
+        </button>
+      </div>
       {ReceitasFeitass.length === 0 ? (
         <h3>Sem Receitas Favoritas!</h3>
       ) : (
         ReceitasFeitass.map(
           (
-            { category, id, type, image, area, alcoholicOrNot, name },
+            { category,
+              id, type, doneDate, tags, image, area, alcoholicOrNot, name },
             index,
           ) => (
             <div data-testid={ `${index}-recipe-card` } key={ index }>
@@ -96,17 +118,38 @@ function ReceitasFeitas() {
                   : drinkInfo(index, alcoholicOrNot)}
                 <Link to={ `/${type}/${id}` }>
                   <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+                  <p data-testid={ `${index}-horizontal-done-date` }>
+                    Feita em:
+                    {doneDate}
+                  </p>
+                  <div>
+                    {tags.map((tag) => (
+                      <p
+                        key={ tag }
+                        // data-testid="0-Pasta-horizontal-tag"
+                        data-testid={ `${index}-${tag}-horizontal-tag` }
+                      >
+                        {tag}
+                      </p>
+
+                    ))}
+                  </div>
                 </Link>
-
                 <button
-                  name="apagar"
                   type="button"
-                  onClick={ () => deletes(id) }
+                  data-testid="share-btn"
+                  onClick={ () => {} }
                 >
-                  Apagar
-
+                  <img
+                    src={ shareIcon }
+                    alt="share-icon"
+                    data-testid={ `${index}-horizontal-share-btn` }
+                  />
                 </button>
 
+                <button name="apagar" type="button" onClick={ () => deletes(id) }>
+                  Apagar
+                </button>
               </div>
             </div>
           ),
