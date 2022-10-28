@@ -89,7 +89,7 @@ function Provider({ children }) {
 
   const handleClickMealCategory = useCallback(
     ({ target }) => {
-      if (!mealCategorySelected) {
+      if (!mealCategorySelected || mealCategorySelected !== target.value) {
         setMealCategorySelected(target.value);
       }
       if (mealCategorySelected === target.value) {
@@ -102,7 +102,7 @@ function Provider({ children }) {
 
   const handleClickDrinkCategory = useCallback(
     ({ target }) => {
-      if (!drinkCategorySelected) {
+      if (!drinkCategorySelected || drinkCategorySelected !== target.value) {
         setDrinkCategorySelected(target.value);
       }
       if (drinkCategorySelected === target.value) {
