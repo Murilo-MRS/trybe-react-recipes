@@ -1,5 +1,7 @@
+import copy from 'clipboard-copy';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
+
 import Header from '../components/Header';
 import MealCarousel from '../components/MealCarousel';
 import { getStorage } from '../helpers/Storage';
@@ -68,8 +70,7 @@ function RecipeDetails() {
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
   const [copied, setCopy] = useState(false);
-  // eslint-disable-next-line global-require
-  const copy = require('clipboard-copy');
+  // const copy = require('clipboard-copy');
 
   const sharebtn = () => {
     const urlMealorDrink = `http://localhost:3000${pathname}`;

@@ -1,4 +1,4 @@
-const doneRecipesStorage = (recipe, type, date) => {
+/* const doneRecipesStorage = (recipe, type, date) => {
     emptyFunction = (variavel) => {
         if (variavel === null) {
         return "";
@@ -47,7 +47,7 @@ const LocalSave = () => {
     }
     if (food) {
         doneRecipesStorage(detail, drink, date)
-    } 
+    }
 }
 <div>
 <button
@@ -68,3 +68,4 @@ onClick={ LocalSave }
 
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+ */
