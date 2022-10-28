@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-    fetchDrinks, fetchDrinksCategoryList,
-    fetchFoods, fetchMealsCategoryList
+  fetchDrinks,
+  fetchDrinksCategoryList,
+  fetchFoods,
+  fetchMealsCategoryList, filterDrinksByCategory, filterFoodsByCategory
 } from '../services/Api';
 import Context from './Context';
 
@@ -22,19 +24,13 @@ function Provider({ children }) {
   const [drinks, setDrinks] = useState([]);
   const [drinksCategoryList, setDrinksCategoryList] = useState([]);
   const [mealsCategoryList, setMealsCategoryList] = useState([]);
+  const [mealCategorySelected, setMealCategorySelected] = useState('');
+  const [drinkCategorySelected, setDrinkCategorySelected] = useState('');
 
   const clearInputs = useCallback(() => {
     setEmail('');
     setPassword('');
   }, [setEmail]);
-
-  const handleEmailChange = useCallback(({ target }) => {
-    setEmail(target.value);
-  }, [setEmail]);
-
-  const handlePasswordChange = useCallback(({ target }) => {
-    setPassword(target.value);
-  }, [setPassword]);
 
   useEffect(() => {
     const requestApiDrinks = async () => {
@@ -65,6 +61,60 @@ function Provider({ children }) {
     setEnableFormButt(!(validEmail && validPassword));
   }, [email, password]);
 
+  useEffect(() => {
+    const filterByCategory = async () => {
+      if (mealCategorySelected) {
+        const foodCategory = await filterFoodsByCategory(mealCategorySelected);
+        setFoods(foodCategory);
+      }
+      if (drinkCategorySelected) {
+        const drinkCategory = await filterDrinksByCategory(drinkCategorySelected);
+        setDrinks(drinkCategory);
+      }
+    };
+    filterByCategory();
+  }, [mealCategorySelected, drinkCategorySelected]);
+
+  const handleEmailChange = useCallback(
+    ({ target }) => {
+      setEmail(target.value);
+    },
+    [setEmail],
+  );
+
+  const handlePasswordChange = useCallback(
+    ({ target }) => {
+      setPassword(target.value);
+    },
+    [setPassword],
+  );
+
+  const handleClickMealCategory = useCallback(
+    ({ target }) => {
+      if (!mealCategorySelected) {
+        setMealCategorySelected(target.value);
+      }
+      if (mealCategorySelected === target.value) {
+        setMealCategorySelected('');
+        setFoods(foodsAPI);
+      }
+    },
+    [setMealCategorySelected, foodsAPI, mealCategorySelected],
+  );
+
+  const handleClickDrinkCategory = useCallback(
+    ({ target }) => {
+      if (!drinkCategorySelected) {
+        setDrinkCategorySelected(target.value);
+      }
+      if (drinkCategorySelected === target.value) {
+        setDrinkCategorySelected('');
+        setDrinks(drinksAPI);
+      }
+    },
+    [setDrinkCategorySelected, drinksAPI, drinkCategorySelected],
+  );
+
   const appContext = useMemo(
     () => ({
       email,
@@ -85,6 +135,8 @@ function Provider({ children }) {
       clearInputs,
       drinksCategoryList,
       mealsCategoryList,
+      handleClickMealCategory,
+      handleClickDrinkCategory,
     }),
     [
       email,
@@ -104,6 +156,8 @@ function Provider({ children }) {
       clearInputs,
       drinksCategoryList,
       mealsCategoryList,
+      handleClickMealCategory,
+      handleClickDrinkCategory,
     ],
   );
 

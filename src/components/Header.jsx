@@ -14,47 +14,52 @@ function Header() {
 
   const handleSearchBtn = () => setShowSearchInput(!showSearchInput);
   return (
-    <header>
+    <>
       <div>
         <h1 data-testid="page-title">{title}</h1>
       </div>
-      <button
-        data-testid="btn-back"
-        onClick={ () => { window.history.back(); } }
-        type="button"
-      >
-        <img
-          alt="btn de voltar"
-          src={ arrowLeft }
-        />
-      </button>
-      <button
-        type="button"
-        data-testid="profile-top-btn"
-        name="profile-top-btn"
-        id="profile-top-btn"
-        src={ profileIcon }
-        onClick={ profilePush }
-      >
-        <img
-          src={ profileIcon }
-          alt="Ir para perfil"
-        />
-      </button>
-      {showIcon && (
-        <button
-          src={ searchIcon }
-          data-testid="search-top-btn"
-          type="button"
-          onClick={ handleSearchBtn }
-        >
-          <img src={ searchIcon } alt="Icone de pesquisa" />
-        </button>
-      )}
-      {showSearchInput && (
-        <SearchBar />
-      )}
-    </header>
+      <header>
+        <nav>
+          <button
+            data-testid="btn-back"
+            onClick={ () => { window.history.back(); } }
+            type="button"
+          >
+            <img
+              alt="btn de voltar"
+              src={ arrowLeft }
+            />
+          </button>
+          <button
+            type="button"
+            data-testid="profile-top-btn"
+            name="profile-top-btn"
+            id="profile-top-btn"
+            src={ profileIcon }
+            onClick={ profilePush }
+          >
+            <img
+              src={ profileIcon }
+              alt="Ir para perfil"
+            />
+          </button>
+          {showIcon && (
+            <button
+              src={ searchIcon }
+              data-testid="search-top-btn"
+              type="button"
+              onClick={ handleSearchBtn }
+            >
+              <img src={ searchIcon } alt="Icone de pesquisa" />
+            </button>
+          )}
+          {showSearchInput && (
+            <SearchBar />
+          )}
+        </nav>
+      </header>
+
+    </>
   );
 }
 

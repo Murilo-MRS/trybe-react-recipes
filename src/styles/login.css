@@ -1,7 +1,7 @@
-.card{
+.card {
   align-items: center;
-  background-color: #fff;
   background-clip: border-box;
+  background-color: white;
   border: 1px solid #00000020;
   border-radius: 0.25rem;
   flex-direction: column;
@@ -11,6 +11,7 @@
   width: 100%;
   word-wrap: break-word;
 }
+
 .card-title {
   align-items: center;
   color: #ff6a28;
@@ -20,45 +21,50 @@
   justify-content: center;
   text-transform: uppercase;
 }
-body{
+
+body {
+  align-items: center;
   background: #f0f0f0;
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
 }
+
 .btn {
   background-color: rgb(6, 127, 240);
   border-radius: 20px;
-  cursor: pointer;
   color: white;
   cursor: pointer;
   font-size: 14px;
   font-weight: 300;
   margin-top: 15px;
   padding: 10px 20px;
-  transition: .3s;
+  transition: 0.3s;
 }
+
 .btn:disabled {
   background-color: #ce5d41;
   color: white;
 }
-h2{
+
+h2 {
   font-size: 21px;
   font-weight: 600;
 }
-input{
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
+
+input {
   background: 0 0;
   background-color: #e7e7e7;
+  border: 1px solid #e7e7e7;
+  border-radius: 20px;
+  line-height: 1.5;
   padding: 10px 15px;
   width: 100%;
-  line-height: 1.5;
 }
-.login-card{
-  display: flex;
+
+.login-card {
   align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 60px;

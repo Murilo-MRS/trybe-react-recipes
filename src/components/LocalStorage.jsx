@@ -6,30 +6,32 @@
         else return variavel;
     }
     if (type === "meals"){
-    const {
+    const mealFavorite = {
     id: recipe.id,
     type: type,
     nationality: emptyFunction(recipe.strArea),
     category: emptyFunction(recipe.strCategory),
     alcoholicOrNot: emptyFunction(recipe.alcoholicOrNot),
     name: recipe.strMeal,
-    image: recipe.strMealThumb,
-    doneDate: date,
-    tags: recipe.strTags
-  }}
+    image: recipe.strMealThumb
+  }
+    localStorage.setItem('favoriteRecipes', JSON.stringify(mealFavorite));
+}
   else {
-    const {
+    const drinkFavorite = {
         id: recipe.id,
         type: type,
         nationality: "",
         category: emptyFunction(recipe.strCategory),
         alcoholicOrNot: emptyFunction(recipe.alcoholicOrNot),
         name: recipe.strDrink,
-        image: recipe.strDrinkThumb,
-        doneDate: date,
-        tags: recipe.strTags
+        image: recipe.strDrinkThumb
+    }
+    localStorage.setItem('favoriteRecipes', JSON.stringify(drinkFavorite));
   }
 }
+
+const recoveryFavorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
 const favoriteRecipesStorage = {
     id: details.id,
@@ -41,12 +43,12 @@ const favoriteRecipesStorage = {
     image: strMealThumb
 }
 
-const LocalSave = () => {
-    if (drink) {
+const LocalSave = (variable) => {
+    if (variable === drink) {
         doneRecipesStorage(detail, drink, date)
     }
-    if (food) {
-        doneRecipesStorage(detail, drink, date)
+    if (variable === food) {
+        doneRecipesStorage(detail, food, date)
     }
 }
 <div>

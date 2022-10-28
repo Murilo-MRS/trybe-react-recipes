@@ -2,6 +2,8 @@
   bottom: 0;
   position: fixed;
   right: 0;
-  text-align: center;
   width: 100%;
+  align-items: center;
+  display:flex;
+  justify-content: space-between;
 }

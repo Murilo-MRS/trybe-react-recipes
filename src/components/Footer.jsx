@@ -16,7 +16,7 @@ export default function Footer() {
   };
 
   return (
-    <div data-testid="footer" className="footer-container">
+    <footer data-testid="footer" className="footer-container">
       <button
         type="button"
         src={ drinkIcon }
@@ -39,6 +39,6 @@ export default function Footer() {
           alt="meals button"
         />
       </button>
-    </div>
+    </footer>
   );
 }

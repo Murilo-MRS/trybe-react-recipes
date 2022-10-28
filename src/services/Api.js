@@ -103,7 +103,7 @@ export const fetchDrinksByFirstLetter = async (letra) => {
 export const filterFoodsByCategory = async (Beef) => {
   try {
     if (Beef !== 'All') {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${Beef}`);
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${Beef}`);
       const { meals } = await response.json();
       return meals;
     }

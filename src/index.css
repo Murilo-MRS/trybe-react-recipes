@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (max-width: 640px) {
+
+  body div {
+    display:flex;
+    flex-direction: column;
+    width:100%
+  }
+
+  header nav {
+    align-items: center;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  button {
+    background: #ea5323;
+    border-radius: 20px;
+    color: white;
+  }
+}

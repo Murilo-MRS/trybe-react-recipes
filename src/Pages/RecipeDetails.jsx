@@ -1,7 +1,6 @@
 import copy from 'clipboard-copy';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-
 import Header from '../components/Header';
 import MealCarousel from '../components/MealCarousel';
 import { getStorage } from '../helpers/Storage';
@@ -10,49 +9,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
 import '../styles/RecipeDetails.css';
 
-const a = 1;
-const b = 2;
-const c = 3;
-const d = 4;
-const e = 5;
-const f = 6;
-const g = 7;
-const h = 8;
-const i = 9;
-const j = 10;
-const k = 11;
-const l = 12;
-const m = 13;
-const n = 14;
-const o = 15;
-const p = 16;
-const q = 17;
-const r = 18;
-const s = 19;
-const t = 20;
-
-const ONE_TO_TWENTY = [
-  a,
-  b,
-  c,
-  d,
-  e,
-  f,
-  g,
-  h,
-  i,
-  j,
-  k,
-  l,
-  m,
-  n,
-  o,
-  p,
-  q,
-  r,
-  s,
-  t,
-];
+const INGREDIENTS_MAX_NUM = 20;
 
 function RecipeDetails() {
   const { id } = useParams();
@@ -65,12 +22,72 @@ function RecipeDetails() {
   const [img, setImg] = useState({});
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [measures, setMeasures] = useState([]);
   const [notDoneRecipe, setNotDoneRecipe] = useState(true);
   // const [continueRecipe, setContinueRecipe] = useState(false);
+  const [copied, setCopy] = useState(false);
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
-  const [copied, setCopy] = useState(false);
   // const copy = require('clipboard-copy');
+
+  useEffect(() => {
+    const ingredientsTobe = [];
+    const measuresTobe = [];
+    for (let index = 1; index <= INGREDIENTS_MAX_NUM; index += 1) {
+      if (detail[`strIngredient${index}`]?.length > 0) {
+        ingredientsTobe.push(detail[`strIngredient${index}`]);
+        measuresTobe.push(detail[`strMeasure${index}`]);
+      }
+    }
+    setIngredients(ingredientsTobe);
+    setMeasures(measuresTobe);
+  }, [detail]);
+
+  const favoriteRecipesStorage = (recipe, typeFood) => {
+    const emptyFunction = (variavel) => {
+      if (variavel === null) {
+        return '';
+      }
+      return variavel;
+    };
+    if (typeFood === 'meals') {
+      const mealFavorite = {
+        id: recipe.idMeal,
+        type: typeFood,
+        nationality: emptyFunction(recipe.strArea),
+        category: emptyFunction(recipe.strCategory),
+        alcoholicOrNot: emptyFunction(recipe.alcoholicOrNot),
+        name: recipe.strMeal,
+        image: recipe.strMealThumb,
+      };
+      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      const toSaveFavorite = [...favoriteGet, mealFavorite];
+      localStorage.setItem('favoriteRecipes', JSON.stringify(toSaveFavorite));
+    } else {
+      const drinkFavorite = {
+        id: recipe.idDrink,
+        type: typeFood,
+        nationality: '',
+        category: emptyFunction(recipe.strCategory),
+        alcoholicOrNot: emptyFunction(recipe.alcoholicOrNot),
+        name: recipe.strDrink,
+        image: recipe.strDrinkThumb,
+      };
+      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      const toSaveFavorite = [...favoriteGet, drinkFavorite];
+      localStorage.setItem('favoriteRecipes', JSON.stringify(toSaveFavorite));
+    }
+  };
+
+  const localSave = () => {
+    if (drink === true) {
+      favoriteRecipesStorage(detail, 'drink');
+    }
+    if (food === true) {
+      favoriteRecipesStorage(detail, 'meals');
+    }
+  };
 
   const sharebtn = () => {
     const urlMealorDrink = `http://localhost:3000${pathname}`;
@@ -122,39 +139,39 @@ function RecipeDetails() {
   return (
     <>
       <Header />
-      <div>
-        <img data-testid="recipe-photo" src={ img } alt="meal img" />
+      <div className="recipe-page">
+        <img
+          className="img-recipe"
+          data-testid="recipe-photo"
+          src={ img }
+          alt="meal img"
+        />
         <h1 data-testid="recipe-title">{title}</h1>
         <h2 data-testid="recipe-category">{category}</h2>
         <ul>
-          {ONE_TO_TWENTY.map((number, index) => {
-            if (detail[`strIngredient${number}`]?.length > 0) {
-              return (
-                <li
-                  key={ index }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {detail[`strIngredient${number}`]}
-                  {' '}
-                  {detail[`strMeasure${number}`]}
-                </li>
-              );
-            }
-            return false;
-          })}
+          {
+            ingredients.map((ingredient, index) => (
+              <li
+                key={ index }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+              >
+                {ingredient}
+                {' '}
+                {measures[index]}
+              </li>
+            ))
+          }
         </ul>
         <p data-testid="instructions">{detail?.strInstructions}</p>
-        {
-          video && (
-            <iframe
-              title="Food Video"
-              width="420"
-              height="315"
-              data-testid="video"
-              src={ video }
-            />
-          )
-        }
+        {video && (
+          <iframe
+            title="Food Video"
+            width="420"
+            height="315"
+            data-testid="video"
+            src={ video }
+          />
+        )}
       </div>
       <div>
         <button
@@ -169,33 +186,28 @@ function RecipeDetails() {
           src={ whiteHeartIcon }
           type="button"
           data-testid="favorite-btn"
+          onClick={ localSave }
         >
-          <img src={ whiteHeartIcon } alt="Icone de Favoritar" />
+          <img className="share-heart" src={ whiteHeartIcon } alt="Icone de Favoritar" />
         </button>
-        { copied && (
-          <p>
-            Link copied!
-          </p>
-        )}
+        {copied && <p>Link copied!</p>}
       </div>
       <MealCarousel />
-      {
-        notDoneRecipe && (
-          <button
-            className="initiate-recipe-butt"
-            type="button"
-            data-testid="start-recipe-btn"
-            onClick={ () => history.push(`${pathname}/in-progress`) }
-          >
-            {/*             {
+      {notDoneRecipe && (
+        <button
+          className="initiate-recipe-butt"
+          type="button"
+          data-testid="start-recipe-btn"
+          onClick={ () => history.push(`${pathname}/in-progress`) }
+        >
+          {/*             {
               continueRecipe
                 ? 'Continue Recipe'
                 : 'Start Recipe'
             } */}
-            Start Recipe
-          </button>
-        )
-      }
+          Start Recipe
+        </button>
+      )}
     </>
   );
 }
