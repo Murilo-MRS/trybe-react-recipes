@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchDrinks, fetchFoods } from '../services/Api';
+import {
+  fetchDrinks, fetchDrinksCategoryList,
+  fetchFoods, fetchMealsCategoryList
+} from '../services/Api';
 import Context from './Context';
 
 const PASSWORD_MIN_SIZE = 6;
@@ -17,6 +20,8 @@ function Provider({ children }) {
   const [drinksAPI, setDrinksAPI] = useState([]);
   const [foods, setFoods] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [drinksCategoryList, setDrinksCategoryList] = useState([]);
+  const [mealsCategoryList, setMealsCategoryList] = useState([]);
 
   const clearInputs = useCallback(() => {
     setEmail('');
@@ -44,6 +49,16 @@ function Provider({ children }) {
   }, []);
 
   useEffect(() => {
+    const requestCategoryApi = async () => {
+      const categoryDrinksListApi = await fetchDrinksCategoryList();
+      const categoryMealsListApi = await fetchMealsCategoryList();
+      setDrinksCategoryList(categoryDrinksListApi);
+      setMealsCategoryList(categoryMealsListApi);
+    };
+    requestCategoryApi();
+  }, []);
+
+  useEffect(() => {
     const regex = /\S+@\S+\.\S+/;
     const validEmail = regex.test(email);
     const validPassword = password.length > PASSWORD_MIN_SIZE;
@@ -68,6 +83,8 @@ function Provider({ children }) {
       foodsAPI,
       drinksAPI,
       clearInputs,
+      drinksCategoryList,
+      mealsCategoryList,
     }),
     [
       email,
@@ -85,6 +102,8 @@ function Provider({ children }) {
       foodsAPI,
       drinksAPI,
       clearInputs,
+      drinksCategoryList,
+      mealsCategoryList,
     ],
   );
 
