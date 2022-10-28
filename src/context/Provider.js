@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  fetchDrinks, fetchDrinksCategoryList,
-  fetchFoods, fetchMealsCategoryList
+    fetchDrinks, fetchDrinksCategoryList,
+    fetchFoods, fetchMealsCategoryList
 } from '../services/Api';
 import Context from './Context';
 
