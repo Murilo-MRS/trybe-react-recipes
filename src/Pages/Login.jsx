@@ -18,8 +18,10 @@ function Login() {
     history.push('/meals');
   };
   return (
-    <div>
-      <h1>Login App de Receitas</h1>
+    <div className="card login-card">
+      <div className="card-title">
+        <h1>ACESSE SUA CONTA</h1>
+      </div>
       <label htmlFor="Email">
         Email:
         <input
@@ -43,7 +45,7 @@ function Login() {
         />
       </label>
       <button
-        className="login"
+        className="btn"
         type="button"
         data-testid="login-submit-btn"
         disabled={ enableFormButt }
