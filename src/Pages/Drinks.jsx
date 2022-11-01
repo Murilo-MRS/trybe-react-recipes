@@ -17,7 +17,6 @@ function Drink() {
   return (
     <div>
       <Header />
-      <h1>Drinks Component</h1>
       <Recipes />
       <section>
         {

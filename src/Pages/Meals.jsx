@@ -18,7 +18,6 @@ function Meals() {
   return (
     <div>
       <Header />
-      <h1>Meals component</h1>
       <Recipes />
       <div className="recipes-container">
         {
