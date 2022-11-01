@@ -35,4 +35,26 @@ code {
     border-radius: 20px;
     color: white;
   }
+  
+  .recipe-image {
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    width: 140px;
+  }
+
+  .card-name { 
+    border: 1px solid #eee;
+    box-shadow: 2px 8px 20px #ddd;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    min-height: 10%;
+    min-width: 10%;
+    overflow: hidden;
+    padding: 10px;
+    transition: 0.5s linear;
+    width: 90%;
+  }
 }

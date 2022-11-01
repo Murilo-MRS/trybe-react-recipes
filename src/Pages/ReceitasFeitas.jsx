@@ -52,7 +52,19 @@ function ReceitasFeitas() {
         image:
           'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
         doneDate: '27/10/2022',
-        tags: ['Curry', 'Vegetarian'],
+        tags: ['Curry', 'Vegetarian', 'Pasta'],
+      },
+      {
+        id: '52785',
+        type: 'meals',
+        area: 'Indian',
+        category: 'Vegetarian',
+        alcoholicOrNot: '',
+        name: 'Dal fry',
+        image:
+          'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
+        doneDate: '27/10/2022',
+        tags: ['Curry', 'Vegetarian', 'Pasta'],
       },
     ]);
   }, []);
@@ -107,6 +119,7 @@ function ReceitasFeitas() {
             <div data-testid={ `${index}-recipe-card` } key={ index }>
               <Link to={ `/${type}/${id}` }>
                 <img
+                  className="recipe-image"
                   data-testid={ `${index}-horizontal-image` }
                   src={ image }
                   alt={ name }
