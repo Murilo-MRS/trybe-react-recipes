@@ -8,7 +8,7 @@ import {
   fetchFoodsByFirstLetter,
   fetchFoodsByIngredient,
   // eslint-disable-next-line comma-dangle
-  fetchFoodsByName,
+  fetchFoodsByName
 } from '../services/Api';
 
 function SearchBar() {
@@ -72,34 +72,6 @@ function SearchBar() {
       }
     }
   };
-
-  /*   const handleClickDrinks = async () => {
-    switch (radioValue) {
-    case 'Ingredient':
-      const searchDataIng = await fetchDrinksByIngredient(searchInput);
-      setTestApi(searchDataIng);
-      // alertRedirect(searchData, 'drinks', 'idDrink');
-      setDrinks(searchDataIng);
-      break;
-    case 'Name':
-      const searchDataName = await fetchDrinksByName(searchInput);
-      alertRedirect(searchDataName, 'drinks', 'idDrink');
-      setDrinks(searchDataName);
-      break;
-
-    case fLetter:
-      if (searchInput.length >= 2) {
-        global.alert('Your search must have only 1 (one) character');
-      } else {
-        const searchDataFirst = await fetchDrinksByFirstLetter(searchInput);
-        alertRedirect(searchDataFirst, 'drinks', 'idDrink');
-        setDrinks(searchDataFirst);
-      }
-      break;
-    default:
-      console.log('testando switchcase');
-    }
-  }; */
 
   return (
     <div>
