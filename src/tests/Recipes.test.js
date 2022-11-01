@@ -1,25 +1,41 @@
-import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
+// import Provider from '../context/Provider';
 import renderWithRouter from './utils/renderWith';
 
-describe('Teste de botões categorias', () => {
-  test('Bõtoes rederizam em meals', () => {
-    renderWithRouter(<App />, { initialEntries: ['/meals'] });
-    const categoryBtn = screen.getAllByTestId(/-category-filter/i);
-    const removeAllBtn = screen.getByTestId(/All-category-filter/i);
+const mealCategories = ['Beef', 'Breakfast', 'Chicken', 'Dessert', 'Goat', 'All'];
+const drinkCategories = ['Ordinary Drink', 'Cocktail', 'Shake', 'Other/Unknown', 'Cocoa', 'All'];
 
-    expect(categoryBtn).toBe(5);
-    expect(removeAllBtn).toBeInTheDocument();
+describe('Teste de botões categorias', () => {
+  test('Bõtoes rederizam em meals', async () => {
+    renderWithRouter(<App />, { initialEntries: ['/meals'] });
+
+    mealCategories.forEach(async (e) => (
+      expect(await screen.findByTestId(`${e}-category-filter`)).toBeInTheDocument()
+    ));
   });
 
-  test('Bõtoes rederizam em drinks', () => {
+  test('Bõtoes rederizam em drinks', async () => {
     renderWithRouter(<App />, { initialEntries: ['/drinks'] });
-    const categoryBtn = screen.getAllByTestId(/-category-filter/i);
-    const removeAllBtn = screen.getByTestId(/All-category-filter/i);
 
-    expect(categoryBtn).toBe(5);
-    expect(removeAllBtn).toBeInTheDocument();
+    await waitFor(() => {
+      drinkCategories.forEach((e) => (
+        expect(screen.getByTestId(`${e}-category-filter`)).toBeInTheDocument()
+      ));
+    });
+  });
+
+  test('Testando Botão remove All', () => {
+    renderWithRouter(<App />, { initialEntries: ['/meals'] });
+    const removeAll = screen.getByTestId(/All-category-filter/i);
+    userEvent.click(removeAll);
+  });
+
+  test('Testando Botão remove All', () => {
+    renderWithRouter(<App />, { initialEntries: ['/drinks'] });
+    const removeAll = screen.getByTestId(/All-category-filter/i);
+    userEvent.click(removeAll);
   });
 });
