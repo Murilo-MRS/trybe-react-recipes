@@ -4,6 +4,7 @@ import Context from '../context/Context';
 import arrowLeft from '../images/btnVoltar.svg';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import '../styles/header.css';
 import SearchBar from './SearchBar';
 
 function Header() {

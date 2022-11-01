@@ -16,7 +16,7 @@ function Meals() {
   }, [setTitle, setShowIcon]);
 
   return (
-    <div>
+    <div className="mealsComponent">
       <Header />
       <Recipes />
       <div className="recipes-container">
@@ -28,18 +28,23 @@ function Meals() {
               className="card-name"
             >
               <Link to={ `/meals/${food.idMeal}` }>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ food.strMealThumb }
-                  alt={ food.strMeal }
-                  width="200px"
-                />
-                <p
-                  className="card-text"
-                  data-testid={ `${index}-card-name` }
-                >
-                  {food.strMeal}
-                </p>
+                <div>
+                  <img
+                    className="card-name-img"
+                    data-testid={ `${index}-card-img` }
+                    src={ food.strMealThumb }
+                    alt={ food.strMeal }
+                  />
+                </div>
+                <div className="card-text">
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {food.strMeal}
+                  </p>
+
+                </div>
+
               </Link>
             </div>
           ))

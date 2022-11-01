@@ -1,0 +1,13 @@
+nav {
+  position: fixed;
+  width: 360px;
+  height: 52px;
+  left: 0px;
+  top: 0px;
+  background: #FCDC36;
+}
+
+nav button {
+  background: #41197F;
+  border: 0.5px solid #41197F;
+}

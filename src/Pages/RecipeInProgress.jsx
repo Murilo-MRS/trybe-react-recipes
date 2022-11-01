@@ -1,9 +1,10 @@
 import copy from 'clipboard-copy';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
+import FavoriteButton from '../components/FavoriteButton';
 import Header from '../components/Header';
+import { setStorage } from '../helpers/Storage';
 import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
 import '../styles/RecipeDetails.css';
 
@@ -23,15 +24,11 @@ function RecipeDetails() {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [copied, setCopy] = useState(false);
+  const [routeToCopy, setRouteToCopy] = useState('');
+  const [usedIngredients, setUsedIngredients] = useState([]);
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
-  const [routeToCopy, setRouteToCopy] = useState('');
-
-  const sharebtn = (ids, type) => {
-    const urlMealorDrink = `http://localhost:3000/${type}/${ids}`;
-    setCopy(true);
-    copy(urlMealorDrink);
-  };
+  const [disabledBtn, setDisable] = useState(true);
 
   useEffect(() => {
     const ingredientsTobe = [];
@@ -81,11 +78,77 @@ function RecipeDetails() {
     detail?.strAlcoholic,
   ]);
 
+  useEffect(() => {
+    // const getInProgressRecipes = JSON.parse(localStorage
+    //   .getItem('inProgressRecipes')) || { ...[id] };
+    // if (food && getInProgressRecipes.meals[id]) {
+    // const getInProgressRecipes = JSON.parse(localStorage
+    //   .getItem('inProgressRecipes')) || { drinks: { [id]: [] }, meals: { [id]: [] } };
+    if (food) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
+      const toGetInProgressRecipes = {
+        meals: { ...getInProgressRecipes.meals, [id]: [] } };
+      setUsedIngredients(toGetInProgressRecipes.meals[id]);
+    }
+    // if (drink && (getInProgressRecipes.drinks[id])) {
+    if (drink) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes')) || { drinks: { [id]: [] } };
+      setUsedIngredients(getInProgressRecipes.drinks[id]);
+    }
+  }, [id, drink, food]);
+
+  //   {
+  //     drinks: {
+  //         id-da-bebida: [''],
+  //         ...
+  //     },
+  //     meals: {
+  //         id-da-comida: [lista-de-ingredientes-utilizados],
+  //         ...
+  //     }
+  // }
+
+  useEffect(() => {
+    if (food) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes')) || {};
+      const toSaveInProgressRecipes = { ...getInProgressRecipes,
+        meals: { [id]: [...usedIngredients] } };
+      setStorage('inProgressRecipes', toSaveInProgressRecipes);
+    }
+    if (drink) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes')) || {};
+      const toSaveInProgressRecipes = { ...getInProgressRecipes,
+        drinks: { [id]: [...usedIngredients] } };
+      setStorage('inProgressRecipes', toSaveInProgressRecipes);
+    }
+  }, [usedIngredients, drink, food, id]);
+
+  useEffect(() => {
+    if (usedIngredients?.length === ingredients?.length) setDisable(false);
+    else setDisable(true);
+  }, [ingredients, usedIngredients]);
+
+  const handleShareButt = (ids, type) => {
+    const urlMealorDrink = `http://localhost:3000/${type}/${ids}`;
+    setCopy(true);
+    copy(urlMealorDrink);
+  };
+
   const changeClassName = (target) => {
     if (target.checked === true) {
       target.parentElement.className = 'checked';
+      const newUsedIngredient = target.parentElement.innerText;
+      setUsedIngredients([...usedIngredients, newUsedIngredient]);
     } else {
       target.parentElement.className = '';
+      const newUnusedIngredient = target.parentElement.innerText;
+      const editUsedIngredients = [...usedIngredients]
+        .filter((ingredient) => !(ingredient.includes(newUnusedIngredient)));
+      setUsedIngredients(editUsedIngredients);
     }
   };
 
@@ -110,7 +173,9 @@ function RecipeDetails() {
                 <input
                   type="checkbox"
                   name={ ingredient }
-                  onClick={ ({ target }) => changeClassName(target) }
+                  onClick={
+                    ({ target }) => changeClassName(target)
+                  }
                 />
               </label>
             ))
@@ -134,27 +199,18 @@ function RecipeDetails() {
           src={ shareIcon }
           type="button"
           data-testid="share-btn"
-          onClick={ () => sharebtn(id, routeToCopy) }
+          onClick={ handleShareButt }
         >
           <img src={ shareIcon } alt="Icone de compartilhar" />
         </button>
-        <button
-          src={ whiteHeartIcon }
-          type="button"
-          data-testid="favorite-btn"
-        >
-          <img src={ whiteHeartIcon } alt="Icone de Favoritar" />
-        </button>
-        { copied && (
-          <p>
-            Link copied!
-          </p>
-        )}
+        <FavoriteButton />
+        {copied && <p>Link copied!</p>}
       </div>
       <button
         className="initiate-recipe-butt"
         type="button"
         data-testid="finish-recipe-btn"
+        disabled={ disabledBtn }
         onClick={ () => history.push(`${pathname}/in-progress`) }
       >
         Finish Recipe

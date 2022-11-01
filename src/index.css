@@ -17,6 +17,11 @@ code {
 }
 
 @media (max-width: 640px) {
+  .btn {
+  background: #FCC436;
+  border-radius: 5px;
+  width: 276px;
+  }
 
   body div {
     display:flex;
@@ -53,8 +58,17 @@ code {
     min-height: 10%;
     min-width: 10%;
     overflow: hidden;
-    padding: 10px;
+
     transition: 0.5s linear;
     width: 90%;
+  }
+  .card-name {
+    background: #FFFFFF;
+    border: 0.517989px solid #B1B1B1;
+    border-radius: 5px;
+    width: 160px;
+    height: 166.12px;
+    left: 12.12px;
+    top: 250.1px;
   }
 }

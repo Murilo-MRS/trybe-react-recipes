@@ -1,16 +1,12 @@
 .initiate-recipe-butt {
-  align-items: center;
-  background-color: #ff6a28;
-  border: #ffc107;
-  border-radius: 6px;
-  bottom: 0;
-  color: white;
-  font-weight: 600;
-  height: 35px;
-  justify-content: space-evenly;
-  outline: none;
-  position: fixed;
-  width: 300px;
+  position: absolute;
+  width: 336px;
+  height: 40px;
+  left: 12px;
+  top: 1084px;
+
+  background: #FCC436;
+  border-radius: 5px;
 }
 
 .recipe-page {

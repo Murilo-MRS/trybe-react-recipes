@@ -1,30 +1,17 @@
-.card {
-  align-items: center;
-  background-clip: border-box;
-  background-color: white;
-  border: 1px solid #00000020;
-  border-radius: 0.25rem;
-  flex-direction: column;
-  min-width: 0;
-  padding: 50px 20px;
-  position: relative;
-  width: 100%;
-  word-wrap: break-word;
-}
-
 .card-title {
   align-items: center;
-  color: #ff6a28;
+  color: #41197F;
   display: flex;
+  font-style: italic;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 500;
   justify-content: center;
   text-transform: uppercase;
 }
 
 body {
   align-items: center;
-  background: #f0f0f0;
+  background: #41197F;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,8 +42,8 @@ h2 {
 input {
   background: 0 0;
   background-color: #e7e7e7;
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
+  border: 0.5px solid #41197F;
+  border-radius: 5px;
   line-height: 1.5;
   padding: 10px 15px;
   width: 100%;
@@ -64,8 +51,40 @@ input {
 
 .login-card {
   align-items: center;
+  background-color: white;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 30%;
+  padding: 12%;
+  padding-top: 30%;
+  width: 100%;
+} 
+
+.login-card button{
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-top: 9%;
+} 
+
+.tomateimg {
+  filter: drop-shadow(0px 7px 15px rgba(68, 73, 85, 0.25));
+  position: absolute;
+  top: 220px;
+}
+
+.logoApp {
+  height: 157.25px;
+  left: 24%;
+  position: relative;
+  margin-bottom: 20%;
+  margin-top: 20%;
+  width: 198px;
 }
