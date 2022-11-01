@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Context from '../context/Context';
-import '../styles/Div.css';
+import '../styles/estiloDoGrid.css';
 
 function Meals() {
   const { setTitle, setShowIcon, foods } = useContext(Context);
@@ -20,7 +20,7 @@ function Meals() {
       <Header />
       <h1>Meals component</h1>
       <Recipes />
-      <div>
+      <div className="recipes-container">
         {
           foods?.slice(0, MAX).map((food, index) => (
             <div
@@ -36,6 +36,7 @@ function Meals() {
                   width="200px"
                 />
                 <p
+                  className="card-text"
                   data-testid={ `${index}-card-name` }
                 >
                   {food.strMeal}

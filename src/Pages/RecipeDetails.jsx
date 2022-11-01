@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import Header from '../components/Header';
 import MealCarousel from '../components/MealCarousel';
-import { getStorage } from '../helpers/Storage';
+import { getStorage, setStorage } from '../helpers/Storage';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
@@ -27,6 +28,8 @@ function RecipeDetails() {
   const [notDoneRecipe, setNotDoneRecipe] = useState(true);
   // const [continueRecipe, setContinueRecipe] = useState(false);
   const [copied, setCopy] = useState(false);
+  const [favorited, setFavorited] = useState(false);
+
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
   // const copy = require('clipboard-copy');
@@ -43,57 +46,6 @@ function RecipeDetails() {
     setIngredients(ingredientsTobe);
     setMeasures(measuresTobe);
   }, [detail]);
-
-  const favoriteRecipesStorage = (recipe, typeFood) => {
-    const emptyFunction = (variavel) => {
-      if (variavel === null) {
-        return '';
-      }
-      return variavel;
-    };
-    if (typeFood === 'meals') {
-      const mealFavorite = {
-        id: recipe.idMeal,
-        type: typeFood,
-        nationality: emptyFunction(recipe.strArea),
-        category: emptyFunction(recipe.strCategory),
-        alcoholicOrNot: emptyFunction(recipe.alcoholicOrNot),
-        name: recipe.strMeal,
-        image: recipe.strMealThumb,
-      };
-      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-      const toSaveFavorite = [...favoriteGet, mealFavorite];
-      localStorage.setItem('favoriteRecipes', JSON.stringify(toSaveFavorite));
-    } else {
-      const drinkFavorite = {
-        id: recipe.idDrink,
-        type: typeFood,
-        nationality: '',
-        category: emptyFunction(recipe.strCategory),
-        alcoholicOrNot: emptyFunction(recipe.alcoholicOrNot),
-        name: recipe.strDrink,
-        image: recipe.strDrinkThumb,
-      };
-      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-      const toSaveFavorite = [...favoriteGet, drinkFavorite];
-      localStorage.setItem('favoriteRecipes', JSON.stringify(toSaveFavorite));
-    }
-  };
-
-  const localSave = () => {
-    if (drink === true) {
-      favoriteRecipesStorage(detail, 'drink');
-    }
-    if (food === true) {
-      favoriteRecipesStorage(detail, 'meals');
-    }
-  };
-
-  const sharebtn = () => {
-    const urlMealorDrink = `http://localhost:3000${pathname}`;
-    setCopy(true);
-    copy(urlMealorDrink);
-  };
 
   useEffect(() => {
     const doneRecipes = getStorage('doneRecipes');
@@ -127,15 +79,78 @@ function RecipeDetails() {
     id,
     drink,
     food,
-    detail?.strYoutube,
-    detail?.strVideo,
-    detail?.strDrinkThumb,
-    detail?.strMealThumb,
-    detail?.strMeal,
-    detail?.strDrink,
-    detail?.strCategory,
-    detail?.strAlcoholic,
+    detail,
   ]);
+
+  useEffect(() => {
+    const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    if (food && favoriteGet
+      .some((recipe) => recipe?.id === detail.idMeal)) setFavorited(false);
+    if (drink && favoriteGet
+      .some((recipe) => recipe?.id === detail.idDrink)) setFavorited(false);
+  }, [detail, drink, food]);
+
+  const favoriteRecipesStorage = (recipe, typeFood) => {
+    if (typeFood === 'meal') {
+      const mealFavorite = {
+        id: recipe.idMeal,
+        type: typeFood,
+        nationality: recipe.strArea,
+        category: recipe.strCategory,
+        alcoholicOrNot: '',
+        name: recipe.strMeal,
+        image: recipe.strMealThumb,
+      };
+      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      const toSaveFavorite = [...favoriteGet, mealFavorite];
+      localStorage.setItem('favoriteRecipes', JSON.stringify(toSaveFavorite));
+    } else {
+      const drinkFavorite = {
+        id: recipe.idDrink,
+        type: typeFood,
+        nationality: '',
+        category: recipe.strCategory,
+        alcoholicOrNot: recipe.strAlcoholic,
+        name: recipe.strDrink,
+        image: recipe.strDrinkThumb,
+      };
+      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      const toSaveFavorite = [...favoriteGet, drinkFavorite];
+      localStorage.setItem('favoriteRecipes', JSON.stringify(toSaveFavorite));
+    }
+  };
+
+  const handleFavoriteButt = () => {
+    if (drink) {
+      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      if (favoriteGet.some((recipe) => recipe?.id === detail.idDrink)) {
+        setFavorited(false);
+        const filtered = favoriteGet.filter((recipe) => recipe.id !== detail.idDrink);
+        setStorage('favoriteRecipes', filtered);
+      } else {
+        setFavorited(true);
+        favoriteRecipesStorage(detail, 'drink');
+      }
+    }
+    if (food) {
+      const favoriteGet = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      if (favoriteGet.some((recipe) => recipe?.id === detail.idMeal)) {
+        setFavorited(false);
+        const filtered = favoriteGet.filter((recipe) => recipe.id !== detail.idMeal);
+        setStorage('favoriteRecipes', filtered);
+      } else {
+        setFavorited(true);
+        favoriteRecipesStorage(detail, 'meal');
+      }
+    }
+  };
+
+  const handleShareButt = () => {
+    const urlMealorDrink = `http://localhost:3000${pathname}`;
+    setCopy(true);
+    copy(urlMealorDrink);
+  };
+
   return (
     <>
       <Header />
@@ -178,7 +193,7 @@ function RecipeDetails() {
           src={ shareIcon }
           type="button"
           data-testid="share-btn"
-          onClick={ sharebtn }
+          onClick={ handleShareButt }
         >
           <img src={ shareIcon } alt="Icone de compartilhar" />
         </button>
@@ -186,9 +201,13 @@ function RecipeDetails() {
           src={ whiteHeartIcon }
           type="button"
           data-testid="favorite-btn"
-          onClick={ localSave }
+          onClick={ handleFavoriteButt }
         >
-          <img className="share-heart" src={ whiteHeartIcon } alt="Icone de Favoritar" />
+          <img
+            className="share-heart"
+            src={ favorited ? whiteHeartIcon : blackHeartIcon }
+            alt="Icone de Favoritar"
+          />
         </button>
         {copied && <p>Link copied!</p>}
       </div>

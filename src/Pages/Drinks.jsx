@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Context from '../context/Context';
-import '../styles/Div.css';
+import '../styles/estiloDoGrid.css';
 
 function Drink() {
   const { setTitle, setShowIcon, drinks } = useContext(Context);
@@ -35,7 +35,7 @@ function Drink() {
                   width="200px"
                 />
                 <p
-                  className="card-name"
+                  className="card-text"
                   data-testid={ `${index}-card-name` }
                 >
                   {drink.strDrink}
