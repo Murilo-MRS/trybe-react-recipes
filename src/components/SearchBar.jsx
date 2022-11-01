@@ -52,6 +52,7 @@ function SearchBar() {
 
   const handleClickDrinks = async () => {
     if (radioValue === 'Ingredient') {
+      console.log(searchInput);
       const searchData = await fetchDrinksByIngredient(searchInput);
       alertRedirect(searchData, 'drinks', 'idDrink');
       setDrinks(searchData);
