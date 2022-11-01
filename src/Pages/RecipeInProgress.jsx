@@ -25,9 +25,10 @@ function RecipeDetails() {
   const [copied, setCopy] = useState(false);
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
+  const [routeToCopy, setRouteToCopy] = useState('');
 
-  const sharebtn = () => {
-    const urlMealorDrink = `http://localhost:3000${pathname}`;
+  const sharebtn = (ids, type) => {
+    const urlMealorDrink = `http://localhost:3000/${type}/${ids}`;
     setCopy(true);
     copy(urlMealorDrink);
   };
@@ -54,6 +55,7 @@ function RecipeDetails() {
         setVideo(detail?.strVideo?.replace('watch?v=', 'embed/'));
         const drinkDetails = await fetchDrinksDetails(id);
         setDetails(drinkDetails);
+        setRouteToCopy('drinks');
       }
       if (food) {
         setCategory(detail?.strCategory);
@@ -62,6 +64,7 @@ function RecipeDetails() {
         setVideo(detail?.strYoutube?.replace('watch?v=', 'embed/'));
         const foodDetails = await fetchFoodsDetails(id);
         setDetails(foodDetails);
+        setRouteToCopy('meals');
       }
     })();
   }, [
@@ -131,7 +134,7 @@ function RecipeDetails() {
           src={ shareIcon }
           type="button"
           data-testid="share-btn"
-          onClick={ sharebtn }
+          onClick={ () => sharebtn(id, routeToCopy) }
         >
           <img src={ shareIcon } alt="Icone de compartilhar" />
         </button>
