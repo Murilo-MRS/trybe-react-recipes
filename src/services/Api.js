@@ -60,7 +60,7 @@ export const fetchFoodsDetails = async (id) => {
 
 export const fetchDrinksByIngredient = async (Ingredient) => {
   try {
-    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${Ingredient}`);
+    const response = await fetch(`c${Ingredient}`);
     const { drinks } = await response.json();
     return drinks;
   } catch (error) {
