@@ -3,13 +3,13 @@
 }
 
 .card-name {
-  background: #FFFFFF;
-  border: 0.517989px solid #B1B1B1;
+  background: white;
+  border: 0.518px solid #b1b1b1;
   border-radius: 5px;
 }
 
 .card-name-img {
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0 0;
   display: flex;
   height: 134.85px;
   width: 163.35px;
@@ -17,21 +17,21 @@
 
 .recipes-container {
   display: flex;
-  padding-bottom: 50px;
   flex-direction: row;
   flex-flow: row wrap;
+  padding-bottom: 50px;
 }
 
 p {
-  color: #1A1B1C;
-  text-align: center;
+  color: #1a1b1c;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
   margin-block-end: 0;
   margin-block-start: 4px;
   margin-inline-end: 0;
   margin-inline-start: 0;
+  text-align: center;
 }
 
 a:link {
