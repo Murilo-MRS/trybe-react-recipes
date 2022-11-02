@@ -64,8 +64,8 @@ input {
 
 .login-card button {
   color: white;
-  font-style: normal;
   font-size: 14px;
+  font-style: normal;
   font-weight: 700;
   letter-spacing: 0.03em;
   line-height: 14px;
@@ -84,7 +84,7 @@ input {
   height: 157.25px;
   left: 24%;
   margin-bottom: 20%;
-  position: relative;
   margin-top: 20%;
+  position: relative;
   width: 198px;
 }
