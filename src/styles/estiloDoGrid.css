@@ -9,10 +9,10 @@
 }
 
 .card-name-img {
-  display: flex;
-  width: 163.35px;
-  height: 134.85px;
   border-radius: 5px 5px 0px 0px;
+  display: flex;
+  height: 134.85px;
+  width: 163.35px;
 }
 
 .recipes-container {
@@ -23,15 +23,15 @@
 }
 
 p {
-  margin-block-end: 0;
-  margin-block-start: 4px;
-  margin-inline-end: 0;
-  margin-inline-start: 0;
   color: #1A1B1C;
   text-align: center;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
+  margin-block-end: 0;
+  margin-block-start: 4px;
+  margin-inline-end: 0;
+  margin-inline-start: 0;
 }
 
 a:link {
