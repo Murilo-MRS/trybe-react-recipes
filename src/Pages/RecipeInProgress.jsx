@@ -53,6 +53,7 @@ function RecipeDetails() {
         const drinkDetails = await fetchDrinksDetails(id);
         setDetails(drinkDetails);
         setRouteToCopy('drinks');
+        console.log(routeToCopy);
       }
       if (food) {
         setCategory(detail?.strCategory);
