@@ -8,7 +8,7 @@ import {
   fetchFoodsByFirstLetter,
   fetchFoodsByIngredient,
   // eslint-disable-next-line comma-dangle
-  fetchFoodsByName
+  fetchFoodsByName,
 } from '../services/Api';
 import '../styles/SearchBar.css';
 
