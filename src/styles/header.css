@@ -1,13 +1,13 @@
 nav {
-  background: #FCDC36;
+  background: #fcdc36;
   height: 52px;
-  left: 0px;
+  left: 0;
   position: fixed;
-  top: 0px;
+  top: 0;
   width: 360px;
 }
 
 nav button {
-  background: #41197F;
-  border: 0.5px solid #41197F;
+  background: #41197f;
+  border: 0.5px solid #41197f;
 }
