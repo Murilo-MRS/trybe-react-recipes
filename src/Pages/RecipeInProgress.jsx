@@ -77,6 +77,7 @@ function RecipeDetails() {
     detail?.strDrink,
     detail?.strCategory,
     detail?.strAlcoholic,
+    routeToCopy,
   ]);
 
   // useEffect(() => {

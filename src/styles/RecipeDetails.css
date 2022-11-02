@@ -1,12 +1,11 @@
 .initiate-recipe-butt {
-  position: absolute;
-  width: 336px;
-  height: 40px;
-  left: 12px;
-  top: 1084px;
-
   background: #FCC436;
   border-radius: 5px;
+  height: 40px;
+  left: 12px;
+  position: absolute;
+  top: 1084px;
+  width: 336px;
 }
 
 .recipe-page {
