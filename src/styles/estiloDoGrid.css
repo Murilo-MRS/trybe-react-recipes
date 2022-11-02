@@ -17,8 +17,8 @@
 
 .recipes-container {
   display: flex;
-  flex-direction: row;
   flex-flow: row wrap;
+  flex-direction: row;
   padding-bottom: 50px;
 }
 
