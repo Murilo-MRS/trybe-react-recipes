@@ -89,24 +89,42 @@ function RecipeDetails() {
     if (food) {
       const getInProgressRecipes = JSON.parse(localStorage
         .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
-      if (getInProgressRecipes.meals[id].length === 0) {
+      console.log(Object.keys(getInProgressRecipes.meals).includes(id));
+      if (!Object.keys(getInProgressRecipes.meals).includes(id)) {
+        console.log(getInProgressRecipes.meals);
         const toGetInProgressRecipes = { ...getInProgressRecipes,
-          meals: { [id]: [] } };
+          meals: { ...getInProgressRecipes.meals, [id]: [] } };
+        console.log(toGetInProgressRecipes);
+        // // localStorage.setItem('inProgressRecipes', JSON.stringify(toGetInProgressRecipes));
         setStorage('inProgressRecipes', toGetInProgressRecipes);
       } else {
-        const toGetInProgressRecipes = { ...getInProgressRecipes };
-        setStorage('inProgressRecipes', toGetInProgressRecipes);
+        setStorage('inProgressRecipes', getInProgressRecipes);
       }
+      // else {
+      //   const toGetInProgressRecipes = { ...getInProgressRecipes };
+      //   setStorage('inProgressRecipes', toGetInProgressRecipes);
+      // }
     }
     if (drink) {
       const getInProgressRecipes = JSON.parse(localStorage
         .getItem('inProgressRecipes')) || {};
-      const toSaveInProgressRecipes = { ...getInProgressRecipes,
+      const toSaveInProgressRecipes = { ...getInProgressRecipes.drinks,
         drinks: { [id]: [...usedIngredients] } };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
     history.push(`${pathname}/in-progress`);
   };
+
+  //   {
+  //     drinks: {
+  //         id-da-bebida: [''],
+  //         ...
+  //     },
+  //     meals: {
+  //         id-da-comida: [lista-de-ingredientes-utilizados],
+  //         ...
+  //     }
+  // }
 
   return (
     <>

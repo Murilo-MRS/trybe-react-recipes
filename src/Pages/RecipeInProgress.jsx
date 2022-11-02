@@ -78,26 +78,26 @@ function RecipeDetails() {
     detail?.strAlcoholic,
   ]);
 
-  useEffect(() => {
-    // const getInProgressRecipes = JSON.parse(localStorage
-    //   .getItem('inProgressRecipes')) || { ...[id] };
-    // if (food && getInProgressRecipes.meals[id]) {
-    // const getInProgressRecipes = JSON.parse(localStorage
-    //   .getItem('inProgressRecipes')) || { drinks: { [id]: [] }, meals: { [id]: [] } };
-    if (food) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
-      const toGetInProgressRecipes = {
-        meals: { ...getInProgressRecipes.meals, [id]: [] } };
-      setUsedIngredients(toGetInProgressRecipes.meals[id]);
-    }
-    // if (drink && (getInProgressRecipes.drinks[id])) {
-    if (drink) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { drinks: { [id]: [] } };
-      setUsedIngredients(getInProgressRecipes.drinks[id]);
-    }
-  }, [id, drink, food]);
+  // useEffect(() => {
+  //   // const getInProgressRecipes = JSON.parse(localStorage
+  //   //   .getItem('inProgressRecipes')) || { ...[id] };
+  //   // if (food && getInProgressRecipes.meals[id]) {
+  //   // const getInProgressRecipes = JSON.parse(localStorage
+  //   //   .getItem('inProgressRecipes')) || { drinks: { [id]: [] }, meals: { [id]: [] } };
+  //   if (food) {
+  //     const getInProgressRecipes = JSON.parse(localStorage
+  //       .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
+  //     const toGetInProgressRecipes = {
+  //       meals: { ...getInProgressRecipes.meals, [id]: [] } };
+  //     setUsedIngredients(toGetInProgressRecipes.meals[id]);
+  //   }
+  //   // if (drink && (getInProgressRecipes.drinks[id])) {
+  //   if (drink) {
+  //     const getInProgressRecipes = JSON.parse(localStorage
+  //       .getItem('inProgressRecipes')) || { drinks: { [id]: [] } };
+  //     setUsedIngredients(getInProgressRecipes.drinks[id]);
+  //   }
+  // }, [id, drink, food]);
 
   //   {
   //     drinks: {
@@ -113,16 +113,18 @@ function RecipeDetails() {
   useEffect(() => {
     if (food) {
       const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || {};
+        .getItem('inProgressRecipes'));
       const toSaveInProgressRecipes = { ...getInProgressRecipes,
-        meals: { [id]: [...usedIngredients] } };
+        meals: { ...getInProgressRecipes.meals,
+          [id]: [...getInProgressRecipes.meals[id], ...usedIngredients] },
+      };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
     if (drink) {
       const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || {};
+        .getItem('inProgressRecipes'));
       const toSaveInProgressRecipes = { ...getInProgressRecipes,
-        drinks: { [id]: [...usedIngredients] } };
+        drinks: { [id]: [...getInProgressRecipes.drinks[id], ...usedIngredients] } };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
   }, [usedIngredients, drink, food, id]);

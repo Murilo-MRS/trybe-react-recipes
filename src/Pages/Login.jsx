@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
-// import logoRecipesApp from '../images/logoRecipesApp.png';
+import logoRecipesApp from '../images/logoRecipesApp.png';
 import tomate from '../images/tomate.png';
 import '../styles/login.css';
 

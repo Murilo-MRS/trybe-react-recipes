@@ -4,6 +4,8 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from './utils/renderWith';
 
+jest.mock('clipboard-copy');
+
 describe('Teste da tela de favoritos', () => {
   test('Renderizacoes na tela ', () => {
     renderWithRouter(<App />, { initialEntries: ['/favorite-recipes'] });
@@ -82,6 +84,7 @@ describe('Teste da tela de favoritos', () => {
 
   test('Bõtoes share em meals', async () => {
     renderWithRouter(<App />, { initialEntries: ['/meals'] });
+    // copy.mockImplementation(() => {});
     const mealCorba = await screen.findByText('Corba');
     userEvent.click(mealCorba);
 

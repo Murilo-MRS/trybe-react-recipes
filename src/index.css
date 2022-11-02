@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 640px) and (max-width: 900px)  {
   .btn {
   background: #FCC436;
   border-radius: 5px;
