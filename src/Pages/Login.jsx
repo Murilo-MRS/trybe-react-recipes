@@ -34,6 +34,7 @@ function Login() {
             type="email"
             data-testid="email-input"
             name="inputEmail"
+            autoComplete="off"
             placeholder="Digite seu Email"
             value={ email }
             onChange={ handleEmailChange }
@@ -42,6 +43,7 @@ function Login() {
         <label htmlFor="Password">
           Senha:
           <input
+            autoComplete="off"
             type="password"
             data-testid="password-input"
             placeholder="Digite a Senha"

@@ -28,6 +28,12 @@
   width: 342px;
 }
 
+.search-input:focus {
+  background-color:#d3cdad;
+  border: none;
+  color: white;
+  font-weight: 900;
+}
 .search-input::placeholder {
   color: #797d86;
   font-size: 15px;

@@ -33,6 +33,9 @@ function Recipes() {
     <section className="container-categories">
       {categoryList?.slice(0, MAX).map((e, index) => (
         <button
+          style={ {
+            backgroundImage: `../images/iconsFigma/iconsMeals/${e.strCategory}.png`,
+          } }
           className="button-categories"
           type="button"
           variant="primary"

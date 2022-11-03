@@ -49,7 +49,6 @@ function RecipeDetails() {
         const drinkDetails = await fetchDrinksDetails(id);
         setDetails(drinkDetails);
         setRouteToCopy('drinks');
-        console.log(routeToCopy);
       }
       if (food) {
         setCategory(detail?.strCategory);
@@ -79,7 +78,7 @@ function RecipeDetails() {
   useEffect(() => {
     if (food) {
       const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
+        .getItem('inProgressRecipes')) || { meals: { [id]: [] }, drinks: {} };
       if (!Object.keys(getInProgressRecipes.meals).includes(id)
       || (Object.keys(getInProgressRecipes).includes('drinks')
       && !Object.keys(getInProgressRecipes).includes('meals'))) {
@@ -92,7 +91,7 @@ function RecipeDetails() {
     }
     if (drink) {
       const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { drinks: { [id]: [] } };
+        .getItem('inProgressRecipes')) || { drinks: { [id]: [] }, meals: {} };
       if (!Object.keys(getInProgressRecipes.drinks).includes(id)
       || (Object.keys(getInProgressRecipes).includes('meals')
       && !Object.keys(getInProgressRecipes).includes('drinks'))
@@ -239,7 +238,7 @@ function RecipeDetails() {
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ disabledBtn }
-        onClick={ () => history.push(`${pathname}/in-progress`) }
+        onClick={ () => history.push('/done-recipes') }
       >
         Finish Recipe
       </button>

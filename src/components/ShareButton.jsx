@@ -9,8 +9,14 @@ export default function ShareButton() {
   const [copied, setCopy] = useState(false);
   const handleShareButt = () => {
     const urlMealorDrink = `http://localhost:3000${pathname}`;
-    setCopy(true);
-    copy(urlMealorDrink);
+    if (urlMealorDrink.includes('/in-progress')) {
+      const newUrl = urlMealorDrink.replace('/in-progress', '');
+      setCopy(true);
+      copy(newUrl);
+    } else {
+      setCopy(true);
+      copy(urlMealorDrink);
+    }
   };
 
   return (

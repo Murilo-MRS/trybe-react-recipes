@@ -44,16 +44,44 @@ function RecipeDetails() {
 
   useEffect(() => {
     const doneRecipes = getStorage('doneRecipes');
-    // const initiatedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
-    // const initiatedRecipes = getStorage('inProgressRecipes');
     if (doneRecipes.some((recipe) => recipe.id === id)) setNotDoneRecipe(false);
-    // if (Object.keys(initiatedRecipes[pathname] || {})
-    //   .some((recipeId) => +recipeId === +id)) setContinueRecipe(true);
   }, [id, pathname]);
 
   useEffect(() => {
+    const getInProgressRecipes = JSON.parse(localStorage
+      .getItem('inProgressRecipes'));
+    // if (food) {
+    //   const getInProgressRecipes = JSON.parse(localStorage
+    //     .getItem('inProgressRecipes'));
+    //   const { meals: { [id]: getInprogress } } = getInProgressRecipes;
+    //   setUsedIngredients(getInprogress);
+    // }
+    // if (drink) {
+    //   const getInProgressRecipes = JSON.parse(localStorage
+    //     .getItem('inProgressRecipes'));
+    //   const { drinks: { [id]: getInprogress } } = getInProgressRecipes;
+    //   setUsedIngredients(getInprogress);
+    // }
+    // const getInProgressRecipes = JSON.parse(localStorage
+    //   .getItem('inProgressRecipes'));
+    // Object.keys(getInProgressRecipes?[pathname]?)
 
-  }, []);
+    // if (!getInProgressRecipes) {
+    //   setContinueRecipe(false);
+    // }
+    // if (getInProgressRecipes?.meals) {
+    //   setContinueRecipe(false);
+    // }
+    if (getInProgressRecipes?.drinks?.[id]) {
+      setContinueRecipe(true);
+    }
+    if (getInProgressRecipes?.meals?.[id]) {
+      setContinueRecipe(true);
+    }
+
+    // if (startedRecipe
+    //   .some((oldId) => oldId === id)) setContinueRecipe(true);
+  }, [id]);
 
   useEffect(() => {
     (async () => {
@@ -121,8 +149,8 @@ function RecipeDetails() {
       <div>
         <ShareButton />
         <FavoriteButton />
+        <MealCarousel />
       </div>
-      <MealCarousel />
       {notDoneRecipe && (
         <button
           className="initiate-recipe-butt"
@@ -135,7 +163,6 @@ function RecipeDetails() {
               ? 'Continue Recipe'
               : 'Start Recipe'
           }
-          Start Recipe
         </button>
       )}
     </>

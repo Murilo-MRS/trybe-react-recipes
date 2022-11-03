@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Context from '../context/Context';
+import iconePrato from '../images/iconsFigma/iconePrato.png';
 import '../styles/estiloDoGrid.css';
 
 function Meals() {
@@ -18,6 +19,10 @@ function Meals() {
   return (
     <div className="mealsComponent">
       <Header />
+      <div className="cabecalho-img-name">
+        <img className="iconePrato" src={ iconePrato } alt="iconePrato" />
+        <p>Meals</p>
+      </div>
       <Recipes />
       <div className="recipes-container">
         {

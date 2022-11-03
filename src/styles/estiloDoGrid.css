@@ -37,3 +37,26 @@ p {
 a:link {
   text-decoration: none;
 }
+
+.cabecalho-img-name {
+  align-items: center;
+  display: flex;
+  margin-top: 40px;
+}
+
+.cabecalho-img-name p {
+  font-family: 'Epilogue';
+  color: #41197F;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0.105em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.iconePrato {
+  height: 29.53px;
+  width: 40.33px;
+}

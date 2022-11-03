@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Context from '../context/Context';
+import iconeDrink from '../images/iconsFigma/iconeDrink.png';
 import '../styles/estiloDoGrid.css';
 
 function Drink() {
@@ -17,6 +18,10 @@ function Drink() {
   return (
     <div className="mealsComponent">
       <Header />
+      <div className="cabecalho-img-name">
+        <img className="iconePrato" src={ iconeDrink } alt="iconeDrink" />
+        <p>Drinks</p>
+      </div>
       <Recipes />
       <section className="recipes-container">
         {
