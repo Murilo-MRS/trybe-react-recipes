@@ -1,11 +1,10 @@
-import copy from 'clipboard-copy';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import FavoriteButton from '../components/FavoriteButton';
 import Header from '../components/Header';
 import MealCarousel from '../components/MealCarousel';
-import { getStorage, setStorage } from '../helpers/Storage';
-import shareIcon from '../images/shareIcon.svg';
+import ShareButton from '../components/ShareButton';
+import { getStorage } from '../helpers/Storage';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
 import '../styles/RecipeDetails.css';
 
@@ -25,8 +24,7 @@ function RecipeDetails() {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [notDoneRecipe, setNotDoneRecipe] = useState(true);
-  // const [continueRecipe, setContinueRecipe] = useState(false);
-  const [copied, setCopy] = useState(false);
+  const [continueRecipe, setContinueRecipe] = useState(false);
 
   const food = pathname.includes('meals');
   const drink = pathname.includes('drinks');
@@ -54,6 +52,10 @@ function RecipeDetails() {
   }, [id, pathname]);
 
   useEffect(() => {
+
+  }, []);
+
+  useEffect(() => {
     (async () => {
       if (drink) {
         setCategory(detail?.strAlcoholic);
@@ -78,53 +80,6 @@ function RecipeDetails() {
     food,
     detail,
   ]);
-
-  const handleShareButt = () => {
-    const urlMealorDrink = `http://localhost:3000${pathname}`;
-    setCopy(true);
-    copy(urlMealorDrink);
-  };
-
-  const handleStartRecipeButt = () => {
-    if (food) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
-      console.log(Object.keys(getInProgressRecipes.meals).includes(id));
-      if (!Object.keys(getInProgressRecipes.meals).includes(id)) {
-        console.log(getInProgressRecipes.meals);
-        const toGetInProgressRecipes = { ...getInProgressRecipes,
-          meals: { ...getInProgressRecipes.meals, [id]: [] } };
-        console.log(toGetInProgressRecipes);
-        // // localStorage.setItem('inProgressRecipes', JSON.stringify(toGetInProgressRecipes));
-        setStorage('inProgressRecipes', toGetInProgressRecipes);
-      } else {
-        setStorage('inProgressRecipes', getInProgressRecipes);
-      }
-      // else {
-      //   const toGetInProgressRecipes = { ...getInProgressRecipes };
-      //   setStorage('inProgressRecipes', toGetInProgressRecipes);
-      // }
-    }
-    if (drink) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || {};
-      const toSaveInProgressRecipes = { ...getInProgressRecipes.drinks,
-        drinks: { [id]: [...usedIngredients] } };
-      setStorage('inProgressRecipes', toSaveInProgressRecipes);
-    }
-    history.push(`${pathname}/in-progress`);
-  };
-
-  //   {
-  //     drinks: {
-  //         id-da-bebida: [''],
-  //         ...
-  //     },
-  //     meals: {
-  //         id-da-comida: [lista-de-ingredientes-utilizados],
-  //         ...
-  //     }
-  // }
 
   return (
     <>
@@ -164,16 +119,8 @@ function RecipeDetails() {
         )}
       </div>
       <div>
-        <button
-          src={ shareIcon }
-          type="button"
-          data-testid="share-btn"
-          onClick={ handleShareButt }
-        >
-          <img src={ shareIcon } alt="Icone de compartilhar" />
-        </button>
+        <ShareButton />
         <FavoriteButton />
-        {copied && <p>Link copied!</p>}
       </div>
       <MealCarousel />
       {notDoneRecipe && (
@@ -181,13 +128,13 @@ function RecipeDetails() {
           className="initiate-recipe-butt"
           type="button"
           data-testid="start-recipe-btn"
-          onClick={ handleStartRecipeButt }
+          onClick={ () => history.push(`${pathname}/in-progress`) }
         >
-          {/*             {
-              continueRecipe
-                ? 'Continue Recipe'
-                : 'Start Recipe'
-            } */}
+          {
+            continueRecipe
+              ? 'Continue Recipe'
+              : 'Start Recipe'
+          }
           Start Recipe
         </button>
       )}
