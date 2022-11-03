@@ -1,0 +1,12 @@
+.profileComponent {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.favoriteRecipes {
+  border-top: 0.5px solid #b1b1b1;
+}

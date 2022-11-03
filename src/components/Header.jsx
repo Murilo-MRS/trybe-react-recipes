@@ -46,6 +46,7 @@ function Header() {
           </button>
           {showIcon && (
             <button
+              className="searchTopBtn"
               src={ searchIcon }
               data-testid="search-top-btn"
               type="button"
@@ -54,10 +55,10 @@ function Header() {
               <img src={ searchIcon } alt="Icone de pesquisa" />
             </button>
           )}
-          {showSearchInput && (
-            <SearchBar />
-          )}
         </nav>
+        {showSearchInput && (
+          <SearchBar />
+        )}
       </header>
 
     </>

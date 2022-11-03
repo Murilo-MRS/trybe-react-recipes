@@ -2,6 +2,7 @@ nav {
   background: #fcdc36;
   height: 52px;
   left: 0;
+  position : absolute;
   top: 0;
   width: 360px;
 }

@@ -1,10 +1,9 @@
-import copy from 'clipboard-copy';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import FavoriteButton from '../components/FavoriteButton';
 import Header from '../components/Header';
+import ShareButton from '../components/ShareButton';
 import { setStorage } from '../helpers/Storage';
-import shareIcon from '../images/shareIcon.svg';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
 import '../styles/RecipeDetails.css';
 
@@ -13,9 +12,7 @@ const INGREDIENTS_MAX_NUM = 20;
 function RecipeDetails() {
   const { id } = useParams();
   const history = useHistory();
-  const {
-    location: { pathname },
-  } = history;
+  const { location: { pathname } } = history;
   const [detail, setDetails] = useState({});
   const [video, setVideo] = useState({});
   const [img, setImg] = useState({});
@@ -23,7 +20,6 @@ function RecipeDetails() {
   const [category, setCategory] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
-  const [copied, setCopy] = useState(false);
   const [routeToCopy, setRouteToCopy] = useState('');
   const [usedIngredients, setUsedIngredients] = useState([]);
   const food = pathname.includes('meals');
@@ -80,37 +76,50 @@ function RecipeDetails() {
     routeToCopy,
   ]);
 
-  // useEffect(() => {
-  //   // const getInProgressRecipes = JSON.parse(localStorage
-  //   //   .getItem('inProgressRecipes')) || { ...[id] };
-  //   // if (food && getInProgressRecipes.meals[id]) {
-  //   // const getInProgressRecipes = JSON.parse(localStorage
-  //   //   .getItem('inProgressRecipes')) || { drinks: { [id]: [] }, meals: { [id]: [] } };
-  //   if (food) {
-  //     const getInProgressRecipes = JSON.parse(localStorage
-  //       .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
-  //     const toGetInProgressRecipes = {
-  //       meals: { ...getInProgressRecipes.meals, [id]: [] } };
-  //     setUsedIngredients(toGetInProgressRecipes.meals[id]);
-  //   }
-  //   // if (drink && (getInProgressRecipes.drinks[id])) {
-  //   if (drink) {
-  //     const getInProgressRecipes = JSON.parse(localStorage
-  //       .getItem('inProgressRecipes')) || { drinks: { [id]: [] } };
-  //     setUsedIngredients(getInProgressRecipes.drinks[id]);
-  //   }
-  // }, [id, drink, food]);
+  useEffect(() => {
+    if (food) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes')) || { meals: { [id]: [] } };
+      if (!Object.keys(getInProgressRecipes.meals).includes(id)
+      || (Object.keys(getInProgressRecipes).includes('drinks')
+      && !Object.keys(getInProgressRecipes).includes('meals'))) {
+        const toGetInProgressRecipes = { ...getInProgressRecipes,
+          meals: { ...getInProgressRecipes.meals, [id]: [] } };
+        setStorage('inProgressRecipes', toGetInProgressRecipes);
+      } else {
+        setStorage('inProgressRecipes', getInProgressRecipes);
+      }
+    }
+    if (drink) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes')) || { drinks: { [id]: [] } };
+      if (!Object.keys(getInProgressRecipes.drinks).includes(id)
+      || (Object.keys(getInProgressRecipes).includes('meals')
+      && !Object.keys(getInProgressRecipes).includes('drinks'))
+      ) {
+        const toGetInProgressRecipes = { ...getInProgressRecipes,
+          drinks: { ...getInProgressRecipes.drinks, [id]: [] } };
+        setStorage('inProgressRecipes', toGetInProgressRecipes);
+      } else {
+        setStorage('inProgressRecipes', getInProgressRecipes);
+      }
+    }
+  }, [drink, food, id]);
 
-  //   {
-  //     drinks: {
-  //         id-da-bebida: [''],
-  //         ...
-  //     },
-  //     meals: {
-  //         id-da-comida: [lista-de-ingredientes-utilizados],
-  //         ...
-  //     }
-  // }
+  useEffect(() => {
+    if (food) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes'));
+      const { meals: { [id]: getInprogress } } = getInProgressRecipes;
+      setUsedIngredients(getInprogress);
+    }
+    if (drink) {
+      const getInProgressRecipes = JSON.parse(localStorage
+        .getItem('inProgressRecipes'));
+      const { drinks: { [id]: getInprogress } } = getInProgressRecipes;
+      setUsedIngredients(getInprogress);
+    }
+  }, [drink, food, id]);
 
   useEffect(() => {
     if (food) {
@@ -118,7 +127,7 @@ function RecipeDetails() {
         .getItem('inProgressRecipes'));
       const toSaveInProgressRecipes = { ...getInProgressRecipes,
         meals: { ...getInProgressRecipes.meals,
-          [id]: [...getInProgressRecipes.meals[id], ...usedIngredients] },
+          [id]: [...usedIngredients] },
       };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
@@ -126,7 +135,9 @@ function RecipeDetails() {
       const getInProgressRecipes = JSON.parse(localStorage
         .getItem('inProgressRecipes'));
       const toSaveInProgressRecipes = { ...getInProgressRecipes,
-        drinks: { [id]: [...getInProgressRecipes.drinks[id], ...usedIngredients] } };
+        drinks: { ...getInProgressRecipes.drinks,
+          [id]: [...usedIngredients] },
+      };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
   }, [usedIngredients, drink, food, id]);
@@ -136,12 +147,6 @@ function RecipeDetails() {
     else setDisable(true);
   }, [ingredients, usedIngredients]);
 
-  const handleShareButt = (ids, type) => {
-    const urlMealorDrink = `http://localhost:3000/${type}/${ids}`;
-    setCopy(true);
-    copy(urlMealorDrink);
-  };
-
   const changeClassName = (target) => {
     if (target.checked === true) {
       target.parentElement.className = 'checked';
@@ -150,7 +155,7 @@ function RecipeDetails() {
     } else {
       target.parentElement.className = '';
       const newUnusedIngredient = target.parentElement.innerText;
-      const editUsedIngredients = [...usedIngredients]
+      const editUsedIngredients = usedIngredients
         .filter((ingredient) => !(ingredient.includes(newUnusedIngredient)));
       setUsedIngredients(editUsedIngredients);
     }
@@ -166,22 +171,49 @@ function RecipeDetails() {
         <div>
           {
             ingredients.map((ingredient, index) => (
-              <label
-                key={ index }
-                data-testid={ `${index}-ingredient-step` }
-                htmlFor={ ingredient }
-              >
-                {ingredient}
-                {' '}
-                {measures[index]}
-                <input
-                  type="checkbox"
-                  name={ ingredient }
-                  onClick={
-                    ({ target }) => changeClassName(target)
-                  }
-                />
-              </label>
+              (usedIngredients
+                .some((oldIngredient) => oldIngredient
+                  .includes(`${ingredient}${' '}${measures[index]}`)))
+                ? (
+                  <label
+                    key={ index }
+                    data-testid={ `${index}-ingredient-step` }
+                    htmlFor={ ingredient }
+                    className="checked"
+                  >
+                    {ingredient}
+                    {' '}
+                    {measures[index]}
+                    <input
+                      type="checkbox"
+                      name={ ingredient }
+                      checked
+                      onChange={
+                        ({ target }) => changeClassName(target)
+                      }
+                    />
+                  </label>
+                )
+                : (
+                  <label
+                    key={ index }
+                    data-testid={ `${index}-ingredient-step` }
+                    htmlFor={ ingredient }
+                    className=""
+                  >
+                    {ingredient}
+                    {' '}
+                    {measures[index]}
+                    <input
+                      type="checkbox"
+                      name={ ingredient }
+                      checked={ false }
+                      onChange={
+                        ({ target }) => changeClassName(target)
+                      }
+                    />
+                  </label>
+                )
             ))
           }
         </div>
@@ -199,16 +231,8 @@ function RecipeDetails() {
         }
       </div>
       <div>
-        <button
-          src={ shareIcon }
-          type="button"
-          data-testid="share-btn"
-          onClick={ handleShareButt }
-        >
-          <img src={ shareIcon } alt="Icone de compartilhar" />
-        </button>
+        <ShareButton />
         <FavoriteButton />
-        {copied && <p>Link copied!</p>}
       </div>
       <button
         className="initiate-recipe-butt"

@@ -103,7 +103,7 @@ function FavoriteRecipes() {
                 {type === 'meal'
                   ? mealInfo(index, category, nationality)
                   : drinkInfo(index, alcoholicOrNot)}
-                <Link to={ `/${type}/${id}` }>
+                <Link to={ `/${type}s/${id}` }>
                   <p data-testid={ `${index}-horizontal-name` }>{name}</p>
                 </Link>
                 <div>

@@ -15,10 +15,10 @@ function Drink() {
     setShowIcon(true);
   }, [setTitle, setShowIcon]);
   return (
-    <div>
+    <div className="mealsComponent">
       <Header />
       <Recipes />
-      <section>
+      <section className="recipes-container">
         {
           drinks?.slice(0, MAX).map((drink, index) => (
             <div
@@ -28,10 +28,10 @@ function Drink() {
             >
               <Link to={ `/drinks/${drink.idDrink}` }>
                 <img
+                  className="card-name-img"
                   data-testid={ `${index}-card-img` }
                   src={ drink.strDrinkThumb }
                   alt={ drink.strDrink }
-                  width="200px"
                 />
                 <p
                   className="card-text"

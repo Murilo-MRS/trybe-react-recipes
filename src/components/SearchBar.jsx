@@ -8,7 +8,7 @@ import {
   fetchFoodsByFirstLetter,
   fetchFoodsByIngredient,
   // eslint-disable-next-line comma-dangle
-  fetchFoodsByName,
+  fetchFoodsByName
 } from '../services/Api';
 import '../styles/SearchBar.css';
 
@@ -90,8 +90,8 @@ function SearchBar() {
           />
         </label>
         <div className="radios">
-          <label htmlFor="ingredient-radio">
-            Ingredient
+          <label htmlFor="ingredient-radio" className="radios-text">
+
             <input
               name="ingredient-radio"
               value="Ingredient"
@@ -100,9 +100,10 @@ function SearchBar() {
               checked={ radioValue === 'Ingredient' }
               onChange={ ({ target }) => setRadioValue(target.value) }
             />
+            Ingredient
           </label>
-          <label htmlFor="name-radio">
-            Name
+          <label htmlFor="name-radio" className="radios-text">
+
             <input
               name="name-radio"
               value="Name"
@@ -111,9 +112,10 @@ function SearchBar() {
               checked={ radioValue === 'Name' }
               onChange={ ({ target }) => setRadioValue(target.value) }
             />
+            Name
           </label>
-          <label htmlFor="first-letter-radio">
-            First letter
+          <label htmlFor="first-letter-radio" className="radios-text">
+
             <input
               name="first-letter-radio"
               value="First letter"
@@ -122,11 +124,13 @@ function SearchBar() {
               checked={ radioValue === fLetter }
               onChange={ ({ target }) => setRadioValue(target.value) }
             />
+            First letter
           </label>
         </div>
         <button
           type="button"
           data-testid="exec-search-btn"
+          className="search-btn"
           onClick={
             history.location.pathname === '/meals'
               ? handleClickMeals

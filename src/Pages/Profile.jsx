@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
-// import Context from '../context/Context';
+import '../styles/profile.css';
 
 function Profile() {
   const { setTitle, setShowIcon, clearInputs } = useContext(Context);
@@ -39,29 +39,31 @@ function Profile() {
   return (
     <>
       <Header />
-      <p>{emailInStorage && getEmail()}</p>
-
-      <button
-        data-testid="profile-done-btn"
-        type="button"
-        onClick={ redirectToDoneRecipes }
-      >
-        Done Recipes
-      </button>
-      <button
-        data-testid="profile-favorite-btn"
-        type="button"
-        onClick={ redirectToFavoriteRecipes }
-      >
-        Favorite Recipes
-      </button>
-      <button
-        data-testid="profile-logout-btn"
-        type="button"
-        onClick={ logout }
-      >
-        Logout
-      </button>
+      <div className="profileComponent">
+        <p>{emailInStorage && getEmail()}</p>
+        <button
+          data-testid="profile-done-btn"
+          type="button"
+          onClick={ redirectToDoneRecipes }
+        >
+          Done Recipes
+        </button>
+        <button
+          className="favoriteRecipes"
+          data-testid="profile-favorite-btn"
+          type="button"
+          onClick={ redirectToFavoriteRecipes }
+        >
+          Favorite Recipes
+        </button>
+        <button
+          data-testid="profile-logout-btn"
+          type="button"
+          onClick={ logout }
+        >
+          Logout
+        </button>
+      </div>
       <Footer />
     </>
   );

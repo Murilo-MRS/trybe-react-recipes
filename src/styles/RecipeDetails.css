@@ -1,10 +1,10 @@
 .initiate-recipe-butt {
   background: #fcc436;
   border-radius: 5px;
+  bottom: 0;
   height: 40px;
   left: 12px;
-  position: absolute;
-  top: 1084px;
+  position: fixed;
   width: 336px;
 }
 
