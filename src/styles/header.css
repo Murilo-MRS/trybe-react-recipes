@@ -1,0 +1,12 @@
+nav {
+  background: #fcdc36;
+  height: 52px;
+  left: 0;
+  top: 0;
+  width: 360px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+}

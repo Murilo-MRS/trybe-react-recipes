@@ -1,0 +1,21 @@
+.container-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 15%;
+}
+
+.button-categories {
+  background-color: #ffc107;
+  border: #ffc107;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  height: 35px;
+  margin-top: 5px;
+  outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 110px;
+}
