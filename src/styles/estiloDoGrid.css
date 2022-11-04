@@ -45,13 +45,13 @@ a:link {
 }
 
 .cabecalho-img-name p {
+  color: #41197f;
   font-family: 'Epilogue';
-  color: #41197F;
+  font-size: 20px;
   font-style: normal;
   font-weight: 900;
-  font-size: 20px;
-  line-height: 20px;
   letter-spacing: 0.105em;
+  line-height: 20px;
   text-align: center;
   text-transform: uppercase;
 }

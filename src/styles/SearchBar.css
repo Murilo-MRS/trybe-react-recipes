@@ -12,8 +12,8 @@
 .search-bar {
   background: #41197f;
   border-radius: 5px;
-  margin-top: 5%;
   margin-left: 10px;
+  margin-top: 5%;
   width: 342px;
 }
 
@@ -23,17 +23,18 @@
   border-radius: 5px;
   bottom: 20px;
   height: 40px;
-  left: 0px;
+  left: 0;
   position: relative;
   width: 342px;
 }
 
 .search-input:focus {
-  background-color:#d3cdad;
+  background-color : #d3cdad;
   border: none;
   color: white;
   font-weight: 900;
 }
+
 .search-input::placeholder {
   color: #797d86;
   font-size: 15px;
@@ -59,15 +60,15 @@ input:focus::placeholder {
   display: flex;
   flex-flow: wrap;
   justify-content: space-around;
-  padding: 15px 0px;
+  padding: 15px 0;
   width: 336px;
 }
 
 .radios-text {
   color: white;
+  font-size: 16px;
   font-style: normal;
   font-weight: 300;
-  font-size: 16px;
 }
 
 .radios input {
@@ -78,8 +79,6 @@ input:focus::placeholder {
   margin-right: 10px;
   top: 222px;
   width: 20.3px;
-  
-
 }
 
 .radios input:after {
