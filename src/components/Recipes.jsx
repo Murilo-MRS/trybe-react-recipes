@@ -54,8 +54,7 @@ function Recipes() {
           onClick={ categorySelectedList }
         >
           <img
-            // eslint-disable-next-line import/no-dynamic-require, global-require
-            src={ require(`../images/iconsFigma/iconsMeals/${e.strCategory}.svg`) }
+            src={ imgIcon }
             alt={ e.strCategory }
           />
           {e.strCategory}

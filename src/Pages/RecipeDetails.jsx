@@ -49,37 +49,12 @@ function RecipeDetails() {
   useEffect(() => {
     const getInProgressRecipes = JSON.parse(localStorage
       .getItem('inProgressRecipes'));
-    // if (food) {
-    //   const getInProgressRecipes = JSON.parse(localStorage
-    //     .getItem('inProgressRecipes'));
-    //   const { meals: { [id]: getInprogress } } = getInProgressRecipes;
-    //   setUsedIngredients(getInprogress);
-    // }
-    // if (drink) {
-    //   const getInProgressRecipes = JSON.parse(localStorage
-    //     .getItem('inProgressRecipes'));
-    //   const { drinks: { [id]: getInprogress } } = getInProgressRecipes;
-    //   setUsedIngredients(getInprogress);
-    // }
-    // const getInProgressRecipes = JSON.parse(localStorage
-    //   .getItem('inProgressRecipes'));
-    // Object.keys(getInProgressRecipes?[pathname]?)
-
-    // if (!getInProgressRecipes) {
-    //   setContinueRecipe(false);
-    // }
-    // if (getInProgressRecipes?.meals) {
-    //   setContinueRecipe(false);
-    // }
     if (getInProgressRecipes?.drinks?.[id]) {
       setContinueRecipe(true);
     }
     if (getInProgressRecipes?.meals?.[id]) {
       setContinueRecipe(true);
     }
-
-    // if (startedRecipe
-    //   .some((oldId) => oldId === id)) setContinueRecipe(true);
   }, [id]);
 
   useEffect(() => {

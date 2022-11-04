@@ -30,25 +30,25 @@
   
 }
 
-.share-heart {
-  position: absolute;
+/*  .share-heart {
+  /* position: absolute;
   left: 85.28%;
-  right: 8.36%;
-  top: 2%;
-  bottom: 97.27%;
+  right: 8.36%; */
+  /* top: 2%; */
+  /* bottom: 97.27%; 
   background: none;
   border: none;
-}
+} */
 
-.share-btn {
-  position: absolute;
+/* .share-btn {
+   position: absolute;
   left: 76.67%;
-  right: 13.77%;
-  top: 1.39%;
-  bottom: 98.22%;
+  right: 13.77%; */
+  /* top: 1.39%; */
+  /* bottom: 98.22%; 
   background: none;
   border: none;
-}
+} */
 
 .recipe-recom {
   text-align: center;

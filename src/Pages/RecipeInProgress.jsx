@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import FavoriteButton from '../components/FavoriteButton';
@@ -192,16 +191,17 @@ function RecipeDetails() {
         <h1 data-testid="recipe-title">{title}</h1>
         <h2 data-testid="recipe-category">{category}</h2>
         <div className=" mealInformation recipe-page">
-          {ingredients
-            .map((ingredient, index) => (usedIngredients
-              .some((oldIngredient) => oldIngredient
-                .includes(`${ingredient}${' '}${measures[index]}`))
-              ? (
+          {
+            ingredients.map((ingredient, index) => {
+              const checkOrnot = (usedIngredients
+                .some((oldIngredient) => oldIngredient
+                  .includes(`${ingredient}${' '}${measures[index]}`))) ? 'ok' : 'notOK';
+              return (
                 <label
                   key={ index }
                   data-testid={ `${index}-ingredient-step` }
                   htmlFor={ ingredient }
-                  className="checked"
+                  className={ checkOrnot ? 'checked' : '' }
                 >
                   {ingredient}
                   {' '}
@@ -209,28 +209,13 @@ function RecipeDetails() {
                   <input
                     type="checkbox"
                     name={ ingredient }
-                    checked
+                    checked={ (checkOrnot === 'ok') }
                     onChange={ ({ target }) => changeClassName(target) }
                   />
                 </label>
-              ) : (
-                <label
-                  key={ index }
-                  data-testid={ `${index}-ingredient-step` }
-                  htmlFor={ ingredient }
-                  className=""
-                >
-                  {ingredient}
-                  {' '}
-                  {measures[index]}
-                  <input
-                    type="checkbox"
-                    name={ ingredient }
-                    checked={ false }
-                    onChange={ ({ target }) => changeClassName(target) }
-                  />
-                </label>
-              )))}
+              );
+            })
+          }
         </div>
         <p data-testid="instructions">{detail?.strInstructions}</p>
       </div>
@@ -249,8 +234,6 @@ function RecipeDetails() {
       )}
       <button
         className="initiate-recipe-butt"
-        // eslint-disable-next-line max-lines
-        // eslint-disable-next-line max-lines
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ disabledBtn }

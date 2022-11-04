@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   fetchDrinks, fetchDrinksCategoryList, fetchFoods, fetchMealsCategoryList,
-  filterDrinksByCategory, filterFoodsByCategory
+  filterDrinksByCategory, filterFoodsByCategory,
 } from '../services/Api';
 import Context from './Context';
 
