@@ -41,17 +41,13 @@ function Recipes() {
         data-testid="All-category-filter"
         onClick={ removeAll }
       >
-        <img
-          src={ imgIcon }
-          alt="mealicon"
-        />
-        <p>All</p>
+        <img src={ imgIcon } alt="mealicon" />
+        All
       </button>
       {categoryList?.slice(0, MAX).map((e, index) => (
         <button
           className="button-categories"
-          type="button"
-          variant="primary"
+          type="submit"
           key={ index }
           value={ e.strCategory }
           data-testid={ `${e.strCategory}-category-filter` }
@@ -62,7 +58,7 @@ function Recipes() {
             src={ require(`../images/iconsFigma/iconsMeals/${e.strCategory}.svg`) }
             alt={ e.strCategory }
           />
-          <p>{e.strCategory}</p>
+          {e.strCategory}
         </button>
       ))}
     </section>

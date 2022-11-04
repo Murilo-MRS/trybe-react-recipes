@@ -2,7 +2,7 @@
   align-items: center;
   display:flex;
   justify-content: space-between;
-  margin-top: 5%;
+  margin-top: 6%;
   margin-bottom: 30px;
   position:relative;
 }
@@ -10,20 +10,24 @@
 .button-categories {
   background-color: white;
   height: 100%;
-  margin-top: 5px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   width: 100%;
-  overflow : visible ;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 11px;
+  text-align: center;
+  color: #797D86;
+}
+.button-categories:focus {
+  margin-bottom: 10px;
 }
 
 .button-categories img {
-  box-sizing: border-box;
   width: 45.28px;
   height: 45.28px;
-  padding: 10px;
+  padding: 8px;
   background-image: url('../images/circuloCategories.svg');
-  z-index: -1;
 }
 
 .button-categories p {

@@ -17,6 +17,11 @@ header {
   margin-right: 15px;
 }
 
+.searchTopBtn:active {
+  margin-bottom: 10px;
+}
+
+
 .logoContainer {
   display: flex;
   flex-direction : row;

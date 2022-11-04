@@ -30,7 +30,7 @@
 
 .search-input:focus {
   background-color : #d3cdad;
-  border: none;
+  border: none!important;
   color: white;
   font-weight: 900;
 }
@@ -53,6 +53,10 @@ input:focus::placeholder {
   left: 73.86px;
   top: 243px;
   width: 100%;
+}
+
+.search-btn:active {
+  margin-left: 10px;
 }
 
 
