@@ -14,17 +14,39 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  background-color: white;
 }
 
 .img-recipe {
-  max-height: 300px;
-  max-width: 300px;
+  position: absolute;
+  width: 362.01px;
+  height: 200px;
+  left: -2px;
+  top: 0px;
+  overflow:hidden;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  border-radius: 0px;
+  
 }
 
 .share-heart {
-  filter: invert(100%);
-  padding: 5px;
-  width: 100px;
+  position: absolute;
+  left: 85.28%;
+  right: 8.36%;
+  top: 1.32%;
+  bottom: 97.27%;
+  
+  background: #FCC436;
+}
+
+.share-btn {
+  position: absolute;
+  left: 76.67%;
+  right: 17.77%;
+  top: 1.39%;
+  bottom: 97.22%;
+
+  background: #FCC436;
 }
 
 .recipe-recom {
@@ -40,4 +62,11 @@
 
 .checked {
   text-decoration: line-through solid black;
+}
+
+.mealInformation {
+  margin-top: 250px;
+}
+.mealInformation li {
+  list-style-type: none;
 }

@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import Context from '../context/Context';
+import drinkicon from '../images/iconsFigma/iconsMeals/DrinkIcon.svg';
+import mealicon from '../images/iconsFigma/iconsMeals/MealIcon.svg';
 import '../styles/barraDeCategorias.css';
 
 function Recipes() {
@@ -22,6 +24,7 @@ function Recipes() {
   const foodPath = pathname.includes('/meals');
   const MAX = 5;
   const categoryList = foodPath ? mealsCategoryList : drinksCategoryList;
+  const imgIcon = foodPath ? mealicon : drinkicon;
   // const removeCategoryFilter = foodPath ? setFoods(foodsAPI) : setDrinks(drinksAPI);
   const categorySelectedList = foodPath
     ? handleClickMealCategory
@@ -31,11 +34,21 @@ function Recipes() {
   const removeAll = () => (foodPath ? setFoods(foodsAPI) : setDrinks(drinksAPI));
   return (
     <section className="container-categories">
+      <button
+        className="button-categories"
+        type="button"
+        variant="primary"
+        data-testid="All-category-filter"
+        onClick={ removeAll }
+      >
+        <img
+          src={ imgIcon }
+          alt="mealicon"
+        />
+        <p>All</p>
+      </button>
       {categoryList?.slice(0, MAX).map((e, index) => (
         <button
-          style={ {
-            backgroundImage: `../images/iconsFigma/iconsMeals/${e.strCategory}.png`,
-          } }
           className="button-categories"
           type="button"
           variant="primary"
@@ -44,18 +57,14 @@ function Recipes() {
           data-testid={ `${e.strCategory}-category-filter` }
           onClick={ categorySelectedList }
         >
-          {e.strCategory}
+          <img
+            // eslint-disable-next-line import/no-dynamic-require, global-require
+            src={ require(`../images/iconsFigma/iconsMeals/${e.strCategory}.svg`) }
+            alt={ e.strCategory }
+          />
+          <p>{e.strCategory}</p>
         </button>
       ))}
-      <button
-        className="button-categories"
-        type="button"
-        variant="primary"
-        data-testid="All-category-filter"
-        onClick={ removeAll }
-      >
-        All
-      </button>
     </section>
   );
 }

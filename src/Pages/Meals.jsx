@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Context from '../context/Context';
-import iconePrato from '../images/iconsFigma/iconePrato.png';
+import iconePrato from '../images/iconsFigma/iconsMeals/MealIcon.svg';
 import '../styles/estiloDoGrid.css';
 
 function Meals() {

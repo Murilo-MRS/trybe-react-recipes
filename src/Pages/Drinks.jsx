@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Context from '../context/Context';
-import iconeDrink from '../images/iconsFigma/iconeDrink.png';
+import iconeDrink from '../images/iconsFigma/iconsMeals/DrinkIcon.svg';
 import '../styles/estiloDoGrid.css';
 
 function Drink() {

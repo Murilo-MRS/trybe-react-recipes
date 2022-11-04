@@ -11,3 +11,26 @@ header {
   display: flex;
   flex-direction: column;
 }
+
+.searchTopBtn {
+  background-color: #fcdc36;
+  margin-right: 15px;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction : row;
+}
+
+.iconeHeader {
+  width: 42.6px;
+  height: 39.28px;
+  margin-left: 20px;
+}
+
+.iconeLogo {
+  width: 109.13px;
+  height: 16.97px;
+  margin-left: 20px;
+  margin-top: 12px;
+}

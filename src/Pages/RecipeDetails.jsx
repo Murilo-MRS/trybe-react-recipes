@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import FavoriteButton from '../components/FavoriteButton';
-import Header from '../components/Header';
 import MealCarousel from '../components/MealCarousel';
 import ShareButton from '../components/ShareButton';
 import { getStorage } from '../helpers/Storage';
@@ -111,7 +110,6 @@ function RecipeDetails() {
 
   return (
     <>
-      <Header />
       <div className="recipe-page">
         <img
           className="img-recipe"
@@ -119,22 +117,24 @@ function RecipeDetails() {
           src={ img }
           alt="meal img"
         />
-        <h1 data-testid="recipe-title">{title}</h1>
-        <h2 data-testid="recipe-category">{category}</h2>
-        <ul>
-          {
-            ingredients.map((ingredient, index) => (
-              <li
-                key={ index }
-                data-testid={ `${index}-ingredient-name-and-measure` }
-              >
-                {ingredient}
-                {' '}
-                {measures[index]}
-              </li>
-            ))
-          }
-        </ul>
+        <div className="mealInformation">
+          <h1 data-testid="recipe-title">{title}</h1>
+          <h2 data-testid="recipe-category">{category}</h2>
+          <ul>
+            {
+              ingredients.map((ingredient, index) => (
+                <li
+                  key={ index }
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                >
+                  {ingredient}
+                  {' '}
+                  {measures[index]}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
         <p data-testid="instructions">{detail?.strInstructions}</p>
         {video && (
           <iframe

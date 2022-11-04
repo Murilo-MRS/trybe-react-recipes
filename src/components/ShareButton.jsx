@@ -2,6 +2,7 @@ import copy from 'clipboard-copy';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import shareIcon from '../images/shareIcon.svg';
+import '../styles/RecipeDetails.css';
 
 export default function ShareButton() {
   const history = useHistory();
@@ -22,6 +23,7 @@ export default function ShareButton() {
   return (
     <div>
       <button
+        className="share-btn"
         src={ shareIcon }
         type="button"
         data-testid="share-btn"

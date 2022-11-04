@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
-import arrowLeft from '../images/btnVoltar.svg';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import profileIcon from '../images/iconsFigma/iconePerfil.svg';
+import searchIcon from '../images/iconsFigma/iconePesquiar.svg';
+import íconeRecipesApp from '../images/iconsFigma/iconeRecipesApp.svg';
+import logoRecipesApp from '../images/iconsFigma/logoRecipesApp.svg';
 import '../styles/header.css';
 import SearchBar from './SearchBar';
 
@@ -21,17 +22,23 @@ function Header() {
       </div>
       <header>
         <nav>
+          <div className="logoContainer">
+            <img className="iconeHeader" src={ íconeRecipesApp } alt="íconeRecipesApp" />
+            <img className="iconeLogo" src={ logoRecipesApp } alt="iconeLogo" />
+          </div>
+          {showIcon && (
+            <button
+              className="searchTopBtn"
+              src={ searchIcon }
+              data-testid="search-top-btn"
+              type="button"
+              onClick={ handleSearchBtn }
+            >
+              <img src={ searchIcon } alt="Icone de pesquisa" />
+            </button>
+          )}
           <button
-            data-testid="btn-back"
-            onClick={ () => { window.history.back(); } }
-            type="button"
-          >
-            <img
-              alt="btn de voltar"
-              src={ arrowLeft }
-            />
-          </button>
-          <button
+            className="searchTopBtn"
             type="button"
             data-testid="profile-top-btn"
             name="profile-top-btn"
@@ -44,17 +51,6 @@ function Header() {
               alt="Ir para perfil"
             />
           </button>
-          {showIcon && (
-            <button
-              className="searchTopBtn"
-              src={ searchIcon }
-              data-testid="search-top-btn"
-              type="button"
-              onClick={ handleSearchBtn }
-            >
-              <img src={ searchIcon } alt="Icone de pesquisa" />
-            </button>
-          )}
         </nav>
         {showSearchInput && (
           <SearchBar />

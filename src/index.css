@@ -20,6 +20,10 @@ code {
 }
 
 @media (max-width: 640px) and (max-width: 900px)  {
+  button {
+    border:none;
+  }
+
   .btn {
   background: #FCC436;
   border-radius: 5px;
@@ -36,11 +40,6 @@ code {
     align-items: center;
     display:flex;
     justify-content: space-between;
-  }
-
-  button {
-    border-radius: 20px;
-    color: white;
   }
   
   .recipe-image {

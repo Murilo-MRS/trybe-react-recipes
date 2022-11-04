@@ -4,6 +4,7 @@ import { setStorage } from '../helpers/Storage';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
+import '../styles/RecipeDetails.css';
 
 export default function FavoriteButton() {
   const { id } = useParams();
@@ -99,6 +100,7 @@ export default function FavoriteButton() {
   return (
     <div>
       <button
+        className="share-heart"
         src={ favorited ? blackHeartIcon : whiteHeartIcon }
         type="button"
         data-testid="favorite-btn"

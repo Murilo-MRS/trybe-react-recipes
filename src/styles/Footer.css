@@ -8,3 +8,13 @@
   position: fixed;
   width: 100%;
 }
+
+.footer-container img {
+  color : #FCC436;
+}
+
+.footer-container button {
+  padding: 10px;
+  border:none!important;
+  background-color: #41197f;
+}
