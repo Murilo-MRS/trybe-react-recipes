@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Context from '../context/Context';
 import shareIcon from '../images/shareIcon.svg';
+import '../styles/RecipeDetails.css';
 
 function ReceitasFeitas() {
   /*     function recipesDone() {
@@ -81,7 +82,7 @@ function ReceitasFeitas() {
   }
 
   return (
-    <div>
+    <div className="Fundobranco">
       <Header />
       <h1>Receitas Feitas</h1>
       <div>
