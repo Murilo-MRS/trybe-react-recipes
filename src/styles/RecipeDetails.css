@@ -4,38 +4,37 @@
   bottom: 0;
   height: 40px;
   left: 12px;
+  margin-bottom: 10px;
   position: fixed;
   width: 336px;
-  margin-bottom: 10px;
 }
 
 .recipe-page {
   align-items: center;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background-color: white;
 }
 
 .img-recipe {
-  position: absolute;
-  width: 362.01px;
+  border-radius: 0;
+  filter: brightness(76%);
   height: 200px;
   left: -2px;
-  top: 0px;
-  overflow:hidden;
-  filter: brightness(76%);
-  border-radius: 0px;
-  
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 362.01px;
 }
 
 /*  .share-heart {
   /* position: absolute;
   left: 85.28%;
-  right: 8.36%; */
-  /* top: 2%; */
-  /* bottom: 97.27%; 
+  right: 8.36%;
+  /* top: 2%;
+  /* bottom: 97.27%;
   background: none;
   border: none;
 } */
@@ -43,8 +42,8 @@
 /* .share-btn {
    position: absolute;
   left: 76.67%;
-  right: 13.77%; */
-  /* top: 1.39%; */
+  right: 13.77%;
+  /* top: 1.39%;
   /* bottom: 98.22%; 
   background: none;
   border: none;
@@ -68,6 +67,7 @@
 .mealInformation {
   margin-top: 230px;
 }
+
 .carousel {
   margin-bottom: 60px;
   width: 100%;
@@ -78,91 +78,85 @@
 }
 
 .sobreporIMG {
-  position: absolute;
-  width: 147px;
+  color: " white ";
+
+  /* font-family: 'Epilogue'; */
+  font-size: 20px;
+  font-style: normal;
   height: 42px;
   left: 109.01px;
-  top: 81px;
-
-  font-family: 'Epilogue';
-  font-style: normal;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 20px;
-  text-align: center;
   letter-spacing: 0.105em;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
   text-transform: uppercase;
-
-  color: #FFFFFF;
+  top: 81px;
+  width: 147px;
 }
 
 h3 {
-  width: 142.8px;
+  color: #1a1b1c;
   height: 21px;
-  left: 23.01px;
-  top: 197px;
-  
-  font-family: 'Epilogue';
+    
+  /* font-family: 'Epilogue'; */
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  left: 23.01px;
   line-height: 20px;
   /* identical to box height */
-  
-  
-  color: #1A1B1C;
-  }
+  top: 197px;
+  width: 142.8px;
+}
 
-  .text-desciption {
-    box-sizing: border-box;
-    margin-left: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    width: 335px;
-    height: 414px;
-    left: 13px;
-    top: 426px;
-  
-    background: #FFFFFF;
-    border: 0.554397px solid #B1B1B1;
-    border-radius: 5.35144px;
-  }
+.text-desciption {
+  align-items: center;
+  background: 'white';
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  box-sizing: border-box;
+  display: flex;
+  height: 414px;
+  justify-content: center;
+  left: 13px;
+  margin-left: 10px;
+  top: 426px;
+  width: 335px;
+}
 
-  .text-desciption p {
-    margin-top: 14px;
-    margin-left: 10px;
-    width: 301px;
-    height: 368px;
-    text-align:left;
-    
-    font-family: 'Epilogue';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    
-    color: #1A1B1C;
-  }
-  
-  .text-list {
-    box-sizing: border-box;
-    width: 93%;
-    height: 30%;
-    margin-left: 10px;
-    background: #FFFFFF;
-    border: 0.554397px solid #B1B1B1;
-    border-radius: 5.35144px;
-  }
-  
-  .text-list li {
-  text-align: left;
-  font-family: 'Epilogue';
+.text-desciption p {
+  color: #1a1b1c;
+  height: 368px;
+  line-height: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
+     
+  /* font-family: 'Epilogue'; */
+  margin-left: 10px;
+  margin-top: 14px;
+  text-align: left;
+  width: 301px;
+}
+
+.text-list {
+  background: 'white';
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  box-sizing: border-box;
+  height: 30%;
+  margin-left: 10px;
+  width: 93%;
+}
+  
+.text-list li {
+  color: #1a1b1c;
+  
+  /* font-family: 'Epilogue'; */
   font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 14px;
   margin-top: 6px;
-  color: #1A1B1C;
-  }
+  text-align: left;
+}

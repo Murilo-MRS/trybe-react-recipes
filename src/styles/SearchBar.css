@@ -1,64 +1,6 @@
-.search-bar form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 5px;
-  padding: 15px 10px;
-  width: 95%;
-}
-
-.search-bar {
-  background: #41197f;
-  border-radius: 5px;
-  margin-left: 10px;
-  margin-top: 5%;
-  width: 342px;
-}
-
-.search-input {
-  background: white;
-  border: 1px solid #b1b1b1;
-  border-radius: 5px;
-  bottom: 20px;
-  height: 40px;
-  left: 0;
-  position: relative;
-  width: 342px;
-}
-
-.search-input:focus {
-  background-color : #d3cdad;
-  border: none!important;
-  color: white;
-  font-weight: 900;
-}
-
-.search-input::placeholder {
-  color: #797d86;
-  font-size: 15px;
-  font-weight: 300;
-  text-align: center;
-}
-
 input:focus::placeholder {
   color: #797d86;
 }
-
-.search-btn {
-  background: #fcc436;
-  border-radius: 5px;
-  height: 40px;
-  left: 73.86px;
-  top: 243px;
-  width: 100%;
-}
-
-.search-btn:active {
-  margin-left: 10px;
-}
-
 
 .radios {
   display: flex;
@@ -103,4 +45,62 @@ input:focus::placeholder {
   background-color: #fcc436;
   border: 2px solid white;
   border-radius: 15px;
+}
+
+.search-bar form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  padding: 15px 10px;
+  width: 95%;
+}
+
+.search-bar {
+  background: #41197f;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 5%;
+  width: 342px;
+}
+
+.search-input {
+  background: white;
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  bottom: 20px;
+  height: 40px;
+  left: 0;
+  position: relative;
+  width: 342px;
+}
+
+.search-input:focus {
+  background-color : #d3cdad;
+  
+  /* border: none!important; */
+  color: white;
+  font-weight: 900;
+}
+
+.search-input::placeholder {
+  color: #797d86;
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.search-btn {
+  background: #fcc436;
+  border-radius: 5px;
+  height: 40px;
+  left: 73.86px;
+  top: 243px;
+  width: 100%;
+}
+
+.search-btn:active {
+  margin-left: 10px;
 }

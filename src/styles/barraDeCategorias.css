@@ -1,41 +1,44 @@
 .container-categories {
   align-items: center;
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  margin-top: 6%;
   margin-bottom: 30px;
-  position:relative;
+  margin-top: 6%;
+  position: relative;
 }
 
 .button-categories {
   background-color: white;
-  height: 100%;
-  width: 100%;
-  font-family: 'Epilogue';
+  color: #797d86;
+
+  /* font-family: 'Epilogue'; */
+  font-size: 12px;
   font-style: normal;
   font-weight: 300;
-  font-size: 12px;
+  height: 100%;
   line-height: 11px;
   text-align: center;
-  color: #797D86;
+  width: 100%;
 }
+
 .button-categories:focus {
   margin-bottom: 10px;
 }
 
 .button-categories img {
-  width: 45.28px;
+  background-image: url('../images/circuloCategories.svg');
   height: 45.28px;
   padding: 8px;
-  background-image: url('../images/circuloCategories.svg');
+  width: 45.28px;
 }
 
 .button-categories p {
-  font-family: 'Epilogue';
+  color: #797d86;
+
+  /* font-family: 'Epilogue'; */
+  font-size: 11px;
   font-style: normal;
   font-weight: 300;
-  font-size: 11px;
   line-height: 11px;
   text-align: center;
-  color: #797D86;
 }

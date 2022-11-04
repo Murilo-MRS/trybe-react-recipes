@@ -31,6 +31,40 @@ function Provider({ children }) {
   }, [setEmail]);
 
   useEffect(() => {
+    localStorage.setItem('user', JSON.stringify({
+      email: '',
+    }));
+    localStorage.setItem('doneRecipes', JSON.stringify([{
+      id: '',
+      type: '',
+      nationality: '',
+      category: '',
+      alcoholicOrNot: '',
+      name: '',
+      image: '',
+      doneDate: '',
+      tags: [],
+    }]));
+    localStorage.setItem('favoriteRecipes', JSON.stringify([{
+      id: '',
+      type: '',
+      nationality: '',
+      category: '',
+      alcoholicOrNot: '',
+      name: '',
+      image: '',
+    }]));
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      drinks: {
+        0: [],
+      },
+      meals: {
+        0: [],
+      },
+    }));
+  }, []);
+
+  useEffect(() => {
     const requestApiDrinks = async () => {
       const drinksArr = await fetchDrinks();
       const foodsArr = await fetchFoods();

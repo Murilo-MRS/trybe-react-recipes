@@ -76,23 +76,53 @@ function RecipeDetails() {
     routeToCopy,
   ]);
 
+  // useEffect(() => {
+  //   if (food) {
+  //     const getInProgressRecipes = JSON.parse(
+  //       localStorage.getItem('inProgressRecipes'),
+  //     ) || { meals: { [id]: [] }, drinks: {} };
+  //     if (
+  //       !Object.keys(getInProgressRecipes.meals).includes(id)
+  //       || (Object.keys(getInProgressRecipes).includes('drinks')
+  //         && !Object.keys(getInProgressRecipes).includes('meals'))
+  //     ) {
+  //       const toGetInProgressRecipes = {
+  //         ...getInProgressRecipes,
+  //         meals: { ...getInProgressRecipes.meals, [id]: [] },
+  //       };
+  //       setStorage('inProgressRecipes', toGetInProgressRecipes);
+  //     } else {
+  //       setStorage('inProgressRecipes', getInProgressRecipes);
+  //     }
+  //   }
+  //   if (drink) {
+  //     const getInProgressRecipes = JSON.parse(
+  //       localStorage.getItem('inProgressRecipes'),
+  //     ) || { drinks: { [id]: [] }, meals: {} };
+  //     if (
+  //       !Object.keys(getInProgressRecipes.drinks).includes(id)
+  //       || (Object.keys(getInProgressRecipes).includes('meals')
+  //         && !Object.keys(getInProgressRecipes).includes('drinks'))
+  //     ) {
+  //       const toGetInProgressRecipes = {
+  //         ...getInProgressRecipes,
+  //         drinks: { ...getInProgressRecipes.drinks, [id]: [] },
+  //       };
+  //       setStorage('inProgressRecipes', toGetInProgressRecipes);
+  //     } else {
+  //       setStorage('inProgressRecipes', getInProgressRecipes);
+  //     }
+  //   }
+  // }, [drink, food, id]);
   useEffect(() => {
     if (food) {
-      const getInProgressRecipes = JSON.parse(
-        localStorage.getItem('inProgressRecipes'),
-      ) || { meals: { [id]: [] }, drinks: {} };
-      if (
-        !Object.keys(getInProgressRecipes.meals).includes(id)
-        || (Object.keys(getInProgressRecipes).includes('drinks')
-          && !Object.keys(getInProgressRecipes).includes('meals'))
-      ) {
+      const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (!Object.keys(getInProgressRecipes.meals).includes(id)) {
         const toGetInProgressRecipes = {
           ...getInProgressRecipes,
           meals: { ...getInProgressRecipes.meals, [id]: [] },
         };
         setStorage('inProgressRecipes', toGetInProgressRecipes);
-      } else {
-        setStorage('inProgressRecipes', getInProgressRecipes);
       }
     }
     if (drink) {
@@ -201,7 +231,7 @@ function RecipeDetails() {
                   key={ index }
                   data-testid={ `${index}-ingredient-step` }
                   htmlFor={ ingredient }
-                  className={ checkOrnot ? 'checked' : '' }
+                  className={ (checkOrnot === 'ok') ? 'checked' : '' }
                 >
                   {ingredient}
                   {' '}

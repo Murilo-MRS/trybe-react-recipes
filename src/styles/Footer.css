@@ -10,11 +10,12 @@
 }
 
 .footer-container img {
-  color : #FCC436;
+  color : #fcc436;
 }
 
 .footer-container button {
-  padding: 10px;
-  border:none!important;
   background-color: #41197f;
+  
+  /* border: none ! important; */
+  padding: 10px;
 }
