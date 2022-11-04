@@ -118,24 +118,35 @@ function RecipeDetails() {
           alt="meal img"
         />
         <div className="mealInformation">
-          <h1 data-testid="recipe-title">{title}</h1>
-          <h2 data-testid="recipe-category">{category}</h2>
-          <ul>
-            {
-              ingredients.map((ingredient, index) => (
-                <li
-                  key={ index }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {ingredient}
-                  {' '}
-                  {measures[index]}
-                </li>
-              ))
-            }
-          </ul>
+          <div className="sobreporIMG">
+            <h1 data-testid="recipe-title">{title}</h1>
+            <h2 data-testid="recipe-category">{category}</h2>
+          </div>
+          <div>
+            <h3>Ingredients</h3>
+            <ul className="text-list">
+              {
+                ingredients.map((ingredient, index) => (
+                  <li
+                    key={ index }
+                    data-testid={ `${index}-ingredient-name-and-measure` }
+                  >
+                    {ingredient}
+                    {' '}
+                    {measures[index]}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
-        <p data-testid="instructions">{detail?.strInstructions}</p>
+        <div>
+          <h3>Instructions</h3>
+          <div className="text-desciption">
+            <p data-testid="instructions">{detail?.strInstructions}</p>
+          </div>
+        </div>
+
         {video && (
           <iframe
             title="Food Video"
@@ -146,7 +157,7 @@ function RecipeDetails() {
           />
         )}
       </div>
-      <div>
+      <div className="Fundobranco">
         <ShareButton />
         <FavoriteButton />
         <MealCarousel />

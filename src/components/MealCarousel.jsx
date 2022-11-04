@@ -13,7 +13,7 @@ function MealCarousel() {
   const { foods, drinks } = useContext(Context);
   const MAX = 6;
   return (
-    <Carousel>
+    <Carousel className="carousel">
       {!foodPath
         ? foods?.slice(0, MAX).map((e, index) => (
           <Carousel.Item
@@ -53,6 +53,7 @@ function MealCarousel() {
           </Carousel.Item>
         ))}
     </Carousel>
+
   );
 }
 

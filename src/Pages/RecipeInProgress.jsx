@@ -1,7 +1,7 @@
+/* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import FavoriteButton from '../components/FavoriteButton';
-import Header from '../components/Header';
 import ShareButton from '../components/ShareButton';
 import { setStorage } from '../helpers/Storage';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
@@ -12,7 +12,9 @@ const INGREDIENTS_MAX_NUM = 20;
 function RecipeDetails() {
   const { id } = useParams();
   const history = useHistory();
-  const { location: { pathname } } = history;
+  const {
+    location: { pathname },
+  } = history;
   const [detail, setDetails] = useState({});
   const [video, setVideo] = useState({});
   const [img, setImg] = useState({});
@@ -77,27 +79,36 @@ function RecipeDetails() {
 
   useEffect(() => {
     if (food) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { meals: { [id]: [] }, drinks: {} };
-      if (!Object.keys(getInProgressRecipes.meals).includes(id)
-      || (Object.keys(getInProgressRecipes).includes('drinks')
-      && !Object.keys(getInProgressRecipes).includes('meals'))) {
-        const toGetInProgressRecipes = { ...getInProgressRecipes,
-          meals: { ...getInProgressRecipes.meals, [id]: [] } };
-        setStorage('inProgressRecipes', toGetInProgressRecipes);
-      } else {
-        setStorage('inProgressRecipes', getInProgressRecipes);
-      }
-    }
-    if (drink) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes')) || { drinks: { [id]: [] }, meals: {} };
-      if (!Object.keys(getInProgressRecipes.drinks).includes(id)
-      || (Object.keys(getInProgressRecipes).includes('meals')
-      && !Object.keys(getInProgressRecipes).includes('drinks'))
+      const getInProgressRecipes = JSON.parse(
+        localStorage.getItem('inProgressRecipes'),
+      ) || { meals: { [id]: [] }, drinks: {} };
+      if (
+        !Object.keys(getInProgressRecipes.meals).includes(id)
+        || (Object.keys(getInProgressRecipes).includes('drinks')
+          && !Object.keys(getInProgressRecipes).includes('meals'))
       ) {
-        const toGetInProgressRecipes = { ...getInProgressRecipes,
-          drinks: { ...getInProgressRecipes.drinks, [id]: [] } };
+        const toGetInProgressRecipes = {
+          ...getInProgressRecipes,
+          meals: { ...getInProgressRecipes.meals, [id]: [] },
+        };
+        setStorage('inProgressRecipes', toGetInProgressRecipes);
+      } else {
+        setStorage('inProgressRecipes', getInProgressRecipes);
+      }
+    }
+    if (drink) {
+      const getInProgressRecipes = JSON.parse(
+        localStorage.getItem('inProgressRecipes'),
+      ) || { drinks: { [id]: [] }, meals: {} };
+      if (
+        !Object.keys(getInProgressRecipes.drinks).includes(id)
+        || (Object.keys(getInProgressRecipes).includes('meals')
+          && !Object.keys(getInProgressRecipes).includes('drinks'))
+      ) {
+        const toGetInProgressRecipes = {
+          ...getInProgressRecipes,
+          drinks: { ...getInProgressRecipes.drinks, [id]: [] },
+        };
         setStorage('inProgressRecipes', toGetInProgressRecipes);
       } else {
         setStorage('inProgressRecipes', getInProgressRecipes);
@@ -107,35 +118,43 @@ function RecipeDetails() {
 
   useEffect(() => {
     if (food) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes'));
-      const { meals: { [id]: getInprogress } } = getInProgressRecipes;
+      const getInProgressRecipes = JSON.parse(
+        localStorage.getItem('inProgressRecipes'),
+      );
+      const {
+        meals: { [id]: getInprogress },
+      } = getInProgressRecipes;
       setUsedIngredients(getInprogress);
     }
     if (drink) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes'));
-      const { drinks: { [id]: getInprogress } } = getInProgressRecipes;
+      const getInProgressRecipes = JSON.parse(
+        localStorage.getItem('inProgressRecipes'),
+      );
+      const {
+        drinks: { [id]: getInprogress },
+      } = getInProgressRecipes;
       setUsedIngredients(getInprogress);
     }
   }, [drink, food, id]);
 
   useEffect(() => {
     if (food) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes'));
-      const toSaveInProgressRecipes = { ...getInProgressRecipes,
-        meals: { ...getInProgressRecipes.meals,
-          [id]: [...usedIngredients] },
+      const getInProgressRecipes = JSON.parse(
+        localStorage.getItem('inProgressRecipes'),
+      );
+      const toSaveInProgressRecipes = {
+        ...getInProgressRecipes,
+        meals: { ...getInProgressRecipes.meals, [id]: [...usedIngredients] },
       };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
     if (drink) {
-      const getInProgressRecipes = JSON.parse(localStorage
-        .getItem('inProgressRecipes'));
-      const toSaveInProgressRecipes = { ...getInProgressRecipes,
-        drinks: { ...getInProgressRecipes.drinks,
-          [id]: [...usedIngredients] },
+      const getInProgressRecipes = JSON.parse(
+        localStorage.getItem('inProgressRecipes'),
+      );
+      const toSaveInProgressRecipes = {
+        ...getInProgressRecipes,
+        drinks: { ...getInProgressRecipes.drinks, [id]: [...usedIngredients] },
       };
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
@@ -154,87 +173,84 @@ function RecipeDetails() {
     } else {
       target.parentElement.className = '';
       const newUnusedIngredient = target.parentElement.innerText;
-      const editUsedIngredients = usedIngredients
-        .filter((ingredient) => !(ingredient.includes(newUnusedIngredient)));
+      const editUsedIngredients = usedIngredients.filter(
+        (ingredient) => !ingredient.includes(newUnusedIngredient),
+      );
       setUsedIngredients(editUsedIngredients);
     }
   };
 
   return (
     <>
-      <Header />
-      <div>
-        <img data-testid="recipe-photo" src={ img } alt="meal img" />
+      <div className="Fundobranco">
+        <img
+          className="img-recipe"
+          data-testid="recipe-photo"
+          src={ img }
+          alt="meal img"
+        />
         <h1 data-testid="recipe-title">{title}</h1>
         <h2 data-testid="recipe-category">{category}</h2>
-        <div>
-          {
-            ingredients.map((ingredient, index) => (
-              (usedIngredients
-                .some((oldIngredient) => oldIngredient
-                  .includes(`${ingredient}${' '}${measures[index]}`)))
-                ? (
-                  <label
-                    key={ index }
-                    data-testid={ `${index}-ingredient-step` }
-                    htmlFor={ ingredient }
-                    className="checked"
-                  >
-                    {ingredient}
-                    {' '}
-                    {measures[index]}
-                    <input
-                      type="checkbox"
-                      name={ ingredient }
-                      checked
-                      onChange={
-                        ({ target }) => changeClassName(target)
-                      }
-                    />
-                  </label>
-                )
-                : (
-                  <label
-                    key={ index }
-                    data-testid={ `${index}-ingredient-step` }
-                    htmlFor={ ingredient }
-                    className=""
-                  >
-                    {ingredient}
-                    {' '}
-                    {measures[index]}
-                    <input
-                      type="checkbox"
-                      name={ ingredient }
-                      checked={ false }
-                      onChange={
-                        ({ target }) => changeClassName(target)
-                      }
-                    />
-                  </label>
-                )
-            ))
-          }
+        <div className=" mealInformation recipe-page">
+          {ingredients
+            .map((ingredient, index) => (usedIngredients
+              .some((oldIngredient) => oldIngredient
+                .includes(`${ingredient}${' '}${measures[index]}`))
+              ? (
+                <label
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                  htmlFor={ ingredient }
+                  className="checked"
+                >
+                  {ingredient}
+                  {' '}
+                  {measures[index]}
+                  <input
+                    type="checkbox"
+                    name={ ingredient }
+                    checked
+                    onChange={ ({ target }) => changeClassName(target) }
+                  />
+                </label>
+              ) : (
+                <label
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                  htmlFor={ ingredient }
+                  className=""
+                >
+                  {ingredient}
+                  {' '}
+                  {measures[index]}
+                  <input
+                    type="checkbox"
+                    name={ ingredient }
+                    checked={ false }
+                    onChange={ ({ target }) => changeClassName(target) }
+                  />
+                </label>
+              )))}
         </div>
         <p data-testid="instructions">{detail?.strInstructions}</p>
-        {
-          video && (
-            <iframe
-              title="Food Video"
-              width="420"
-              height="315"
-              data-testid="video"
-              src={ video }
-            />
-          )
-        }
       </div>
-      <div>
+      <div className="Fundobranco">
         <ShareButton />
         <FavoriteButton />
       </div>
+      {video && (
+        <iframe
+          title="Food Video"
+          width="420"
+          height="315"
+          data-testid="video"
+          src={ video }
+        />
+      )}
       <button
         className="initiate-recipe-butt"
+        // eslint-disable-next-line max-lines
+        // eslint-disable-next-line max-lines
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ disabledBtn }

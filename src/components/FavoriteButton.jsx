@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { setStorage } from '../helpers/Storage';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.png';
 import { fetchDrinksDetails, fetchFoodsDetails } from '../services/Api';
 import '../styles/RecipeDetails.css';
 

@@ -6,6 +6,7 @@
   left: 12px;
   position: fixed;
   width: 336px;
+  margin-bottom: 10px;
 }
 
 .recipe-page {
@@ -24,7 +25,7 @@
   left: -2px;
   top: 0px;
   overflow:hidden;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  filter: brightness(76%);
   border-radius: 0px;
   
 }
@@ -33,20 +34,20 @@
   position: absolute;
   left: 85.28%;
   right: 8.36%;
-  top: 1.32%;
+  top: 2%;
   bottom: 97.27%;
-  
-  background: #FCC436;
+  background: none;
+  border: none;
 }
 
 .share-btn {
   position: absolute;
   left: 76.67%;
-  right: 17.77%;
+  right: 13.77%;
   top: 1.39%;
-  bottom: 97.22%;
-
-  background: #FCC436;
+  bottom: 98.22%;
+  background: none;
+  border: none;
 }
 
 .recipe-recom {
@@ -65,8 +66,103 @@
 }
 
 .mealInformation {
-  margin-top: 250px;
+  margin-top: 230px;
 }
-.mealInformation li {
-  list-style-type: none;
+.carousel {
+  margin-bottom: 60px;
+  width: 100%;
 }
+
+.Fundobranco {
+  background-color: white;
+}
+
+.sobreporIMG {
+  position: absolute;
+  width: 147px;
+  height: 42px;
+  left: 109.01px;
+  top: 81px;
+
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.105em;
+  text-transform: uppercase;
+
+  color: #FFFFFF;
+}
+
+h3 {
+  width: 142.8px;
+  height: 21px;
+  left: 23.01px;
+  top: 197px;
+  
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  /* identical to box height */
+  
+  
+  color: #1A1B1C;
+  }
+
+  .text-desciption {
+    box-sizing: border-box;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    width: 335px;
+    height: 414px;
+    left: 13px;
+    top: 426px;
+  
+    background: #FFFFFF;
+    border: 0.554397px solid #B1B1B1;
+    border-radius: 5.35144px;
+  }
+
+  .text-desciption p {
+    margin-top: 14px;
+    margin-left: 10px;
+    width: 301px;
+    height: 368px;
+    text-align:left;
+    
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    
+    color: #1A1B1C;
+  }
+  
+  .text-list {
+    box-sizing: border-box;
+    width: 93%;
+    height: 30%;
+    margin-left: 10px;
+    background: #FFFFFF;
+    border: 0.554397px solid #B1B1B1;
+    border-radius: 5.35144px;
+  }
+  
+  .text-list li {
+  text-align: left;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  margin-top: 6px;
+  color: #1A1B1C;
+  }
