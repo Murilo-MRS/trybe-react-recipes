@@ -76,72 +76,19 @@ function RecipeDetails() {
     routeToCopy,
   ]);
 
-  // useEffect(() => {
-  //   if (food) {
-  //     const getInProgressRecipes = JSON.parse(
-  //       localStorage.getItem('inProgressRecipes'),
-  //     ) || { meals: { [id]: [] }, drinks: {} };
-  //     if (
-  //       !Object.keys(getInProgressRecipes.meals).includes(id)
-  //       || (Object.keys(getInProgressRecipes).includes('drinks')
-  //         && !Object.keys(getInProgressRecipes).includes('meals'))
-  //     ) {
-  //       const toGetInProgressRecipes = {
-  //         ...getInProgressRecipes,
-  //         meals: { ...getInProgressRecipes.meals, [id]: [] },
-  //       };
-  //       setStorage('inProgressRecipes', toGetInProgressRecipes);
-  //     } else {
-  //       setStorage('inProgressRecipes', getInProgressRecipes);
-  //     }
-  //   }
-  //   if (drink) {
-  //     const getInProgressRecipes = JSON.parse(
-  //       localStorage.getItem('inProgressRecipes'),
-  //     ) || { drinks: { [id]: [] }, meals: {} };
-  //     if (
-  //       !Object.keys(getInProgressRecipes.drinks).includes(id)
-  //       || (Object.keys(getInProgressRecipes).includes('meals')
-  //         && !Object.keys(getInProgressRecipes).includes('drinks'))
-  //     ) {
-  //       const toGetInProgressRecipes = {
-  //         ...getInProgressRecipes,
-  //         drinks: { ...getInProgressRecipes.drinks, [id]: [] },
-  //       };
-  //       setStorage('inProgressRecipes', toGetInProgressRecipes);
-  //     } else {
-  //       setStorage('inProgressRecipes', getInProgressRecipes);
-  //     }
-  //   }
-  // }, [drink, food, id]);
   useEffect(() => {
-    if (food) {
-      const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      if (!Object.keys(getInProgressRecipes.meals).includes(id)) {
-        const toGetInProgressRecipes = {
-          ...getInProgressRecipes,
-          meals: { ...getInProgressRecipes.meals, [id]: [] },
-        };
-        setStorage('inProgressRecipes', toGetInProgressRecipes);
-      }
+    const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (food && !Object.keys(getInProgressRecipes.meals).includes(id)) {
+      const toGetInProgressRecipes = { ...getInProgressRecipes,
+        meals: { ...getInProgressRecipes.meals, [id]: [] },
+      };
+      setStorage('inProgressRecipes', toGetInProgressRecipes);
     }
-    if (drink) {
-      const getInProgressRecipes = JSON.parse(
-        localStorage.getItem('inProgressRecipes'),
-      ) || { drinks: { [id]: [] }, meals: {} };
-      if (
-        !Object.keys(getInProgressRecipes.drinks).includes(id)
-        || (Object.keys(getInProgressRecipes).includes('meals')
-          && !Object.keys(getInProgressRecipes).includes('drinks'))
-      ) {
-        const toGetInProgressRecipes = {
-          ...getInProgressRecipes,
-          drinks: { ...getInProgressRecipes.drinks, [id]: [] },
-        };
-        setStorage('inProgressRecipes', toGetInProgressRecipes);
-      } else {
-        setStorage('inProgressRecipes', getInProgressRecipes);
-      }
+    if (drink && !Object.keys(getInProgressRecipes.drinks).includes(id)) {
+      const toGetInProgressRecipes = { ...getInProgressRecipes,
+        drinks: { ...getInProgressRecipes.drinks, [id]: [] },
+      };
+      setStorage('inProgressRecipes', toGetInProgressRecipes);
     }
   }, [drink, food, id]);
 
@@ -167,10 +114,8 @@ function RecipeDetails() {
   }, [drink, food, id]);
 
   useEffect(() => {
+    const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (food) {
-      const getInProgressRecipes = JSON.parse(
-        localStorage.getItem('inProgressRecipes'),
-      );
       const toSaveInProgressRecipes = {
         ...getInProgressRecipes,
         meals: { ...getInProgressRecipes.meals, [id]: [...usedIngredients] },
@@ -178,9 +123,6 @@ function RecipeDetails() {
       setStorage('inProgressRecipes', toSaveInProgressRecipes);
     }
     if (drink) {
-      const getInProgressRecipes = JSON.parse(
-        localStorage.getItem('inProgressRecipes'),
-      );
       const toSaveInProgressRecipes = {
         ...getInProgressRecipes,
         drinks: { ...getInProgressRecipes.drinks, [id]: [...usedIngredients] },
@@ -207,6 +149,25 @@ function RecipeDetails() {
       );
       setUsedIngredients(editUsedIngredients);
     }
+  };
+
+  const handleFinishRecipeButt = () => {
+    const date = new Date();
+    const tagsArray = detail?.strTags?.split(',').slice(0, 2) || [];
+    const getDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const toSaveDoneRecipes = [...getDoneRecipes, {
+      id,
+      type: routeToCopy,
+      nationality: detail.strArea,
+      category: detail.strCategory,
+      alcoholicOrNot: detail?.strAlcoholic || '',
+      name: title,
+      image: img,
+      doneDate: date,
+      tags: tagsArray,
+    }];
+    setStorage('doneRecipes', toSaveDoneRecipes);
+    history.push('/done-recipes');
   };
 
   return (
@@ -263,11 +224,11 @@ function RecipeDetails() {
         />
       )}
       <button
-        className="initiate-recipe-butt"
+        className="finish-recipe-btn"
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ disabledBtn }
-        onClick={ () => history.push('/done-recipes') }
+        onClick={ handleFinishRecipeButt }
       >
         Finish Recipe
       </button>

@@ -126,7 +126,6 @@ function FavoriteRecipes() {
                     onClick={ () => deletes(id) }
                   >
                     <img
-                      className="share-heart"
                       src={ blackHeartIcon }
                       alt="Icone de Favoritar"
                     />

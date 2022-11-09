@@ -1,41 +1,43 @@
-nav {
-  background: #fcdc36;
-  height: 52px;
-  left: 0;
-  position : absolute;
-  top: 0;
-  width: 360px;
-}
+@media ( max-width : 800px ) {
 
-header {
-  display: flex;
-  flex-direction: column;
-}
+  nav {
+    background: #fcdc36;
+    height: 52px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 
-.searchTopBtn {
-  background-color: #fcdc36;
-  margin-right: 15px;
-}
+  header {
+    display: flex;
+    flex-direction: column;
+  }
 
-.searchTopBtn:active {
-  margin-bottom: 10px;
-}
+  .searchTopBtn {
+    background-color: #fcdc36;
+    margin-right: 15px;
+  }
 
+  .searchTopBtn:active {
+    margin-bottom: 10px;
+  }
 
-.logoContainer {
-  display: flex;
-  flex-direction : row;
-}
+  .logoContainer {
+    display: flex;
+    flex-direction: row;
+  }
 
-.iconeHeader {
-  height: 39.28px;
-  margin-left: 20px;
-  width: 42.6px;
-}
+  .iconeHeader {
+    height: 39.28px;
+    margin-left: 20px;
+    width: 42.6px;
+  }
 
-.iconeLogo {
-  height: 16.97px;
-  margin-left: 20px;
-  margin-top: 12px;
-  width: 109.13px;
+  .iconeLogo {
+    height: 16.97px;
+    margin-left: 20px;
+    margin-top: 12px;
+    width: 109.13px;
+  }
 }

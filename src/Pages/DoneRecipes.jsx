@@ -5,13 +5,8 @@ import Context from '../context/Context';
 import shareIcon from '../images/shareIcon.svg';
 import '../styles/RecipeDetails.css';
 
-function ReceitasFeitas() {
-  /*     function recipesDone() {
-    const storage = getStorage('doneRecipes');
-    return storage || [];
-  } */
-
-  const [ReceitasFeitass, setReceitasFeitas] = useState('');
+function ReceitasFinalizadas() {
+  const [ReceitasFeitas, setReceitasFeitas] = useState([]);
   const { setTitle, setShowIcon } = useContext(Context);
 
   function mealInfo(index, category, area) {
@@ -28,46 +23,50 @@ function ReceitasFeitas() {
     );
   }
 
+  // {[id: "52785",
+  // type: ["/meals/52785/in-progress"],
+  // nationality: "Indian",
+  // category: "Vegetarian",
+  // alcoholicOrNot : [""]
+  // category: "Vegetarian"
+  // doneDate: ["2022-11-09T14:32:54.476Z"]
+  // id: "52785"
+  // image:["https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg"]
+  // name:["Dal fry"]
+  // nationality:"Indian"
+  // tags:"Curry,Vegetarian,Cake"
+  // type:["/meals/52785/in-progress"]]}
+
+  // [
+  //   {
+  //     id: '52785',
+  //     type: 'meals',
+  //     area: 'Indian',
+  //     category: 'Vegetarian',
+  //     alcoholicOrNot: '',
+  //     name: 'Dal fry',
+  //     image:
+  //       'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
+  //     doneDate: '27/10/2022',
+  //     tags: ['Curry', 'Vegetarian', 'Pasta'],
+  //   },
+  //   {
+  //     id: '52785',
+  //     type: 'meals',
+  //     area: 'Indian',
+  //     category: 'Vegetarian',
+  //     alcoholicOrNot: '',
+  //     name: 'Dal fry',
+  //     image:
+  //       'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
+  //     doneDate: '27/10/2022',
+  //     tags: ['Curry', 'Vegetarian', 'Pasta'],
+  //   },
+  // ]
+
   useEffect(() => {
-    // mock localstorage
-    /*     setStorage([
-      {
-        id: '53013',
-        type: 'comida',
-        area: 'American',
-        category: 'Beef',
-        alcoholicOrNot: '',
-        name: 'Big Mac',
-        image:
-          'https://www.themealdb.com/images/media/meals/urzj1d1587670726.jpg',
-      }]); */
-    // mock localstorage
-    setReceitasFeitas([
-      {
-        id: '52785',
-        type: 'meals',
-        area: 'Indian',
-        category: 'Vegetarian',
-        alcoholicOrNot: '',
-        name: 'Dal fry',
-        image:
-          'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
-        doneDate: '27/10/2022',
-        tags: ['Curry', 'Vegetarian', 'Pasta'],
-      },
-      {
-        id: '52785',
-        type: 'meals',
-        area: 'Indian',
-        category: 'Vegetarian',
-        alcoholicOrNot: '',
-        name: 'Dal fry',
-        image:
-          'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
-        doneDate: '27/10/2022',
-        tags: ['Curry', 'Vegetarian', 'Pasta'],
-      },
-    ]);
+    const recipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
+    setReceitasFeitas(recipesStorage);
   }, []);
 
   useEffect(() => {
@@ -76,10 +75,12 @@ function ReceitasFeitas() {
   }, [setTitle, setShowIcon]);
 
   function deletes(id) {
-    const filtered = ReceitasFeitass.filter((item) => item.id !== id);
+    const filtered = ReceitasFeitas.filter((item) => item.id !== id);
     // setStorage('ReceitasFeitas', filtered);
     setReceitasFeitas(filtered);
   }
+
+  // function filter
 
   return (
     <div className="Fundobranco">
@@ -108,13 +109,13 @@ function ReceitasFeitas() {
           Drink
         </button>
       </div>
-      {ReceitasFeitass.length === 0 ? (
+      {ReceitasFeitas.length === 0 ? (
         <h3>Sem Receitas Favoritas!</h3>
       ) : (
-        ReceitasFeitass.map(
+        ReceitasFeitas.map(
           (
             { category,
-              id, type, doneDate, tags, image, area, alcoholicOrNot, name },
+              id, type, doneDate, tags, image, nationality, alcoholicOrNot, name },
             index,
           ) => (
             <div data-testid={ `${index}-recipe-card` } key={ index }>
@@ -128,7 +129,7 @@ function ReceitasFeitas() {
               </Link>
               <div>
                 {type === 'meals'
-                  ? mealInfo(index, category, area)
+                  ? mealInfo(index, category, nationality)
                   : drinkInfo(index, alcoholicOrNot)}
                 <Link to={ `/${type}/${id}` }>
                   <p data-testid={ `${index}-horizontal-name` }>{name}</p>
@@ -145,7 +146,6 @@ function ReceitasFeitas() {
                       >
                         {tag}
                       </p>
-
                     ))}
                   </div>
                 </Link>
@@ -160,8 +160,11 @@ function ReceitasFeitas() {
                     data-testid={ `${index}-horizontal-share-btn` }
                   />
                 </button>
-
-                <button name="apagar" type="button" onClick={ () => deletes(id) }>
+                <button
+                  name="apagar"
+                  type="button"
+                  onClick={ () => deletes(id) }
+                >
                   Apagar
                 </button>
               </div>
@@ -173,4 +176,4 @@ function ReceitasFeitas() {
   );
 }
 
-export default ReceitasFeitas;
+export default ReceitasFinalizadas;

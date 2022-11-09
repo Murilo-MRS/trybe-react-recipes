@@ -14,9 +14,7 @@ function Provider({ children }) {
   const [enableFormButt, setEnableFormButt] = useState(true);
   const [title, setTitle] = useState('');
   const [showIcon, setShowIcon] = useState(true);
-  // nao reutilizar
   const [foodsAPI, setFoodsAPI] = useState([]);
-  // nao reutilizar
   const [drinksAPI, setDrinksAPI] = useState([]);
   const [foods, setFoods] = useState([]);
   const [drinks, setDrinks] = useState([]);
@@ -34,33 +32,11 @@ function Provider({ children }) {
     localStorage.setItem('user', JSON.stringify({
       email: '',
     }));
-    localStorage.setItem('doneRecipes', JSON.stringify([{
-      id: '',
-      type: '',
-      nationality: '',
-      category: '',
-      alcoholicOrNot: '',
-      name: '',
-      image: '',
-      doneDate: '',
-      tags: [],
-    }]));
-    localStorage.setItem('favoriteRecipes', JSON.stringify([{
-      id: '',
-      type: '',
-      nationality: '',
-      category: '',
-      alcoholicOrNot: '',
-      name: '',
-      image: '',
-    }]));
+    localStorage.setItem('doneRecipes', JSON.stringify([]));
+    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     localStorage.setItem('inProgressRecipes', JSON.stringify({
-      drinks: {
-        0: [],
-      },
-      meals: {
-        0: [],
-      },
+      drinks: {},
+      meals: {},
     }));
   }, []);
 

@@ -1,44 +1,39 @@
-.container-categories {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  margin-top: 6%;
-  position: relative;
-}
+@media ( max-width : 800px ) {
 
-.button-categories {
-  background-color: white;
-  color: #797d86;
+  .container-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+    margin-top: 6%;
+    position: relative;
+  }
 
-  /* font-family: 'Epilogue'; */
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  height: 100%;
-  line-height: 11px;
-  text-align: center;
-  width: 100%;
-}
+  .button-categories {
+    background-color: #ffc107;
+    border: #ffc107;
+    border-radius: 6px;
+    color: white;
+    font-weight: 400;
+    height: 35px;
+    margin-top: 5px;
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 110px;
+  }
 
-.button-categories:focus {
-  margin-bottom: 10px;
-}
+  .button-categories :focus {
+    margin-bottom: 10px;
+  }
 
-.button-categories img {
-  background-image: url('../images/circuloCategories.svg');
-  height: 45.28px;
-  padding: 8px;
-  width: 45.28px;
-}
-
-.button-categories p {
-  color: #797d86;
-
-  /* font-family: 'Epilogue'; */
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 11px;
-  text-align: center;
+  .button-categories p {
+    color: #797d86;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 11px;
+    text-align: center;
+  }
 }
