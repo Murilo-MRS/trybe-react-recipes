@@ -23,47 +23,6 @@ function ReceitasFinalizadas() {
     );
   }
 
-  // {[id: "52785",
-  // type: ["/meals/52785/in-progress"],
-  // nationality: "Indian",
-  // category: "Vegetarian",
-  // alcoholicOrNot : [""]
-  // category: "Vegetarian"
-  // doneDate: ["2022-11-09T14:32:54.476Z"]
-  // id: "52785"
-  // image:["https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg"]
-  // name:["Dal fry"]
-  // nationality:"Indian"
-  // tags:"Curry,Vegetarian,Cake"
-  // type:["/meals/52785/in-progress"]]}
-
-  // [
-  //   {
-  //     id: '52785',
-  //     type: 'meals',
-  //     area: 'Indian',
-  //     category: 'Vegetarian',
-  //     alcoholicOrNot: '',
-  //     name: 'Dal fry',
-  //     image:
-  //       'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
-  //     doneDate: '27/10/2022',
-  //     tags: ['Curry', 'Vegetarian', 'Pasta'],
-  //   },
-  //   {
-  //     id: '52785',
-  //     type: 'meals',
-  //     area: 'Indian',
-  //     category: 'Vegetarian',
-  //     alcoholicOrNot: '',
-  //     name: 'Dal fry',
-  //     image:
-  //       'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
-  //     doneDate: '27/10/2022',
-  //     tags: ['Curry', 'Vegetarian', 'Pasta'],
-  //   },
-  // ]
-
   useEffect(() => {
     const recipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
     setReceitasFeitas(recipesStorage);
@@ -79,8 +38,6 @@ function ReceitasFinalizadas() {
     // setStorage('ReceitasFeitas', filtered);
     setReceitasFeitas(filtered);
   }
-
-  // function filter
 
   return (
     <div className="Fundobranco">
@@ -141,7 +98,6 @@ function ReceitasFinalizadas() {
                     {tags.map((tag) => (
                       <p
                         key={ tag }
-                        // data-testid="0-Pasta-horizontal-tag"
                         data-testid={ `${index}-${tag}-horizontal-tag` }
                       >
                         {tag}

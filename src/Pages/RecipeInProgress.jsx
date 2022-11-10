@@ -33,7 +33,7 @@ function RecipeDetails() {
     for (let index = 1; index <= INGREDIENTS_MAX_NUM; index += 1) {
       if (detail[`strIngredient${index}`]?.length > 0) {
         ingredientsTobe.push(detail[`strIngredient${index}`]);
-        measuresTobe.push(detail[`strMeasure${index}`]);
+        measuresTobe.push(detail[`strMeasure${index}`] || 'as you like');
       }
     }
     setIngredients(ingredientsTobe);

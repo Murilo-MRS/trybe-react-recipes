@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { getStorageNoDefault, setStorage } from '../helpers/Storage';
 import {
   fetchDrinks, fetchDrinksCategoryList, fetchFoods, fetchMealsCategoryList,
-  filterDrinksByCategory, filterFoodsByCategory,
+  filterDrinksByCategory, filterFoodsByCategory
 } from '../services/Api';
 import Context from './Context';
 
@@ -29,15 +30,18 @@ function Provider({ children }) {
   }, [setEmail]);
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify({
-      email: '',
-    }));
-    localStorage.setItem('doneRecipes', JSON.stringify([]));
-    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
-    localStorage.setItem('inProgressRecipes', JSON.stringify({
-      drinks: {},
-      meals: {},
-    }));
+    if (!getStorageNoDefault('doneRecipes')) {
+      setStorage('doneRecipes', []);
+    }
+    if (!getStorageNoDefault('favoriteRecipes')) {
+      setStorage('favoriteRecipes', []);
+    }
+    if (!getStorageNoDefault('inProgressRecipes')) {
+      setStorage('inProgressRecipes', {
+        drinks: {},
+        meals: {},
+      });
+    }
   }, []);
 
   useEffect(() => {

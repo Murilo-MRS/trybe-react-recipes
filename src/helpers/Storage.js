@@ -3,3 +3,6 @@ export const setStorage = (key, value) => (
 
 export const getStorage = (key, value = []) => (
   JSON.parse(localStorage.getItem(key)) || value);
+
+export const getStorageNoDefault = (key) => (
+  JSON.parse(localStorage.getItem(key)));
