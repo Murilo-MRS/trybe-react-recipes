@@ -77,7 +77,8 @@ function RecipeDetails() {
   ]);
 
   useEffect(() => {
-    const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    || { drinks: {}, meals: {} };
     if (food && !Object.keys(getInProgressRecipes.meals).includes(id)) {
       const toGetInProgressRecipes = { ...getInProgressRecipes,
         meals: { ...getInProgressRecipes.meals, [id]: [] },
