@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ShareButton from '../components/ShareButton';
 import Context from '../context/Context';
 import { setStorage } from '../helpers/Storage';
-import '../styles/doneRecipes.css';
-import '../styles/RecipeDetails.css';
 
 function ReceitasFinalizadas() {
   const [ReceitasFeitas, setReceitasFeitas] = useState([]);
@@ -126,6 +125,7 @@ function ReceitasFinalizadas() {
           ),
         )
       )}
+      <Footer />
     </div>
   );
 }

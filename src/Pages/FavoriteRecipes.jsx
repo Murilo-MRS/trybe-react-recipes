@@ -1,6 +1,7 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
 import { getStorage, setStorage } from '../helpers/Storage';
@@ -137,6 +138,7 @@ function FavoriteRecipes() {
           ),
         )
       )}
+      <Footer />
     </div>
   );
 }
