@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import ShareButton from '../components/ShareButton';
 import Context from '../context/Context';
-import shareIcon from '../images/shareIcon.svg';
+import { setStorage } from '../helpers/Storage';
+import '../styles/doneRecipes.css';
 import '../styles/RecipeDetails.css';
 
 function ReceitasFinalizadas() {
   const [ReceitasFeitas, setReceitasFeitas] = useState([]);
   const { setTitle, setShowIcon } = useContext(Context);
-
-  function mealInfo(index, category, area) {
+  const doneRecipesFromStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+  function mealInfo(index, category, nationality) {
     return (
       <p data-testid={ `${index}-horizontal-top-text` }>
-        {`${area} - ${category}`}
+        {`${nationality} - ${category}`}
       </p>
     );
   }
@@ -35,7 +37,7 @@ function ReceitasFinalizadas() {
 
   function deletes(id) {
     const filtered = ReceitasFeitas.filter((item) => item.id !== id);
-    // setStorage('ReceitasFeitas', filtered);
+    setStorage('doneRecipes', filtered);
     setReceitasFeitas(filtered);
   }
 
@@ -47,27 +49,33 @@ function ReceitasFinalizadas() {
         <button
           data-testid="filter-by-all-btn"
           type="button"
-          onClick={ () => {} }
+          onClick={ () => setReceitasFeitas(doneRecipesFromStorage) }
         >
           All
         </button>
         <button
           data-testid="filter-by-meal-btn"
           type="button"
-          onClick={ () => {} }
+          onClick={
+            () => setReceitasFeitas(doneRecipesFromStorage
+              .filter((e) => e.type.includes('meal')))
+          }
         >
           Food
         </button>
         <button
           data-testid="filter-by-drink-btn"
           type="button"
-          onClick={ () => {} }
+          onClick={
+            () => setReceitasFeitas(doneRecipesFromStorage
+              .filter((e) => e.type.includes('drink')))
+          }
         >
           Drink
         </button>
       </div>
       {ReceitasFeitas.length === 0 ? (
-        <h3>Sem Receitas Favoritas!</h3>
+        <h3>Sem Receitas Feitas!</h3>
       ) : (
         ReceitasFeitas.map(
           (
@@ -76,7 +84,7 @@ function ReceitasFinalizadas() {
             index,
           ) => (
             <div data-testid={ `${index}-recipe-card` } key={ index }>
-              <Link to={ `/${type}/${id}` }>
+              <Link to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }>
                 <img
                   className="recipe-image"
                   data-testid={ `${index}-horizontal-image` }
@@ -85,10 +93,10 @@ function ReceitasFinalizadas() {
                 />
               </Link>
               <div>
-                {type === 'meals'
-                  ? mealInfo(index, category, nationality)
-                  : drinkInfo(index, alcoholicOrNot)}
-                <Link to={ `/${type}/${id}` }>
+                <Link to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }>
+                  {type.includes('meal')
+                    ? mealInfo(index, category, nationality)
+                    : drinkInfo(index, alcoholicOrNot)}
                   <p data-testid={ `${index}-horizontal-name` }>{name}</p>
                   <p data-testid={ `${index}-horizontal-done-date` }>
                     Feita em:
@@ -105,17 +113,7 @@ function ReceitasFinalizadas() {
                     ))}
                   </div>
                 </Link>
-                <button
-                  type="button"
-                  data-testid="share-btn"
-                  onClick={ () => {} }
-                >
-                  <img
-                    src={ shareIcon }
-                    alt="share-icon"
-                    data-testid={ `${index}-horizontal-share-btn` }
-                  />
-                </button>
+                <ShareButton id={ id } index={ index } />
                 <button
                   name="apagar"
                   type="button"
