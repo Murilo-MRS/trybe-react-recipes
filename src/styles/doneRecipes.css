@@ -1,9 +1,6 @@
-@media ( max-width : 800px ) {
-
   .share-btn {
     background: none;
     border: none;
     position: relative;
     right: 13.77%;
   }
-}

@@ -84,8 +84,16 @@ function RecipeDetails() {
   ]);
 
   return (
-    <>
-      <div className="recipe-page">
+    <div className="recipe-page">
+      <div>
+        <div className="sobreporIMG">
+          <h1 data-testid="recipe-title">{title}</h1>
+          <h2 data-testid="recipe-category">{category}</h2>
+          <div className="containerBtnFavorite">
+            <ShareButton />
+            <FavoriteButton />
+          </div>
+        </div>
         <img
           className="img-recipe"
           data-testid="recipe-photo"
@@ -93,10 +101,6 @@ function RecipeDetails() {
           alt="meal img"
         />
         <div className="mealInformation">
-          <div className="sobreporIMG">
-            <h1 data-testid="recipe-title">{title}</h1>
-            <h2 data-testid="recipe-category">{category}</h2>
-          </div>
           <div>
             <h3>Ingredients</h3>
             <ul className="text-list">
@@ -125,18 +129,15 @@ function RecipeDetails() {
         {video && (
           <iframe
             title="Food Video"
-            width="420"
-            height="315"
+            width="100%"
+            height="300px"
             data-testid="video"
             src={ video }
           />
         )}
       </div>
-      <div className="Fundobranco">
-        <ShareButton />
-        <FavoriteButton />
-        <MealCarousel />
-      </div>
+      <MealCarousel />
+
       {notDoneRecipe && (
         <button
           className="initiate-recipe-butt"
@@ -151,7 +152,7 @@ function RecipeDetails() {
           }
         </button>
       )}
-    </>
+    </div>
   );
 }
 

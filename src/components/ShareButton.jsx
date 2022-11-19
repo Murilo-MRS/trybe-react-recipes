@@ -27,6 +27,8 @@ export default function ShareButton({ id, index }) {
       setCopy(true);
       copy(urlRecipes);
     }
+    setCopy(true);
+    copy(urlMealorDrink);
   };
 
   return (
@@ -44,7 +46,7 @@ export default function ShareButton({ id, index }) {
           data-testid={ `${index}-horizontal-share-btn` }
         />
       </button>
-      {copied && <p>Link copied!</p>}
+      {copied && <p className="linkCopy">Link copied!</p>}
     </div>
   );
 }

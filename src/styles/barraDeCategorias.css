@@ -1,12 +1,11 @@
-@media ( max-width : 800px ) {
-
   .container-categories {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 30px;
     margin-top: 6%;
     position: relative;
+    width: 87%;
   }
 
   .button-categories {
@@ -21,7 +20,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 110px;
+    width: 140px;
   }
 
   .button-categories :focus {
@@ -36,4 +35,4 @@
     line-height: 11px;
     text-align: center;
   }
-}
+

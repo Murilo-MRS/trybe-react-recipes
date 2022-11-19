@@ -1,5 +1,3 @@
-@media ( max-width : 800px ) {
-
   .profileComponent {
     background-color: white;
     display: flex;
@@ -12,4 +10,3 @@
   .favoriteRecipes {
     border-top: 0.5px solid #b1b1b1;
   }
-}

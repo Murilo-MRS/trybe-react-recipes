@@ -1,5 +1,3 @@
-@media ( max-width : 800px ) {
-
   .footer-container {
     align-items: center;
     background: #41197f;
@@ -19,4 +17,3 @@
     background-color: #41197f;
     padding: 10px;
   }
-}

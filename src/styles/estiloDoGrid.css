@@ -1,5 +1,3 @@
-@media ( max-width : 800px ) {
-
   .mealsComponent {
     background-color: white;
   }
@@ -64,4 +62,3 @@
     height: 29.53px;
     width: 40.33px;
   }
-}

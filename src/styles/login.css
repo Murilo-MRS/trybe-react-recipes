@@ -1,93 +1,94 @@
-@media ( max-width : 800px ) {
+.login-card {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 30%;
+  padding-top: 15%;
+  width: 100%;
+}
 
   .card-title {
-    align-items: center;
-    color: #41197f;
-    display: flex;
-    font-size: 20px;
-    font-style: italic;
-    font-weight: 500;
-    justify-content: center;
-    text-transform: uppercase;
-  }
+  align-items: center;
+  color: #41197f;
+  display: flex;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  justify-content: center;
+  text-transform: uppercase;
+}
 
-  body {
-    align-items: center;
-    background: #41197f;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+body {
+  align-items: center;
+  background: #41197f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  .btn {
-    background-color: rgb(6, 127, 240);
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 300;
-    margin-top: 15px;
-    padding: 10px 20px;
-    transition: 0.3s;
-  }
+.btn {
+  background-color: rgb(6, 127, 240);
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 15px;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
 
-  .btn:disabled {
-    background-color: #ce5d41;
-    color: white;
-  }
+.btn:disabled {
+  background-color: #ce5d41;
+  color: white;
+}
 
-  h2 {
-    font-size: 21px;
-    font-weight: 600;
-  }
+h2 {
+  font-size: 21px;
+  font-weight: 600;
+}
 
-  input {
-    background: 0 0;
-    background-color: #e7e7e7;
-    border: 0.5px solid #41197f;
-    border-radius: 5px;
-    line-height: 1.5;
-    padding: 10px 15px;
-    width: 100%;
-  }
+input {
+  background: 0 0;
+  background-color: #e7e7e7;
+  border: 0.5px solid #41197f;
+  border-radius: 5px;
+  line-height: 1.5;
+  padding: 10px 15px;
+  width: 100%;
+}
 
-  .login-card {
-    align-items: center;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    margin-top: 30%;
-    padding: 12%;
-    padding-top: 30%;
-    width: 100%;
-  }
 
-  .login-card button {
-    color: white;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    line-height: 14px;
-    margin-top: 9%;
-    text-align: center;
-    text-transform: uppercase;
-  }
 
-  .tomateimg {
-    filter: drop-shadow(0 7px 15px rgba(68, 73, 85, 0.25));
-    position: absolute;
-    top: 220px;
-  }
+.login-card button {
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 14px;
+  margin-top: 9%;
+  text-align: center;
+  text-transform: uppercase;
+}
 
-  .logoApp {
-    height: 157.25px;
-    left: 24%;
-    margin-bottom: 20%;
-    margin-top: 20%;
-    position: relative;
-    width: 198px;
-  }
+.tomateimg {
+  margin-bottom: -30%;
+  margin-top: -10%;
+  filter: drop-shadow(0 7px 15px rgba(68, 73, 85, 0.25));
+  display: flex;
+  justify-content:center;
+  height: 100%;
+  width: 100%;
+}
+
+.logoApp {
+  display: flex;
+  justify-content:center;
+  height: 157.25px;
+  margin-top: 10%;
+  width: 198px;
 }
