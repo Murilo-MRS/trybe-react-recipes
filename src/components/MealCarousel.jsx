@@ -25,7 +25,7 @@ function MealCarousel() {
         <motion.div
           className="inner"
           drag="x"
-          dragConstraints={ { right: -12, left: -1510 } }
+          dragConstraints={ { right: 650, left: -680 } }
         >
           {!foodPath
             ? foods?.slice(0, MAX).map((e, index) => (
