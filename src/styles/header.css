@@ -1,15 +1,15 @@
-  nav {
+  .menuNav{
+    top: 0;
     background: #fcdc36;
     height: 52px;
-    left: 0;
-    position: absolute;
-    top: 0;
+    position: fixed;
     width: 100%;
+    max-width: 640px;
   }
 
   .searchTopBtn {
     background-color: #fcdc36;
-    margin-right: 15px;
+    margin-right: 1%;
   }
 
   .searchTopBtn:active {
@@ -19,18 +19,19 @@
   .logoContainer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    gap: 1%;
   }
 
   .iconeHeader {
     height: 39.28px;
-    margin-left: 20px;
+    margin-left: 1%;
     width: 42.6px;
   }
 
   .iconeLogo {
     height: 16.97px;
-    margin-left: 20px;
-    margin-top: 12px;
+    margin-left: 1%;
+    margin-top: 1%;
     width: 109.13px;
   }

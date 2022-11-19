@@ -24,7 +24,7 @@ function Login() {
       <img className="logoApp" src={ logoRecipesApp } alt="logoRecipesApp" />
       <img className="tomateimg" src={ tomate } alt="tomate" />
 
-      <div className="login-card">
+      <section className="login-card">
         <div className="card-title">
           <h1>LOGIN</h1>
         </div>
@@ -61,7 +61,7 @@ function Login() {
         >
           Enter
         </button>
-      </div>
+      </section>
     </>
   );
 }

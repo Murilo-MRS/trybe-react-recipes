@@ -1,12 +1,15 @@
-  .container-categories {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    margin-top: 6%;
-    position: relative;
-    width: 87%;
-  }
+.container-categories {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  margin-top: 6%;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  gap: 5px;
+}
+
 
   .button-categories {
     background-color: #ffc107;
@@ -20,7 +23,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 140px;
+    width: 100px;
   }
 
   .button-categories :focus {

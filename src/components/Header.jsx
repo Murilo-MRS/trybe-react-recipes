@@ -17,15 +17,11 @@ function Header() {
   const handleSearchBtn = () => setShowSearchInput(!showSearchInput);
   return (
     <>
-      <div>
-        <h1 data-testid="page-title">{title}</h1>
-      </div>
-      <header>
-        <nav>
-          <div className="logoContainer">
-            <img className="iconeHeader" src={ íconeRecipesApp } alt="íconeRecipesApp" />
-            <img className="iconeLogo" src={ logoRecipesApp } alt="iconeLogo" />
-          </div>
+      <div className="menuNav">
+        <div className="logoContainer">
+          <img className="iconeHeader" src={ íconeRecipesApp } alt="íconeRecipesApp" />
+          <img className="iconeLogo" src={ logoRecipesApp } alt="iconeLogo" />
+          <div />
           {showIcon && (
             <button
               className="searchTopBtn"
@@ -51,12 +47,15 @@ function Header() {
               alt="Ir para perfil"
             />
           </button>
-        </nav>
-        {showSearchInput && (
-          <SearchBar />
-        )}
-      </header>
+        </div>
 
+      </div>
+      <div>
+        <h1 data-testid="page-title">{title}</h1>
+      </div>
+      {showSearchInput && (
+        <SearchBar />
+      )}
     </>
   );
 }

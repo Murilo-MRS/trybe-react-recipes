@@ -23,21 +23,6 @@ code {
   border-radius: 5px;
   width: 276px;
   }
-
-  body div {
-    display:flex;
-    flex-direction: column;
-    width:100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  header nav {
-    align-items: center;
-    display:flex;
-    justify-content: space-between;
-  }
   
   .recipe-image {
     display: flex;
