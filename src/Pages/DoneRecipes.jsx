@@ -71,70 +71,72 @@ function ReceitasFinalizadas() {
           Drink
         </button>
       </div>
-      {ReceitasFeitas.length === 0 ? (
-        <h3>Sem Receitas Feitas!</h3>
-      ) : (
-        ReceitasFeitas.map(
-          (
-            {
-              category,
-              id,
-              type,
-              doneDate,
-              tags,
-              image,
-              nationality,
-              alcoholicOrNot,
-              name,
-            },
-            index,
-          ) => (
-            <div
-              className="card-done-recipe"
-              data-testid={ `${index}-recipe-card` }
-              key={ index }
-            >
-              <Link
-                to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }
+      <div className="grid-recipes">
+        {ReceitasFeitas.length === 0 ? (
+          <h3>Sem Receitas Feitas!</h3>
+        ) : (
+          ReceitasFeitas.map(
+            (
+              {
+                category,
+                id,
+                type,
+                doneDate,
+                tags,
+                image,
+                nationality,
+                alcoholicOrNot,
+                name,
+              },
+              index,
+            ) => (
+              <div
+                className="card-done-recipe"
+                data-testid={ `${index}-recipe-card` }
+                key={ index }
               >
-                <img
-                  className="recipe-image"
-                  data-testid={ `${index}-horizontal-image` }
-                  src={ image }
-                  alt={ name }
-                />
-              </Link>
-              <div>
-                {type.includes('meal')
-                  ? mealInfo(index, category, nationality)
-                  : drinkInfo(index, alcoholicOrNot)}
-                <p
-                  className="infoName"
-                  data-testid={ `${index}-horizontal-name` }
+                <Link
+                  to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }
                 >
-                  {name}
-                </p>
-                <p data-testid={ `${index}-horizontal-done-date` }>
-                  {`Feita em: ${doneDate}`}
-                </p>
+                  <img
+                    className="recipe-image"
+                    data-testid={ `${index}-horizontal-image` }
+                    src={ image }
+                    alt={ name }
+                  />
+                </Link>
                 <div>
-                  {tags.map((tag) => (
-                    <p
-                      key={ tag }
-                      data-testid={ `${index}-${tag}-horizontal-tag` }
-                    >
-                      {tag}
-                    </p>
-                  ))}
+                  {type.includes('meal')
+                    ? mealInfo(index, category, nationality)
+                    : drinkInfo(index, alcoholicOrNot)}
+                  <p
+                    className="infoName"
+                    data-testid={ `${index}-horizontal-name` }
+                  >
+                    {name}
+                  </p>
+                  <p data-testid={ `${index}-horizontal-done-date` }>
+                    {`Feita em: ${doneDate}`}
+                  </p>
+                  <div>
+                    {tags.map((tag) => (
+                      <p
+                        key={ tag }
+                        data-testid={ `${index}-${tag}-horizontal-tag` }
+                      >
+                        {tag}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+                <div className="shareBtnDone">
+                  <ShareButton id={ id } index={ index } />
                 </div>
               </div>
-              <div className="shareBtnDone">
-                <ShareButton id={ id } index={ index } />
-              </div>
-            </div>
-          ),
-        )
-      )}
+            ),
+          )
+        )}
+      </div>
       <Footer />
     </div>
   );

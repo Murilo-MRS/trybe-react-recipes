@@ -95,62 +95,64 @@ function FavoriteRecipes() {
           Drink
         </button>
       </div>
-      {FavoriteRecipess.length === 0 ? (
-        <h3>Sem Receitas Favoritas!</h3>
-      ) : (
-        FavoriteRecipess.map(
-          (
-            { category, id, type, image, alcoholicOrNot, name, nationality },
-            index,
-          ) => (
-            <div
-              className="card-done-recipe"
-              data-testid={ `${index}-recipe-card` }
-              key={ index }
-            >
-              <Link to={ `/${type}s/${id}` }>
-                <img
-                  className="recipe-image"
-                  data-testid={ `${index}-horizontal-image` }
-                  src={ image }
-                  alt={ name }
-                />
-              </Link>
-              <div>
-                {type === 'meal'
-                  ? mealInfo(index, category, nationality)
-                  : drinkInfo(index, alcoholicOrNot)}
+      <div className="grid-recipes">
+        {FavoriteRecipess.length === 0 ? (
+          <h3>Sem Receitas Favoritas!</h3>
+        ) : (
+          FavoriteRecipess.map(
+            (
+              { category, id, type, image, alcoholicOrNot, name, nationality },
+              index,
+            ) => (
+              <div
+                className="card-done-recipe"
+                data-testid={ `${index}-recipe-card` }
+                key={ index }
+              >
                 <Link to={ `/${type}s/${id}` }>
-                  <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+                  <img
+                    className="recipe-image"
+                    data-testid={ `${index}-horizontal-image` }
+                    src={ image }
+                    alt={ name }
+                  />
                 </Link>
-                <div className="shareBtnDone">
-                  <button
-                    src={ shareIcon }
-                    type="button"
-                    data-testid="share-btn"
-                    onClick={ () => sharebtn(type, id) }
-                  >
-                    <img
-                      data-testid={ `${index}-horizontal-share-btn` }
+                <div>
+                  {type === 'meal'
+                    ? mealInfo(index, category, nationality)
+                    : drinkInfo(index, alcoholicOrNot)}
+                  <Link to={ `/${type}s/${id}` }>
+                    <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+                  </Link>
+                  <div className="shareBtnDone">
+                    <button
                       src={ shareIcon }
-                      alt="Icone de compartilhar"
-                    />
-                  </button>
-                  <button
-                    src={ blackHeartIcon }
-                    type="button"
-                    data-testid={ `${index}-horizontal-favorite-btn` }
-                    onClick={ () => deletes(id) }
-                  >
-                    <img src={ blackHeartIcon } alt="Icone de Favoritar" />
-                  </button>
-                  {copied && <p>Link copied!</p>}
+                      type="button"
+                      data-testid="share-btn"
+                      onClick={ () => sharebtn(type, id) }
+                    >
+                      <img
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt="Icone de compartilhar"
+                      />
+                    </button>
+                    <button
+                      src={ blackHeartIcon }
+                      type="button"
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      onClick={ () => deletes(id) }
+                    >
+                      <img src={ blackHeartIcon } alt="Icone de Favoritar" />
+                    </button>
+                    {copied && <p>Link copied!</p>}
+                  </div>
                 </div>
               </div>
-            </div>
-          ),
-        )
-      )}
+            ),
+          )
+        )}
+      </div>
       <Footer />
     </div>
   );
