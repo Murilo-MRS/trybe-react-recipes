@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
+import perfilImg from '../images/iconsFigma/Perfil.svg';
 import '../styles/profile.css';
 
 function Profile() {
@@ -37,10 +38,15 @@ function Profile() {
   }
 
   return (
-    <>
+    <div className="profileComponent">
       <Header />
-      <div className="profileComponent">
-        <p>{emailInStorage && getEmail()}</p>
+      <div className="imgDoneprofile">
+        <img src={ perfilImg } alt="imagem de done" />
+        <h1 className="title-profile">Profile</h1>
+      </div>
+      <p className="email-profile">{emailInStorage && getEmail()}</p>
+      <div className="container-profile">
+
         <button
           data-testid="profile-done-btn"
           type="button"
@@ -48,14 +54,15 @@ function Profile() {
         >
           Done Recipes
         </button>
+        <div className="line" />
         <button
-          className="favoriteRecipes"
           data-testid="profile-favorite-btn"
           type="button"
           onClick={ redirectToFavoriteRecipes }
         >
           Favorite Recipes
         </button>
+        <div className="line" />
         <button
           data-testid="profile-logout-btn"
           type="button"
@@ -65,7 +72,7 @@ function Profile() {
         </button>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

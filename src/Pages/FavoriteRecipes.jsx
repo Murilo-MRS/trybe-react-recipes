@@ -6,7 +6,9 @@ import Header from '../components/Header';
 import Context from '../context/Context';
 import { getStorage, setStorage } from '../helpers/Storage';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import favoriteImg from '../images/iconsFigma/favoriterescipes.svg';
 import shareIcon from '../images/shareIcon.svg';
+import '../styles/doneRecipes.css';
 
 function FavoriteRecipes() {
   const [copied, setCopy] = useState(false);
@@ -54,9 +56,13 @@ function FavoriteRecipes() {
   };
 
   return (
-    <div>
+    <div className="recipes-page">
       <Header />
-      <div className="buttonfilter-container">
+      <div className="imgDone">
+        <img src={ favoriteImg } alt="imagem de done" />
+        <h1 className="title-page">Favorites</h1>
+      </div>
+      <div className="container-categories">
         <button
           data-testid="filter-by-all-btn"
           type="button"

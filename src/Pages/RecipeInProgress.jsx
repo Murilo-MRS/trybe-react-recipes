@@ -173,16 +173,22 @@ function RecipeDetails() {
 
   return (
     <>
-      <div className="Fundobranco">
+      <div className="recipe-page">
+        <div className="sobreporIMG">
+          <h1 data-testid="recipe-title">{title}</h1>
+          <h2 data-testid="recipe-category">{category}</h2>
+          <div className="containerBtnFavorite">
+            <ShareButton />
+            <FavoriteButton />
+          </div>
+        </div>
         <img
           className="img-recipe"
           data-testid="recipe-photo"
           src={ img }
           alt="meal img"
         />
-        <h1 data-testid="recipe-title">{title}</h1>
-        <h2 data-testid="recipe-category">{category}</h2>
-        <div className=" mealInformation recipe-page">
+        <div className=" mealInformation">
           {
             ingredients.map((ingredient, index) => {
               const checkOrnot = (usedIngredients
@@ -209,21 +215,19 @@ function RecipeDetails() {
             })
           }
         </div>
-        <p data-testid="instructions">{detail?.strInstructions}</p>
+        <div className="text-desciption">
+          <p data-testid="instructions">{detail?.strInstructions}</p>
+        </div>
+        {video && (
+          <iframe
+            title="Food Video"
+            width="100%"
+            height="300px"
+            data-testid="video"
+            src={ video }
+          />
+        )}
       </div>
-      <div className="Fundobranco">
-        <ShareButton />
-        <FavoriteButton />
-      </div>
-      {video && (
-        <iframe
-          title="Food Video"
-          width="420"
-          height="315"
-          data-testid="video"
-          src={ video }
-        />
-      )}
       <button
         className="finish-recipe-btn"
         type="button"

@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import ShareButton from '../components/ShareButton';
 import Context from '../context/Context';
 import { setStorage } from '../helpers/Storage';
+import doneImg from '../images/iconsFigma/donerecipes.svg';
+import '../styles/doneRecipes.css';
 
 function ReceitasFinalizadas() {
   const [ReceitasFeitas, setReceitasFeitas] = useState([]);
@@ -41,10 +43,13 @@ function ReceitasFinalizadas() {
   }
 
   return (
-    <div className="Fundobranco">
+    <div className="recipes-page">
       <Header />
-      <h1>Receitas Feitas</h1>
-      <div>
+      <div className="imgDone">
+        <img src={ doneImg } alt="imagem de done" />
+        <h1 className="title-page">Done Recipes</h1>
+      </div>
+      <div className="container-categories">
         <button
           data-testid="filter-by-all-btn"
           type="button"

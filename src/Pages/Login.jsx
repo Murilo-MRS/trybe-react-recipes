@@ -19,6 +19,12 @@ function Login() {
     localStorage.setItem('user', JSON.stringify({ email }));
     history.push('/meals');
   };
+  // funcao que faz login apertando enter
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleFormClick();
+    }
+  };
   return (
     <>
       <img className="logoApp" src={ logoRecipesApp } alt="logoRecipesApp" />
@@ -43,6 +49,7 @@ function Login() {
         <label htmlFor="Password">
           Senha:
           <input
+            onKeyDown={ handleKeyDown }
             autoComplete="off"
             type="password"
             data-testid="password-input"

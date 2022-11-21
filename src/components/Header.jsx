@@ -9,7 +9,7 @@ import '../styles/header.css';
 import SearchBar from './SearchBar';
 
 function Header() {
-  const { title, showIcon } = useContext(Context);
+  const { showIcon } = useContext(Context);
   const [showSearchInput, setShowSearchInput] = useState(false);
   const history = useHistory();
   const profilePush = () => history.push('/profile');
@@ -49,9 +49,6 @@ function Header() {
           </button>
         </div>
 
-      </div>
-      <div>
-        <h1 data-testid="page-title">{title}</h1>
       </div>
       {showSearchInput && (
         <SearchBar />
