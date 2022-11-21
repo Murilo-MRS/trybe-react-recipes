@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import Linkedin from '../components/Linkedin';
 import Context from '../context/Context';
 import logoRecipesApp from '../images/logoRecipesApp.png';
 import tomate from '../images/tomate.png';
@@ -69,6 +70,7 @@ function Login() {
           Enter
         </button>
       </section>
+      <Linkedin />
     </>
   );
 }
