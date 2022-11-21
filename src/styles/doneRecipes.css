@@ -6,6 +6,7 @@
   justify-content: center;
   text-align: center;
   margin-top: 7%;
+  padding-top: 20px;
   width: 100%;
   height: 100%;
 }
@@ -21,6 +22,7 @@
   width: 100%;
   align-items: center;
   gap: 5px;
+  z-index: 0;
 }
 
 .container-categories>button {
@@ -55,7 +57,7 @@
   font-style: normal;
   font-weight: 900;
   font-size: 30px;
-  line-height: 20px;
+  line-height: 30px;
   text-align: center;
   letter-spacing: 0.105em;
   text-transform: uppercase;
@@ -68,4 +70,50 @@
 }
 .imgDone>img { 
   margin-bottom: 4%;
+}
+
+.card-done-recipe {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 90%;
+  height: 50%;
+  left: 19px;
+  top: 298px;
+  background: #FFFFFF;
+  border: 0.517989px solid #B1B1B1;
+  border-radius: 5px;
+}
+
+.card-done-recipe >img {
+  width: 163.35px;
+  height: 134.85px;
+  left: 19px;
+  top: 298px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.infoTitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+
+  color: #1A1B1C;
+}
+
+.infoName {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 12px;
+  text-align: center;
+
+  color: #797D86;
+}
+
+.shareBtnDone {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
 }

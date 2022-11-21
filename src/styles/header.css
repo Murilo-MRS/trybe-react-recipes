@@ -5,6 +5,7 @@
     position: fixed;
     width: 100%;
     max-width: 640px;
+    z-index: 1;
   }
 
   .searchTopBtn {

@@ -22,7 +22,7 @@ function FavoriteRecipes() {
 
   function mealInfo(index, category, nationality) {
     return (
-      <p data-testid={ `${index}-horizontal-top-text` }>
+      <p className="infoTitle" data-testid={ `${index}-horizontal-top-text` }>
         {`${nationality} - ${category}`}
       </p>
     );
@@ -30,7 +30,13 @@ function FavoriteRecipes() {
 
   function drinkInfo(index, alcoholicOrNot) {
     return (
-      <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>
+      <p
+        className="infoTitle"
+        data-testid={ `${index}-horizontal-top-text` }
+      >
+        {`${alcoholicOrNot}`}
+
+      </p>
     );
   }
 
@@ -97,7 +103,11 @@ function FavoriteRecipes() {
             { category, id, type, image, alcoholicOrNot, name, nationality },
             index,
           ) => (
-            <div data-testid={ `${index}-recipe-card` } key={ index }>
+            <div
+              className="card-done-recipe"
+              data-testid={ `${index}-recipe-card` }
+              key={ index }
+            >
               <Link to={ `/${type}s/${id}` }>
                 <img
                   className="recipe-image"
@@ -113,7 +123,7 @@ function FavoriteRecipes() {
                 <Link to={ `/${type}s/${id}` }>
                   <p data-testid={ `${index}-horizontal-name` }>{name}</p>
                 </Link>
-                <div>
+                <div className="shareBtnDone">
                   <button
                     src={ shareIcon }
                     type="button"
@@ -132,10 +142,7 @@ function FavoriteRecipes() {
                     data-testid={ `${index}-horizontal-favorite-btn` }
                     onClick={ () => deletes(id) }
                   >
-                    <img
-                      src={ blackHeartIcon }
-                      alt="Icone de Favoritar"
-                    />
+                    <img src={ blackHeartIcon } alt="Icone de Favoritar" />
                   </button>
                   {copied && <p>Link copied!</p>}
                 </div>

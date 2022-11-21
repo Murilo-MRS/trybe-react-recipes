@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ShareButton from '../components/ShareButton';
 import Context from '../context/Context';
-import { setStorage } from '../helpers/Storage';
 import doneImg from '../images/iconsFigma/donerecipes.svg';
 import '../styles/doneRecipes.css';
 
@@ -14,7 +13,7 @@ function ReceitasFinalizadas() {
   const doneRecipesFromStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
   function mealInfo(index, category, nationality) {
     return (
-      <p data-testid={ `${index}-horizontal-top-text` }>
+      <p className="infoTitle" data-testid={ `${index}-horizontal-top-text` }>
         {`${nationality} - ${category}`}
       </p>
     );
@@ -22,7 +21,9 @@ function ReceitasFinalizadas() {
 
   function drinkInfo(index, alcoholicOrNot) {
     return (
-      <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>
+      <p className="infoTitle" data-testid={ `${index}-horizontal-top-text` }>
+        {`${alcoholicOrNot}`}
+      </p>
     );
   }
 
@@ -35,12 +36,6 @@ function ReceitasFinalizadas() {
     setTitle('Done Recipes');
     setShowIcon(false);
   }, [setTitle, setShowIcon]);
-
-  function deletes(id) {
-    const filtered = ReceitasFeitas.filter((item) => item.id !== id);
-    setStorage('doneRecipes', filtered);
-    setReceitasFeitas(filtered);
-  }
 
   return (
     <div className="recipes-page">
@@ -60,20 +55,18 @@ function ReceitasFinalizadas() {
         <button
           data-testid="filter-by-meal-btn"
           type="button"
-          onClick={
-            () => setReceitasFeitas(doneRecipesFromStorage
-              .filter((e) => e.type.includes('meal')))
-          }
+          onClick={ () => setReceitasFeitas(
+            doneRecipesFromStorage.filter((e) => e.type.includes('meal')),
+          ) }
         >
           Food
         </button>
         <button
           data-testid="filter-by-drink-btn"
           type="button"
-          onClick={
-            () => setReceitasFeitas(doneRecipesFromStorage
-              .filter((e) => e.type.includes('drink')))
-          }
+          onClick={ () => setReceitasFeitas(
+            doneRecipesFromStorage.filter((e) => e.type.includes('drink')),
+          ) }
         >
           Drink
         </button>
@@ -83,12 +76,27 @@ function ReceitasFinalizadas() {
       ) : (
         ReceitasFeitas.map(
           (
-            { category,
-              id, type, doneDate, tags, image, nationality, alcoholicOrNot, name },
+            {
+              category,
+              id,
+              type,
+              doneDate,
+              tags,
+              image,
+              nationality,
+              alcoholicOrNot,
+              name,
+            },
             index,
           ) => (
-            <div data-testid={ `${index}-recipe-card` } key={ index }>
-              <Link to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }>
+            <div
+              className="card-done-recipe"
+              data-testid={ `${index}-recipe-card` }
+              key={ index }
+            >
+              <Link
+                to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }
+              >
                 <img
                   className="recipe-image"
                   data-testid={ `${index}-horizontal-image` }
@@ -97,34 +105,31 @@ function ReceitasFinalizadas() {
                 />
               </Link>
               <div>
-                <Link to={ type.includes('meal') ? `/meals/${id}` : `/drinks/${id}` }>
-                  {type.includes('meal')
-                    ? mealInfo(index, category, nationality)
-                    : drinkInfo(index, alcoholicOrNot)}
-                  <p data-testid={ `${index}-horizontal-name` }>{name}</p>
-                  <p data-testid={ `${index}-horizontal-done-date` }>
-                    Feita em:
-                    {doneDate}
-                  </p>
-                  <div>
-                    {tags.map((tag) => (
-                      <p
-                        key={ tag }
-                        data-testid={ `${index}-${tag}-horizontal-tag` }
-                      >
-                        {tag}
-                      </p>
-                    ))}
-                  </div>
-                </Link>
-                <ShareButton id={ id } index={ index } />
-                <button
-                  name="apagar"
-                  type="button"
-                  onClick={ () => deletes(id) }
+                {type.includes('meal')
+                  ? mealInfo(index, category, nationality)
+                  : drinkInfo(index, alcoholicOrNot)}
+                <p
+                  className="infoName"
+                  data-testid={ `${index}-horizontal-name` }
                 >
-                  Apagar
-                </button>
+                  {name}
+                </p>
+                <p data-testid={ `${index}-horizontal-done-date` }>
+                  {`Feita em: ${doneDate}`}
+                </p>
+                <div>
+                  {tags.map((tag) => (
+                    <p
+                      key={ tag }
+                      data-testid={ `${index}-${tag}-horizontal-tag` }
+                    >
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div className="shareBtnDone">
+                <ShareButton id={ id } index={ index } />
               </div>
             </div>
           ),

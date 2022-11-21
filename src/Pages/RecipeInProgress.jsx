@@ -153,7 +153,7 @@ function RecipeDetails() {
   };
 
   const handleFinishRecipeButt = () => {
-    const date = new Date();
+    const date = new Date().toLocaleDateString('pt-BR');
     const tagsArray = detail?.strTags?.split(',').slice(0, 2) || [];
     const getDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
     const toSaveDoneRecipes = [...getDoneRecipes, {

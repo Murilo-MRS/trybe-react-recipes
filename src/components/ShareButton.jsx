@@ -20,15 +20,16 @@ export default function ShareButton({ id, index }) {
       copy(newUrl);
     }
     if (urlDoneRecipe.includes('/done-recipes')) {
-      const urlRecipes = urlMealorDrink.replace(
+      const urlRecipes = urlDoneRecipe.replace(
         '/done-recipes',
         `/meals/${id}`,
       );
       setCopy(true);
       copy(urlRecipes);
+    } else {
+      setCopy(true);
+      copy(urlMealorDrink);
     }
-    setCopy(true);
-    copy(urlMealorDrink);
   };
 
   return (
