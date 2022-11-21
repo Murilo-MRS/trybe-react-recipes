@@ -14,6 +14,12 @@ export default function ShareButton({ id, index }) {
   const handleShareButt = () => {
     const urlMealorDrink = `http://localhost:3000${pathname}`;
     const urlDoneRecipe = `http://localhost:3000${pathname}`;
+    const urlFavorite = `http://localhost:3000${pathname}`;
+    if (urlFavorite.includes('/favorite-recipes')) {
+      const newUrl = urlFavorite.replace('/favorite-recipes', '');
+      setCopy(true);
+      copy(newUrl);
+    }
     if (urlMealorDrink.includes('/in-progress')) {
       const newUrl = urlMealorDrink.replace('/in-progress', '');
       setCopy(true);
@@ -22,7 +28,7 @@ export default function ShareButton({ id, index }) {
     if (urlDoneRecipe.includes('/done-recipes')) {
       const urlRecipes = urlDoneRecipe.replace(
         '/done-recipes',
-        `/meals/${id}`,
+        `/${index}/${id}`,
       );
       setCopy(true);
       copy(urlRecipes);

@@ -4,6 +4,7 @@
     flex-direction: column;
     margin-top: 7%;
     height: 100%;
+    padding-bottom: 10%;
   }
 
   .card-name {

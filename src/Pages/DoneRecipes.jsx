@@ -130,7 +130,7 @@ function ReceitasFinalizadas() {
                   </div>
                 </div>
                 <div className="shareBtnDone">
-                  <ShareButton id={ id } index={ index } />
+                  <ShareButton id={ id } index={ type } />
                 </div>
               </div>
             ),
