@@ -2,6 +2,14 @@
     margin: 0;
   }
 
+  .botao-voltar {
+    color: #fcc436;
+    background-color: #fcc436;
+    position: fixed;
+    margin-top: 10%;
+    left: 1%;
+  }
+
   .initiate-recipe-butt {
     background: #fcc436;
     border-radius: 5px;
@@ -158,9 +166,11 @@
   }
 
   .linkCopy {
-    color: white;
-    font-weight: 500;
-    line-height: 28px;
+    color: #797D86;
+    font-style: normal;
+    font-weight: 300;
     font-size: 11px;
+    line-height: 12px;
     position: relative;
+    text-shadow: 2px 2px white;
   }

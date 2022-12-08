@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
+import ButtonBack from '../components/ButtonBack';
 import FavoriteButton from '../components/FavoriteButton';
 import MealCarousel from '../components/MealCarousel';
 import ShareButton from '../components/ShareButton';
@@ -87,6 +88,7 @@ function RecipeDetails() {
     <div className="recipe-page">
       <div>
         <div className="sobreporIMG">
+          <ButtonBack />
           <h1 data-testid="recipe-title">{title}</h1>
           <h2 data-testid="recipe-category">{category}</h2>
           <div className="containerBtnFavorite">
