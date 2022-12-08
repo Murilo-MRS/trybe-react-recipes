@@ -1,38 +1,38 @@
-  .menuNav{
-    top: 0;
-    background: #fcdc36;
-    height: 52px;
-    position: fixed;
-    width: 100%;
-    max-width: 640px;
-    z-index: 1;
-  }
+.menuNav {
+  background: #fcdc36;
+  height: 52px;
+  max-width: 640px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
 
-  .searchTopBtn {
-    background-color: #fcdc36;
-    margin-right: 1%;
-  }
+.searchTopBtn {
+  background-color: #fcdc36;
+  margin-right: 1%;
+}
 
-  .searchTopBtn:active {
-    margin-bottom: 10px;
-  }
+.searchTopBtn:active {
+  margin-bottom: 10px;
+}
 
-  .logoContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1%;
-  }
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  justify-content: space-between;
+}
 
-  .iconeHeader {
-    height: 39.28px;
-    margin-left: 1%;
-    width: 42.6px;
-  }
+.iconeHeader {
+  height: 39.28px;
+  margin-left: 1%;
+  width: 42.6px;
+}
 
-  .iconeLogo {
-    height: 16.97px;
-    margin-left: 1%;
-    margin-top: 1%;
-    width: 109.13px;
-  }
+.iconeLogo {
+  height: 16.97px;
+  margin-left: 1%;
+  margin-top: 1%;
+  width: 109.13px;
+}

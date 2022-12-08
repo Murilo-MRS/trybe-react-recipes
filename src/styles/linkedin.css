@@ -1,19 +1,21 @@
 .linkedin {
-  display: flex;
   background: white;
+  display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.linkedin > a > img{
-  width: 50px;
+.linkedin > a > img {
   height: 50px;
+  width: 50px;
 }
-.linkedin >a {
+
+.linkedin > a {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .linkedin-container {
   display: flex;
   flex-direction: row;
