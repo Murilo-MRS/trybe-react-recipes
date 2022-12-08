@@ -1,5 +1,5 @@
 import React from 'react';
-import btnVoltar from '../images/btnVoltar.svg';
+import btnVoltar from '../images/btnVoltar.png';
 import '../styles/RecipeDetails.css';
 
 function ButtonBack() {

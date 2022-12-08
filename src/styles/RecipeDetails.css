@@ -4,10 +4,16 @@ body {
 
   .botao-voltar {
     color: #fcc436;
-    background-color: #fcc436;
+    background-color: transparent;
     position: relative;
     margin-top: 30%;
     margin-right: 90%;
+    height: 20px;
+    width: 20px;
+  }
+  .botao-voltar > img {
+    height: 40px;
+    width: 40px;
   }
 
   .sobreporIMG h1, h2 {
